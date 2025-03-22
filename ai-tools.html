@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI工具导航 - 探索各种AI工具，让你的学习和工作更加高效">
+    <title>AI工具导航 | AI知识库</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Preline UI -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline/dist/preline.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Noto Sans SC"', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .tag {
+            transition: all 0.3s ease;
+        }
+        .tool-card:hover .tag {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-secondary-900 text-secondary-800 dark:text-secondary-200 min-h-screen">
+    <!-- 导航栏 -->
+    <header class="bg-white dark:bg-secondary-800 shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-primary-600 dark:text-primary-400 flex items-center">
+                <i class="fas fa-brain text-primary-500 mr-2"></i>
+                AI知识库
+            </a>
+            <div class="flex items-center gap-4">
+                <nav class="hidden md:flex gap-1">
+                    <a href="index.html" class="px-3 py-2 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-secondary-700">首页</a>
+                    <a href="ai-knowledge-hub.html" class="px-3 py-2 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-secondary-700">知识导航</a>
+                    <a href="ai-tools.html" class="px-3 py-2 text-sm font-medium bg-primary-50 text-primary-700 dark:bg-primary-900/20 dark:text-primary-300 rounded-md">AI工具</a>
+                    <a href="ai-trends.html" class="px-3 py-2 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-secondary-700">AI趋势</a>
+                    <a href="ai-learning-revolution.html" class="px-3 py-2 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-secondary-700">AI学习革命</a>
+                </nav>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-secondary-700">
+                    <i class="fas fa-moon hidden dark:block"></i>
+                    <i class="fas fa-sun dark:hidden"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- 页面标题 -->
+        <div class="text-center mb-12">
+            <h1 class="text-3xl font-bold mb-4 text-primary-600 dark:text-primary-400">
+                <i class="fas fa-toolbox mr-2"></i>AI工具导航
+            </h1>
+            <p class="max-w-3xl mx-auto text-secondary-600 dark:text-secondary-400">
+                探索各种AI工具，助力你的学习与工作。我们精心挑选了最实用的AI工具，按功能分类整理，让你快速找到适合的工具。
+            </p>
+        </div>
+
+        <!-- 重点推荐工具 -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 text-primary-600 dark:text-primary-400 flex items-center">
+                <i class="fas fa-star text-yellow-500 mr-2"></i>重点推荐工具
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 豆包 -->
+                <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg p-6 shadow-md tool-card transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <img src="/images/tools/doubao.png" alt="豆包" class="w-12 h-12 rounded-lg mr-4">
+                        <div>
+                            <h3 class="text-xl font-bold">豆包</h3>
+                            <a href="https://www.doubao.com/" target="_blank" class="text-xs text-primary-600 dark:text-primary-400 hover:underline">
+                                <i class="fas fa-link mr-1"></i>官方网站
+                            </a>
+                        </div>
+                    </div>
+                    <p class="mb-4">字节跳动出品的全能型AI助手，适合新手入门，支持多种任务处理。无需注册即可使用，可以完成文本创作、图像生成、代码编写等多种任务。</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded text-xs">文本生成</span>
+                        <span class="tag px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded text-xs">图像创作</span>
+                        <span class="tag px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded text-xs">对话助手</span>
+                        <span class="tag px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded text-xs">新手友好</span>
+                    </div>
+                    <a href="https://www.doubao.com/download" target="_blank" class="inline-flex items-center text-sm text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-colors">
+                        <i class="fas fa-download mr-2"></i>下载桌面客户端
+                    </a>
+                </div>
+                
+                <!-- 通义千问 -->
+                <div class="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 rounded-lg p-6 shadow-md tool-card transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <img src="/images/tools/tongyi.png" alt="通义千问" class="w-12 h-12 rounded-lg mr-4">
+                        <div>
+                            <h3 class="text-xl font-bold">通义千问</h3>
+                            <a href="https://qianwen.aliyun.com/" target="_blank" class="text-xs text-primary-600 dark:text-primary-400 hover:underline">
+                                <i class="fas fa-link mr-1"></i>官方网站
+                            </a>
+                        </div>
+                    </div>
+                    <p class="mb-4">阿里巴巴出品的AI助手，擅长音频处理和PPT制作。具有多模态能力，可以同时处理文本、图像和音频，特别适合办公场景和学习辅助。</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 rounded text-xs">音频转写</span>
+                        <span class="tag px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 rounded text-xs">PPT生成</span>
+                        <span class="tag px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 rounded text-xs">多模态</span>
+                        <span class="tag px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 rounded text-xs">办公辅助</span>
+                    </div>
+                    <a href="https://qianwen.aliyun.com/features" target="_blank" class="inline-flex items-center text-sm text-white bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg transition-colors">
+                        <i class="fas fa-magic mr-2"></i>探索功能特性
+                    </a>
+                </div>
+                
+                <!-- 即梦 -->
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-lg p-6 shadow-md tool-card transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <img src="/images/tools/jimeng.png" alt="即梦" class="w-12 h-12 rounded-lg mr-4">
+                        <div>
+                            <h3 class="text-xl font-bold">即梦</h3>
+                            <a href="https://www.jimmeng.cn/" target="_blank" class="text-xs text-primary-600 dark:text-primary-400 hover:underline">
+                                <i class="fas fa-link mr-1"></i>官方网站
+                            </a>
+                        </div>
+                    </div>
+                    <p class="mb-4">字节跳动出品的AI创意工具，专注于高质量图片和视频生成。每天提供免费额度，支持海报设计、中文文字生成和各种视频特效，创意表达的理想工具。</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 rounded text-xs">图片生成</span>
+                        <span class="tag px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 rounded text-xs">视频制作</span>
+                        <span class="tag px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 rounded text-xs">创意设计</span>
+                        <span class="tag px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 rounded text-xs">免费额度</span>
+                    </div>
+                    <a href="https://www.jimmeng.cn/download" target="_blank" class="inline-flex items-center text-sm text-white bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg transition-colors">
+                        <i class="fas fa-download mr-2"></i>下载APP
+                    </a>
+                </div>
+                
+                <!-- 秘塔AI搜索 -->
+                <div class="bg-gradient-to-r from-amber-50 to-yellow-50 dark:from-amber-900/20 dark:to-yellow-900/20 rounded-lg p-6 shadow-md tool-card transition-all duration-300">
+                    <div class="flex items-center mb-4">
+                        <img src="/images/tools/mita.png" alt="秘塔AI搜索" class="w-12 h-12 rounded-lg mr-4">
+                        <div>
+                            <h3 class="text-xl font-bold">秘塔AI搜索</h3>
+                            <a href="https://www.metaso.cn/" target="_blank" class="text-xs text-primary-600 dark:text-primary-400 hover:underline">
+                                <i class="fas fa-link mr-1"></i>官方网站
+                            </a>
+                        </div>
+                    </div>
+                    <p class="mb-4">比DeepSeek还要好用的AI搜索引擎，拥有强大的知识库查询能力。能挖掘偏僻专业信息，整合多种来源的内容，提供更全面的搜索结果。学术研究和专业信息查询的理想工具。</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-300 rounded text-xs">AI搜索</span>
+                        <span class="tag px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-300 rounded text-xs">知识库查询</span>
+                        <span class="tag px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-300 rounded text-xs">学术研究</span>
+                        <span class="tag px-2 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-300 rounded text-xs">信息整合</span>
+                    </div>
+                    <a href="https://www.metaso.cn/" target="_blank" class="inline-flex items-center text-sm text-white bg-amber-600 hover:bg-amber-700 px-4 py-2 rounded-lg transition-colors">
+                        <i class="fas fa-search mr-2"></i>立即体验
+                    </a>
+                </div>
+
+                <!-- Claude & NotebookLM -->
+                <div class="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-900/30 dark:to-gray-800/30 rounded-lg p-6 shadow-md tool-card transition-all duration-300 md:col-span-2">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-lg p-5 shadow-sm">
+                            <div class="flex items-center mb-4">
+                                <img src="/images/tools/claude.png" alt="Claude" class="w-10 h-10 rounded-lg mr-3">
+                                <div>
+                                    <h3 class="text-lg font-bold">Claude</h3>
+                                    <a href="https://claude.ai/" target="_blank" class="text-xs text-primary-600 dark:text-primary-400 hover:underline">
+                                        <i class="fas fa-link mr-1"></i>官方网站
+                                    </a>
+                                </div>
+                            </div>
+                            <p class="mb-3 text-sm">Anthropic公司研发的顶级大模型，与OpenAI竞争的强力AI。作为编程助手表现出色，配合Cursor IDE使用效果最佳。</p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="tag px-2 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-300 rounded text-xs">编程开发</span>
+                                <span class="tag px-2 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-300 rounded text-xs">文档写作</span>
+                                <span class="tag px-2 py-1 bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-300 rounded text-xs">需要科学上网</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <a href="https://claude.ai/" target="_blank" class="inline-flex items-center text-xs text-white bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg transition-colors">
+                                    <i class="fas fa-robot mr-1"></i>访问Claude
+                                </a>
+                                <a href="https://cursor.sh/" target="_blank" class="inline-flex items-center text-xs text-white bg-gray-600 hover:bg-gray-700 px-3 py-1.5 rounded-lg transition-colors">
+                                    <i class="fas fa-code mr-1"></i>下载Cursor
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg p-5 shadow-sm">
+                            <div class="flex items-center mb-4">
+                                <img src="/images/tools/notebooklm.png" alt="Google NotebookLM" class="w-10 h-10 rounded-lg mr-3">
+                                <div>
+                                    <h3 class="text-lg font-bold">Google NotebookLM</h3>
+                                    <a href="https://notebooklm.google.com/" target="_blank" class="text-xs text-primary-600 dark:text-primary-400 hover:underline">
+                                        <i class="fas fa-link mr-1"></i>官方网站
+                                    </a>
+                                </div>
+                            </div>
+                            <p class="mb-3 text-sm">Google推出的最强文字生成与播客AI产品，在解读总结论文和会议内容方面表现超强，目前无竞品可比。</p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                <span class="tag px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded text-xs">文档解析</span>
+                                <span class="tag px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded text-xs">论文总结</span>
+                                <span class="tag px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded text-xs">需要科学上网</span>
+                            </div>
+                            <a href="https://notebooklm.google.com/" target="_blank" class="inline-flex items-center text-xs text-white bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-lg transition-colors">
+                                <i class="fas fa-book-open mr-1"></i>访问NotebookLM
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-4 px-3 py-2 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border-l-4 border-yellow-400 text-sm">
+                        <div class="flex items-center text-yellow-700 dark:text-yellow-300">
+                            <i class="fas fa-lightbulb mr-2"></i>
+                            <span class="font-medium">使用提示：</span>
+                        </div>
+                        <p class="mt-1">Claude和NotebookLM都需要科学上网工具才能访问，但它们在文档处理和复杂思考方面有着出色表现，值得尝试。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 工具分类 -->
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 text-primary-600 dark:text-primary-400">
+                <i class="fas fa-th-large mr-2"></i>按功能分类
+            </h2>
+            
+            <!-- AI文字写作 -->
+            <div class="mb-10">
+                <h3 class="text-xl font-semibold mb-4 pb-2 border-b border-gray-200 dark:border-gray-700 text-primary-600 dark:text-primary-400">
+                    <i class="fas fa-pen-fancy mr-2"></i>AI文字写作
+                </h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <a href="https://chat.openai.com/" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/chatgpt.png" alt="ChatGPT" class="w-6 h-6 mr-2 rounded">
+                            ChatGPT
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">OpenAI出品的AI对话模型，多种版本可选</p>
+                    </a>
+                    <a href="https://wenxin.baidu.com/" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/wenxin.png" alt="文心一言" class="w-6 h-6 mr-2 rounded">
+                            文心一言
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">百度出品，中文理解力强，文化创作能力突出</p>
+                    </a>
+                    <a href="https://ai.google.dev/" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/gemini.png" alt="Gemini" class="w-6 h-6 mr-2 rounded">
+                            Gemini
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">谷歌最强大模型，多模态能力出色</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- AI图像绘画 -->
+            <div class="mb-10">
+                <h3 class="text-xl font-semibold mb-4 pb-2 border-b border-gray-200 dark:border-gray-700 text-primary-600 dark:text-primary-400">
+                    <i class="fas fa-palette mr-2"></i>AI图像绘画
+                </h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <a href="https://www.midjourney.com/" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/midjourney.png" alt="Midjourney" class="w-6 h-6 mr-2 rounded">
+                            Midjourney
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">专业级AI绘画工具，艺术质感极佳</p>
+                    </a>
+                    <a href="https://stablediffusionweb.com/" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/stable-diffusion.png" alt="Stable Diffusion" class="w-6 h-6 mr-2 rounded">
+                            Stable Diffusion
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">开源AI绘画模型，可本地部署</p>
+                    </a>
+                    <a href="https://openai.com/dall-e-3" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/dalle.png" alt="DALL·E 3" class="w-6 h-6 mr-2 rounded">
+                            DALL·E 3
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">OpenAI出品的图像生成工具，理解提示词能力强</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- AI办公工具 -->
+            <div class="mb-10">
+                <h3 class="text-xl font-semibold mb-4 pb-2 border-b border-gray-200 dark:border-gray-700 text-primary-600 dark:text-primary-400">
+                    <i class="fas fa-briefcase mr-2"></i>AI办公工具
+                </h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <a href="https://gamma.app/" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/gamma.png" alt="Gamma" class="w-6 h-6 mr-2 rounded">
+                            Gamma
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">AI驱动的演示文稿创建工具，效果精美</p>
+                    </a>
+                    <a href="https://www.notion.so/product/ai" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/notion-ai.png" alt="Notion AI" class="w-6 h-6 mr-2 rounded">
+                            Notion AI
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">集成于Notion的AI写作和内容生成工具</p>
+                    </a>
+                    <a href="https://www.xmind.cn/ai/" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/xmind.png" alt="XMind AI" class="w-6 h-6 mr-2 rounded">
+                            XMind AI
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">AI思维导图生成工具，提高思考效率</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- AI视频动画 -->
+            <div class="mb-10">
+                <h3 class="text-xl font-semibold mb-4 pb-2 border-b border-gray-200 dark:border-gray-700 text-primary-600 dark:text-primary-400">
+                    <i class="fas fa-film mr-2"></i>AI视频动画
+                </h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <a href="https://runway.com/" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/runway.png" alt="Runway" class="w-6 h-6 mr-2 rounded">
+                            Runway
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">专业级AI视频生成与编辑工具</p>
+                    </a>
+                    <a href="https://www.heygen.com/" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/heygen.png" alt="HeyGen" class="w-6 h-6 mr-2 rounded">
+                            HeyGen
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">AI数字人视频制作，支持多语言</p>
+                    </a>
+                    <a href="https://www.capcut.cn/" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/capcut.png" alt="剪映专业版" class="w-6 h-6 mr-2 rounded">
+                            剪映专业版
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">集成AI功能的视频剪辑工具，新手友好</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- AI音频音乐 -->
+            <div class="mb-10">
+                <h3 class="text-xl font-semibold mb-4 pb-2 border-b border-gray-200 dark:border-gray-700 text-primary-600 dark:text-primary-400">
+                    <i class="fas fa-music mr-2"></i>AI音频音乐
+                </h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <a href="https://elevenlabs.io/" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/elevenlabs.png" alt="ElevenLabs" class="w-6 h-6 mr-2 rounded">
+                            ElevenLabs
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">超自然声音合成，支持多种语言</p>
+                    </a>
+                    <a href="https://www.suno.ai/" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/suno.png" alt="Suno" class="w-6 h-6 mr-2 rounded">
+                            Suno
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">AI音乐创作工具，可生成完整歌曲</p>
+                    </a>
+                    <a href="https://github.com/openai/whisper" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/whisper.png" alt="Whisper" class="w-6 h-6 mr-2 rounded">
+                            Whisper
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">OpenAI开源的语音识别模型，准确率高</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- AI编程开发 -->
+            <div class="mb-10">
+                <h3 class="text-xl font-semibold mb-4 pb-2 border-b border-gray-200 dark:border-gray-700 text-primary-600 dark:text-primary-400">
+                    <i class="fas fa-code mr-2"></i>AI编程开发
+                </h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <a href="https://github.com/features/copilot" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/github-copilot.png" alt="GitHub Copilot" class="w-6 h-6 mr-2 rounded">
+                            GitHub Copilot
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">AI代码助手，支持多种IDE</p>
+                    </a>
+                    <a href="https://cursor.sh/" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/cursor.png" alt="Cursor" class="w-6 h-6 mr-2 rounded">
+                            Cursor
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">集成AI的新一代IDE，基于VSCode</p>
+                    </a>
+                    <a href="https://tabnine.com/" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/tabnine.png" alt="Tabnine" class="w-6 h-6 mr-2 rounded">
+                            Tabnine
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">AI代码补全工具，支持本地运行</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- AI学习教程 -->
+            <div>
+                <h3 class="text-xl font-semibold mb-4 pb-2 border-b border-gray-200 dark:border-gray-700 text-primary-600 dark:text-primary-400">
+                    <i class="fas fa-graduation-cap mr-2"></i>AI学习教程
+                </h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <a href="https://learningprompt.wiki/" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/learning-prompt.png" alt="Learning Prompt" class="w-6 h-6 mr-2 rounded">
+                            Learning Prompt
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">免费中文提示词学习教程</p>
+                    </a>
+                    <a href="https://trancy.org/" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/trancy.png" alt="Trancy" class="w-6 h-6 mr-2 rounded">
+                            Trancy
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">AI辅助外语学习工具，支持多种语言</p>
+                    </a>
+                    <a href="https://readwise.io/reader" target="_blank" class="block p-4 bg-white dark:bg-secondary-700 rounded-lg shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <img src="/images/tools/readwise.png" alt="Readwise Reader" class="w-6 h-6 mr-2 rounded">
+                            Readwise Reader
+                        </h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">AI辅助阅读工具，搭建个人知识库</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 更多工具链接 -->
+        <section class="text-center mb-16">
+            <h2 class="text-2xl font-bold mb-4 text-primary-600 dark:text-primary-400">
+                <i class="fas fa-external-link-alt mr-2"></i>探索更多AI工具
+            </h2>
+            <p class="mb-6">访问以下网站，发现更多前沿AI工具</p>
+            <a href="https://www.haode.com/" target="_blank" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                <i class="fas fa-globe mr-2"></i>
+                访问 haode.com - AI工具导航网站
+            </a>
+        </section>
+    </main>
+
+    <footer class="bg-white dark:bg-secondary-800 border-t border-gray-200 dark:border-secondary-700 py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-sm text-secondary-600 dark:text-secondary-400">
+                        &copy; 2024 AI知识库. 保留所有权利.
+                    </p>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#" class="text-secondary-600 dark:text-secondary-400 hover:text-primary-600 dark:hover:text-primary-400">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="#" class="text-secondary-600 dark:text-secondary-400 hover:text-primary-600 dark:hover:text-primary-400">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-secondary-600 dark:text-secondary-400 hover:text-primary-600 dark:hover:text-primary-400">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Preline UI JS -->
+    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js"></script>
+    <!-- 暗黑模式切换脚本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            
+            // 检查本地存储中的主题偏好
+            if (localStorage.getItem('color-theme') === 'dark' || 
+                (!localStorage.getItem('color-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+            
+            // 切换主题的点击事件
+            themeToggleBtn.addEventListener('click', function() {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

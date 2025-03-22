@@ -1,0 +1,2224 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI通识训练营知识库</title>
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Preline UI -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline/dist/preline.min.css" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
+            },
+            darkMode: 'class',
+        }
+    </script>
+
+    <style>
+        @layer base {
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hover-scale {
+            transition: transform 0.2s ease;
+        }
+
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+
+        /* 知识库特定样式 */
+        .knowledge-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .knowledge-card:hover {
+            border-left-color: #6366f1;
+        }
+
+        .toc-link.active {
+            color: #6366f1;
+            font-weight: 600;
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 侧边栏目录样式 */
+        .sidebar-nav {
+            max-height: calc(100vh - 150px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+        }
+
+        .sidebar-nav::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar-nav::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar-nav::-webkit-scrollbar-thumb {
+            background-color: rgba(99, 102, 241, 0.3);
+            border-radius: 20px;
+        }
+
+        .nav-group {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-group-toggle {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .nav-group-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .nav-group.expanded .nav-group-content {
+            max-height: 1000px;
+        }
+
+        .nav-group-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .nav-group.expanded .nav-group-icon {
+            transform: rotate(90deg);
+        }
+
+        .toc-link-l1 {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .toc-link-l2 {
+            font-size: 0.9rem;
+            padding-left: 1rem;
+        }
+
+        .toc-link-l3 {
+            font-size: 0.85rem;
+            padding-left: 2rem;
+        }
+
+        .toc-link-l4 {
+            font-size: 0.8rem;
+            padding-left: 3rem;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-secondary-900 text-secondary-800 dark:text-gray-100">
+    <!-- 导航栏 -->
+    <nav
+        class="fixed w-full bg-white/90 dark:bg-secondary-800/90 backdrop-blur-md z-50 border-b border-gray-200 dark:border-secondary-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-primary-600 dark:text-primary-400">AI通识训练营</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="darkModeToggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary-700">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="flex flex-col md:flex-row">
+        <!-- 侧边栏导航 -->
+        <aside
+            class="md:fixed md:h-screen md:w-72 lg:w-80 pt-16 px-4 md:border-r border-gray-200 dark:border-secondary-700 bg-white/80 dark:bg-secondary-800/80 backdrop-blur-sm">
+            <div class="sticky top-16 py-6">
+                <h2 class="text-xl font-bold mb-4 text-primary-600 dark:text-primary-400">AI通识训练营知识库</h2>
+
+                <div class="sidebar-nav mt-4">
+                    <!-- AI基础知识 部分 -->
+                    <div class="nav-group expanded mb-2">
+                        <div
+                            class="nav-group-toggle flex items-center justify-between py-2 hover:text-primary-600 dark:hover:text-primary-400">
+                            <span class="toc-link-l1 text-secondary-800 dark:text-gray-100">AI基础知识</span>
+                            <i class="fas fa-chevron-right text-xs nav-group-icon text-primary-400"></i>
+                        </div>
+                        <div class="nav-group-content pl-2">
+                            <ul class="space-y-1">
+                                <li>
+                                    <a href="#why-learn"
+                                        class="toc-link toc-link-l2 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                        为什么学习AI实际场景的训练
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#ai-science"
+                                        class="toc-link toc-link-l2 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                        AI科普
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#ai-trends"
+                                        class="toc-link toc-link-l2 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                        AI趋势
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#ai-tools"
+                                        class="toc-link toc-link-l2 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                        AI工具
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#ai-skill-levels"
+                                        class="toc-link toc-link-l2 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                        AI应用能力水平等级
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#ai-scenarios"
+                                        class="toc-link toc-link-l2 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                        AI应用场景
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- AI应用场景知识 部分 -->
+                    <div class="nav-group mb-2">
+                        <div
+                            class="nav-group-toggle flex items-center justify-between py-2 hover:text-primary-600 dark:hover:text-primary-400">
+                            <span class="toc-link-l1 text-secondary-800 dark:text-gray-100">AI应用场景知识</span>
+                            <i class="fas fa-chevron-right text-xs nav-group-icon text-primary-400"></i>
+                        </div>
+                        <div class="nav-group-content pl-2">
+                            <!-- 模块1 Week1 -->
+                            <div class="nav-group mb-1">
+                                <div
+                                    class="nav-group-toggle flex items-center justify-between py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                    <a href="ai-scenarios-week1.html" class="toc-link-l2 text-secondary-800 dark:text-gray-100">模块1 (Week1)</a>
+                                    <i class="fas fa-chevron-right text-xs nav-group-icon text-primary-400"></i>
+                                </div>
+                                <div class="nav-group-content">
+                                    <ul class="space-y-1">
+                                        <li>
+                                            <a href="#week1-scene1"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景1
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week1-scene2"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景2
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week1-scene3"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景3
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week1-scene4"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景4
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week1-scene5"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景5
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week1-practice"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景练习
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 模块2 Week2 -->
+                            <div class="nav-group mb-1">
+                                <div
+                                    class="nav-group-toggle flex items-center justify-between py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                    <span class="toc-link-l2 text-secondary-800 dark:text-gray-100">模块2 (Week2)</span>
+                                    <i class="fas fa-chevron-right text-xs nav-group-icon text-primary-400"></i>
+                                </div>
+                                <div class="nav-group-content">
+                                    <ul class="space-y-1">
+                                        <li>
+                                            <a href="#week2-scene1"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景1
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week2-scene2"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景2
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week2-scene3"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景3
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week2-scene4"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景4
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week2-scene5"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景5
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week2-practice"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景练习
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 模块3 Week3 -->
+                            <div class="nav-group mb-1">
+                                <div
+                                    class="nav-group-toggle flex items-center justify-between py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                    <span class="toc-link-l2 text-secondary-800 dark:text-gray-100">模块3 (Week3)</span>
+                                    <i class="fas fa-chevron-right text-xs nav-group-icon text-primary-400"></i>
+                                </div>
+                                <div class="nav-group-content">
+                                    <ul class="space-y-1">
+                                        <li>
+                                            <a href="#week3-scene1"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景1
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week3-scene2"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景2
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week3-scene3"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景3
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week3-scene4"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景4
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week3-scene5"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景5
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week3-practice"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景练习
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 模块4 Week4 -->
+                            <div class="nav-group mb-1">
+                                <div
+                                    class="nav-group-toggle flex items-center justify-between py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                    <span class="toc-link-l2 text-secondary-800 dark:text-gray-100">模块4 (Week4)</span>
+                                    <i class="fas fa-chevron-right text-xs nav-group-icon text-primary-400"></i>
+                                </div>
+                                <div class="nav-group-content">
+                                    <ul class="space-y-1">
+                                        <li>
+                                            <a href="#week4-scene1"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景1
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week4-scene2"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景2
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week4-scene3"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景3
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week4-scene4"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景4
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week4-scene5"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景5
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week4-practice"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景练习
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 模块5 Week5 -->
+                            <div class="nav-group mb-1">
+                                <div
+                                    class="nav-group-toggle flex items-center justify-between py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                    <span class="toc-link-l2 text-secondary-800 dark:text-gray-100">模块5 (Week5)</span>
+                                    <i class="fas fa-chevron-right text-xs nav-group-icon text-primary-400"></i>
+                                </div>
+                                <div class="nav-group-content">
+                                    <ul class="space-y-1">
+                                        <li>
+                                            <a href="#week5-scene1"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景1
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week5-scene2"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景2
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week5-scene3"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景3
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week5-scene4"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景4
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week5-scene5"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景5
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#week5-practice"
+                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
+                                                场景练习
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 p-4 bg-primary-50 dark:bg-primary-900/30 rounded-lg">
+                    <h4 class="font-medium text-primary-600 dark:text-primary-400 mb-2">开始你的AI学习之旅</h4>
+                    <p class="text-sm mb-3">每天只需30分钟，踏实学习AI，消除焦虑</p>
+                    <button
+                        class="w-full py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-md text-sm transition">
+                        立即报名
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 主要内容区 -->
+        <main class="flex-1 md:ml-72 lg:ml-80 pt-20 pb-12">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- 头部 -->
+                <header class="py-8 mb-8 border-b border-gray-200 dark:border-secondary-700">
+                    <h1 class="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-4">
+                        AI通识训练营知识库
+                    </h1>
+                    <p class="text-lg text-secondary-600 dark:text-secondary-300">
+                        每天30分钟，稳步掌握AI，消除焦虑，提升效率
+                    </p>
+                </header>
+
+                <!-- 内容区块 -->
+                <div class="space-y-12">
+                    <!-- AI基础知识 部分 -->
+                    <section class="space-y-8">
+                        <h2
+                            class="text-2xl font-bold text-secondary-800 dark:text-white pb-2 border-b-2 border-primary-200 dark:border-primary-800">
+                            AI基础知识
+                        </h2>
+
+                        <!-- AI基础知识 - 为什么学习AI实际场景的训练 部分 -->
+                        <section id="why-learn" class="space-y-8">
+                            <h2
+                                class="text-2xl font-bold text-secondary-800 dark:text-white pb-2 border-b-2 border-primary-200 dark:border-primary-800">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>从收藏者到实践者：AI学习的心智革命
+                            </h2>
+
+                            <!-- 引言部分 -->
+                            <div class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                <h3 class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
+                                    <i class="fas fa-heart-circle-check mr-2"></i>在信息洪流中迷失？你不是一个人
+                                </h3>
+                                <div class="prose dark:prose-invert max-w-none">
+                                    <p class="mb-4 text-lg">你是不是也有过这样的体验？</p>
+
+                                    <div
+                                        class="bg-primary-50 dark:bg-primary-900/20 p-4 rounded-lg mb-6 border-l-4 border-primary-400">
+                                        <ul class="list-none space-y-4">
+                                            <li class="flex items-start">
+                                                <span
+                                                    class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 mr-3">
+                                                    <i class="fas fa-bookmark"></i>
+                                                </span>
+                                                <span>大量收藏AI教程和工具，但实际上几乎从未打开。</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span
+                                                    class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 mr-3">
+                                                    <i class="fas fa-newspaper"></i>
+                                                </span>
+                                                <span>每天被铺天盖地的AI资讯搞得焦虑不安，生怕自己会被取代。</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <span
+                                                    class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 mr-3">
+                                                    <i class="fas fa-tools"></i>
+                                                </span>
+                                                <span>面对各种AI工具，完全不知道从哪里开始，试了几个又不了了之。</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <p class="text-lg font-medium text-secondary-700 dark:text-secondary-200 mb-4">
+                                        我们都知道，资讯太多，等于没有资讯；收藏过，不等于真正用过。
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- 问题分析部分 -->
+                            <div class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                <h3 class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
+                                    <i class="fas fa-magnifying-glass mr-2"></i>迷宫中的真相：你的AI困境根源
+                                </h3>
+                                <div class="prose dark:prose-invert max-w-none">
+                                    <p class="mb-5">其实你的问题根本不在于缺资讯，而是你从来没有<span
+                                            class="text-primary-600 dark:text-primary-400 font-medium">真正放慢脚步、踏出稳定的第一步</span>。
+                                    </p>
+
+                                    <div
+                                        class="bg-gradient-to-r from-primary-50 to-white dark:from-primary-900/20 dark:to-secondary-800 p-5 rounded-lg mb-6">
+                                        <p class="mb-4">学AI不需要拼速度，更不需要一下学透某个工具。</p>
+                                        <p class="mb-4">你真正需要的是一种稳定而简单的方式，每天一点点，亲自感受AI带来的改变。</p>
+                                        <p class="mb-4">真正掌握AI的人，不是技术狂人，而是那些每天花一点时间、持续和AI产生真实互动的人。</p>
+                                    </div>
+
+                                    <div class="flex items-center p-4 bg-gray-50 dark:bg-secondary-700/50 rounded-lg">
+                                        <span class="flex-shrink-0 mr-4 text-2xl text-yellow-500">
+                                            <i class="fas fa-quote-left"></i>
+                                        </span>
+                                        <p class="italic">就像你学英语不需要背完所有单词，只需每天打开多邻国练习十分钟，时间久了，你就能流利表达。AI学习也是如此。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 解决方案部分 -->
+                            <div class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                <h3 class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
+                                    <i class="fas fa-rocket mr-2"></i>突破困境：我们的训练营如何点燃你的AI旅程
+                                </h3>
+                                <div class="prose dark:prose-invert max-w-none">
+                                    <p class="mb-6 text-lg">我们设计的训练营，就是要帮你完成这个关键的转变：</p>
+
+                                    <div class="space-y-8">
+                                        <!-- 特点一 -->
+                                        <div
+                                            class="bg-white dark:bg-secondary-700 shadow-sm rounded-lg overflow-hidden">
+                                            <div class="bg-primary-100 dark:bg-primary-900/40 p-4">
+                                                <h4
+                                                    class="text-lg font-medium flex items-center text-primary-700 dark:text-primary-300">
+                                                    <span
+                                                        class="flex-shrink-0 flex items-center justify-center h-8 w-8 rounded-full bg-primary-600 text-white text-sm mr-3">①</span>
+                                                    慢即是快：每天只需30分钟的精华实践
+                                                </h4>
+                                            </div>
+                                            <div class="p-5">
+                                                <div class="flex flex-col sm:flex-row gap-4">
+                                                    <div class="sm:w-1/2 flex flex-col">
+                                                        <span
+                                                            class="text-sm text-gray-500 dark:text-gray-400 mb-2">前10分钟</span>
+                                                        <div
+                                                            class="flex-1 bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                                                            <p>培养你的AI底层思维（想象力、批判性思维、创造力和提问能力），真正提高你与AI的互动质量。</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="sm:w-1/2 flex flex-col">
+                                                        <span
+                                                            class="text-sm text-gray-500 dark:text-gray-400 mb-2">后20分钟</span>
+                                                        <div
+                                                            class="flex-1 bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+                                                            <p>通过真实又有趣的场景练习，掌握主流AI工具的实际应用，让你轻松完成小任务，真正感受到成就感。</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 特点二 -->
+                                        <div
+                                            class="bg-white dark:bg-secondary-700 shadow-sm rounded-lg overflow-hidden">
+                                            <div class="bg-primary-100 dark:bg-primary-900/40 p-4">
+                                                <h4
+                                                    class="text-lg font-medium flex items-center text-primary-700 dark:text-primary-300">
+                                                    <span
+                                                        class="flex-shrink-0 flex items-center justify-center h-8 w-8 rounded-full bg-primary-600 text-white text-sm mr-3">②</span>
+                                                    告别收藏癖：用双手感受AI的温度
+                                                </h4>
+                                            </div>
+                                            <div class="p-5">
+                                                <p class="mb-4">每天的小练习，都是真实的生活或职场场景，不枯燥，不抽象。</p>
+                                                <div
+                                                    class="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg border-l-4 border-yellow-300 dark:border-yellow-700">
+                                                    <p>当你亲手使用AI完成实际的小目标时，你会发现，AI离你并不遥远，而且立即能用得上。</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 特点三 -->
+                                        <div
+                                            class="bg-white dark:bg-secondary-700 shadow-sm rounded-lg overflow-hidden">
+                                            <div class="bg-primary-100 dark:bg-primary-900/40 p-4">
+                                                <h4
+                                                    class="text-lg font-medium flex items-center text-primary-700 dark:text-primary-300">
+                                                    <span
+                                                        class="flex-shrink-0 flex items-center justify-center h-8 w-8 rounded-full bg-primary-600 text-white text-sm mr-3">③</span>
+                                                    习惯成自然：让AI成为你的第二本能
+                                                </h4>
+                                            </div>
+                                            <div class="p-5">
+                                                <p class="mb-4">不是教你把某个工具钻研得多深，而是引导你如何组合使用AI工具，掌握"会用AI解决问题"的能力。</p>
+                                                <div
+                                                    class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-300 dark:border-purple-700">
+                                                    <p>我们不强迫、不施压，像多邻国一样，通过细小但稳定的成就感，逐步引导你形成真正的AI思维与习惯。</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 总结部分 -->
+                            <div
+                                class="knowledge-card p-6 bg-gradient-to-br from-primary-50 to-blue-50 dark:from-primary-900/30 dark:to-blue-900/30 rounded-lg shadow-sm">
+                                <h3 class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
+                                    <i class="fas fa-star mr-2"></i>你的AI旅程，从今天开始
+                                </h3>
+                                <div class="prose dark:prose-invert max-w-none">
+                                    <div class="text-center space-y-3 my-4">
+                                        <p class="text-lg">不用再焦虑，更别再盲目收藏，</p>
+                                        <p class="text-lg">只需每天30分钟，稳稳地迈出第一步，</p>
+                                        <p class="text-lg">亲自感受AI的力量，逐渐消除焦虑，真正把AI变成你的伙伴。</p>
+                                    </div>
+
+                                    <div class="mt-8 text-center">
+                                        <p
+                                            class="inline-block bg-white dark:bg-secondary-700 px-5 py-3 rounded-full text-lg font-medium text-primary-600 dark:text-primary-400 shadow-sm">
+                                            从现在开始，慢下来，踏踏实实地体验AI
+                                        </p>
+                                    </div>
+
+                                    <div class="mt-8 flex justify-center">
+                                        <button
+                                            class="px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all shadow-md hover:shadow-lg transform hover:-translate-y-1">
+                                            加入我们的AI通识训练营
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- AI科普 -->
+                        <!-- AI基础知识 - AI科普 部分 -->
+                        <section id="ai-science" class="space-y-8">
+                            <h2
+                                class="text-2xl font-bold text-secondary-800 dark:text-white pb-2 border-b-2 border-primary-200 dark:border-primary-800">
+                                <i class="fas fa-robot text-blue-500 mr-2"></i>揭秘人工智能：从科幻梦想到日常伙伴
+                            </h2>
+
+                            <!-- AI基础概念 -->
+                            <div class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                <h3 class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
+                                    <i class="fas fa-microchip mr-2"></i>AI不只是算法：人工智能的真面目
+                                </h3>
+                                <div class="prose dark:prose-invert max-w-none">
+                                    <p class="mb-4">人工智能并非一项单一的技术，而是多种技术的融合，目标是创造能模拟人类智能行为的系统。</p>
+
+                                    <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg mb-6">
+                                        <h4 class="text-lg font-medium text-primary-700 dark:text-primary-300 mb-3">
+                                            AI的核心要素</h4>
+                                        <div class="grid md:grid-cols-3 gap-4">
+                                            <div class="bg-white dark:bg-secondary-700 p-4 rounded-lg shadow-sm">
+                                                <div class="flex items-center mb-2">
+                                                    <span
+                                                        class="flex-shrink-0 h-8 w-8 flex items-center justify-center rounded-full bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 mr-2">
+                                                        <i class="fas fa-brain"></i>
+                                                    </span>
+                                                    <h5 class="font-medium">数据学习</h5>
+                                                </div>
+                                                <p class="text-sm">通过大量数据学习模式和规律，不需要显式编程</p>
+                                            </div>
+                                            <div class="bg-white dark:bg-secondary-700 p-4 rounded-lg shadow-sm">
+                                                <div class="flex items-center mb-2">
+                                                    <span
+                                                        class="flex-shrink-0 h-8 w-8 flex items-center justify-center rounded-full bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 mr-2">
+                                                        <i class="fas fa-cogs"></i>
+                                                    </span>
+                                                    <h5 class="font-medium">适应性</h5>
+                                                </div>
+                                                <p class="text-sm">根据环境和新信息调整行为和决策过程</p>
+                                            </div>
+                                            <div class="bg-white dark:bg-secondary-700 p-4 rounded-lg shadow-sm">
+                                                <div class="flex items-center mb-2">
+                                                    <span
+                                                        class="flex-shrink-0 h-8 w-8 flex items-center justify-center rounded-full bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 mr-2">
+                                                        <i class="fas fa-lightbulb"></i>
+                                                    </span>
+                                                    <h5 class="font-medium">推理能力</h5>
+                                                </div>
+                                                <p class="text-sm">根据掌握的知识得出结论和做出决策</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <p>现代AI系统，特别是大语言模型（LLMs），通过分析海量文本数据学习语言模式，能够生成类似人类的文本、回答问题，甚至进行创意写作和复杂推理。</p>
+                                </div>
+                            </div>
+
+                            <!-- AI发展历程 -->
+                            <div class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                <h3 class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
+                                    <i class="fas fa-hourglass-half mr-2"></i>从图灵到ChatGPT：AI的进化之旅
+                                </h3>
+                                <div class="prose dark:prose-invert max-w-none">
+                                    <div class="relative">
+                                        <div class="absolute left-4 h-full w-0.5 bg-primary-200 dark:bg-primary-700">
+                                        </div>
+
+                                        <div class="relative pl-12 pb-8">
+                                            <div
+                                                class="absolute left-0 h-10 w-10 rounded-full bg-primary-100 dark:bg-primary-800 flex items-center justify-center text-primary-600 dark:text-primary-300 border-4 border-white dark:border-secondary-800">
+                                                <span class="text-xs font-bold">1950</span>
+                                            </div>
+                                            <h4 class="text-lg font-medium text-secondary-800 dark:text-white">AI概念诞生
+                                            </h4>
+                                            <p>艾伦·图灵提出著名的"图灵测试"，用来判断机器是否具有智能。</p>
+                                        </div>
+
+                                        <div class="relative pl-12 pb-8">
+                                            <div
+                                                class="absolute left-0 h-10 w-10 rounded-full bg-primary-100 dark:bg-primary-800 flex items-center justify-center text-primary-600 dark:text-primary-300 border-4 border-white dark:border-secondary-800">
+                                                <span class="text-xs font-bold">1956</span>
+                                            </div>
+                                            <h4 class="text-lg font-medium text-secondary-800 dark:text-white">
+                                                "人工智能"术语正式提出</h4>
+                                            <p>约翰·麦卡锡在达特茅斯会议上首次使用"人工智能"一词。</p>
+                                        </div>
+
+                                        <div class="relative pl-12 pb-8">
+                                            <div
+                                                class="absolute left-0 h-10 w-10 rounded-full bg-primary-100 dark:bg-primary-800 flex items-center justify-center text-primary-600 dark:text-primary-300 border-4 border-white dark:border-secondary-800">
+                                                <span class="text-xs font-bold">1997</span>
+                                            </div>
+                                            <h4 class="text-lg font-medium text-secondary-800 dark:text-white">
+                                                深蓝战胜国际象棋冠军</h4>
+                                            <p>IBM的"深蓝"计算机击败世界象棋冠军加里·卡斯帕罗夫。</p>
+                                        </div>
+
+                                        <div class="relative pl-12 pb-8">
+                                            <div
+                                                class="absolute left-0 h-10 w-10 rounded-full bg-primary-100 dark:bg-primary-800 flex items-center justify-center text-primary-600 dark:text-primary-300 border-4 border-white dark:border-secondary-800">
+                                                <span class="text-xs font-bold">2012</span>
+                                            </div>
+                                            <h4 class="text-lg font-medium text-secondary-800 dark:text-white">深度学习突破
+                                            </h4>
+                                            <p>深度神经网络在ImageNet图像识别挑战中取得重大突破，错误率大幅下降。</p>
+                                        </div>
+
+                                        <div class="relative pl-12">
+                                            <div
+                                                class="absolute left-0 h-10 w-10 rounded-full bg-primary-500 dark:bg-primary-600 flex items-center justify-center text-white border-4 border-white dark:border-secondary-800">
+                                                <span class="text-xs font-bold">2023</span>
+                                            </div>
+                                            <h4 class="text-lg font-medium text-secondary-800 dark:text-white">生成式AI大爆发
+                                            </h4>
+                                            <p>ChatGPT、Midjourney等生成式AI工具走入大众视野，开启了AI民主化时代。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AI技术类型 -->
+                            <div class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                <h3 class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
+                                    <i class="fas fa-sitemap mr-2"></i>AI家族谱：现代人工智能的多彩世界
+                                </h3>
+                                <div class="prose dark:prose-invert max-w-none">
+                                    <p class="mb-5">现代AI技术已经发展出多个分支，各有特长，协同工作时能发挥出强大的能力：</p>
+
+                                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                        <div
+                                            class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 p-5 rounded-lg">
+                                            <h4
+                                                class="text-lg font-medium text-blue-700 dark:text-blue-300 mb-3 flex items-center">
+                                                <i class="fas fa-comment-dots mr-2"></i>自然语言处理 (NLP)
+                                            </h4>
+                                            <p class="mb-3">让计算机理解、解释和生成人类语言，是对话式AI的基础。</p>
+                                            <div class="bg-white/60 dark:bg-secondary-800/60 p-3 rounded-lg text-sm">
+                                                <span class="font-medium">应用实例：</span> ChatGPT、Google Assistant、智能客服
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="bg-gradient-to-r from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20 p-5 rounded-lg">
+                                            <h4
+                                                class="text-lg font-medium text-green-700 dark:text-green-300 mb-3 flex items-center">
+                                                <i class="fas fa-eye mr-2"></i>计算机视觉
+                                            </h4>
+                                            <p class="mb-3">使机器能够"看见"并理解图像和视频内容。</p>
+                                            <div class="bg-white/60 dark:bg-secondary-800/60 p-3 rounded-lg text-sm">
+                                                <span class="font-medium">应用实例：</span> 人脸识别、自动驾驶、医学影像分析
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 p-5 rounded-lg">
+                                            <h4
+                                                class="text-lg font-medium text-yellow-700 dark:text-yellow-300 mb-3 flex items-center">
+                                                <i class="fas fa-magic mr-2"></i>生成式AI
+                                            </h4>
+                                            <p class="mb-3">能够创建全新内容，如文本、图像、音乐和视频。</p>
+                                            <div class="bg-white/60 dark:bg-secondary-800/60 p-3 rounded-lg text-sm">
+                                                <span class="font-medium">应用实例：</span> DALL-E、Midjourney、Stable
+                                                Diffusion
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="bg-gradient-to-r from-red-50 to-pink-50 dark:from-red-900/20 dark:to-pink-900/20 p-5 rounded-lg">
+                                            <h4
+                                                class="text-lg font-medium text-red-700 dark:text-red-300 mb-3 flex items-center">
+                                                <i class="fas fa-chart-line mr-2"></i>强化学习
+                                            </h4>
+                                            <p class="mb-3">通过尝试和错误学习，根据反馈调整行为以获得最大收益。</p>
+                                            <div class="bg-white/60 dark:bg-secondary-800/60 p-3 rounded-lg text-sm">
+                                                <span class="font-medium">应用实例：</span> AlphaGo、机器人控制、游戏AI
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-gray-50 dark:bg-secondary-700/50 p-4 rounded-lg">
+                                        <h4 class="text-lg font-medium mb-3 flex items-center">
+                                            <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>你知道吗？
+                                        </h4>
+                                        <p>现代AI系统通常融合多种技术。例如，自动驾驶汽车同时使用计算机视觉（识别道路和障碍物）、自然语言处理（理解语音命令）和强化学习（优化驾驶决策）。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AI与人类的关系 -->
+                            <div class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                <h3 class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
+                                    <i class="fas fa-handshake mr-2"></i>人机共舞：AI不是替代者，而是增强器
+                                </h3>
+                                <div class="prose dark:prose-invert max-w-none">
+                                    <div class="mb-6">
+                                        <p class="mb-4">人工智能最大的价值不在于取代人类，而在于增强人类能力，解放人类创造力：</p>
+
+                                        <div
+                                            class="rounded-lg overflow-hidden border border-gray-200 dark:border-secondary-700">
+                                            <div class="grid grid-cols-3">
+                                                <div
+                                                    class="col-span-1 bg-primary-50 dark:bg-primary-900/30 p-4 flex items-center justify-center font-medium text-primary-700 dark:text-primary-300 border-b border-gray-200 dark:border-secondary-700">
+                                                    AI擅长
+                                                </div>
+                                                <div
+                                                    class="col-span-2 p-4 border-b border-gray-200 dark:border-secondary-700">
+                                                    <ul class="list-disc pl-5 space-y-1 text-sm">
+                                                        <li>处理海量数据</li>
+                                                        <li>执行重复性任务</li>
+                                                        <li>识别复杂模式</li>
+                                                        <li>24/7不间断工作</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="grid grid-cols-3">
+                                                <div
+                                                    class="col-span-1 bg-blue-50 dark:bg-blue-900/30 p-4 flex items-center justify-center font-medium text-blue-700 dark:text-blue-300">
+                                                    人类擅长
+                                                </div>
+                                                <div class="col-span-2 p-4">
+                                                    <ul class="list-disc pl-5 space-y-1 text-sm">
+                                                        <li>创造性思维</li>
+                                                        <li>道德判断</li>
+                                                        <li>情感智能</li>
+                                                        <li>处理新奇情境</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <blockquote
+                                        class="bg-primary-50 dark:bg-primary-900/20 p-4 border-l-4 border-primary-400 italic mb-6">
+                                        "AI是工具，不是目标。最终目标是让AI赋能人类，扩展我们的能力，而不是替代我们的智慧和创造力。"
+                                    </blockquote>
+
+                                    <div
+                                        class="bg-white dark:bg-secondary-700 shadow-sm rounded-lg p-5 border-t-4 border-primary-400">
+                                        <h4 class="text-lg font-medium mb-4">人机协作的黄金法则</h4>
+                                        <ol class="list-decimal pl-5 space-y-3">
+                                            <li>
+                                                <span class="font-medium">保持批判思维</span>
+                                                <p class="text-sm text-gray-600 dark:text-gray-300">
+                                                    AI可能会犯错，总是需要人类的验证和监督。</p>
+                                            </li>
+                                            <li>
+                                                <span class="font-medium">理解AI的局限性</span>
+                                                <p class="text-sm text-gray-600 dark:text-gray-300">
+                                                    AI基于历史数据学习，在面对全新情境时可能表现不佳。</p>
+                                            </li>
+                                            <li>
+                                                <span class="font-medium">将AI视为协作伙伴</span>
+                                                <p class="text-sm text-gray-600 dark:text-gray-300">
+                                                    最佳结果往往来自人类与AI的协作，而非单独依赖任何一方。</p>
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- AI基础知识 - AI趋势 部分 -->
+                        <section id="ai-trends" class="space-y-8">
+                            <h2
+                                class="text-2xl font-bold text-secondary-800 dark:text-white pb-2 border-b-2 border-primary-200 dark:border-primary-800">
+                                <i class="fas fa-chart-line text-green-500 mr-2"></i>AI浪潮下的未来航线：从过去到明天
+                            </h2>
+
+                            <!-- AI发展历程 -->
+                            <div class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                <h3 class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
+                                    <i class="fas fa-history mr-2"></i>智能的成长故事：AI的辉煌里程碑
+                                </h3>
+                                <div class="prose dark:prose-invert max-w-none">
+                                    <p class="mb-5 text-lg">
+                                        想象一下AI是一个特别聪明的小朋友，刚出生的时候什么也不会，但一路成长，经历了很多重要时刻，我们快速回顾一下这些里程碑吧：</p>
+
+                                    <!-- 时间线 -->
+                                    <div class="relative my-8">
+                                        <!-- 时间线轴 -->
+                                        <div
+                                            class="absolute h-full w-1 bg-gradient-to-b from-blue-300 via-purple-400 to-pink-500 left-1/2 transform -translate-x-1/2 rounded-full">
+                                        </div>
+
+                                        <!-- 1956年 -->
+                                        <div class="relative mb-12">
+                                            <div class="flex items-center justify-center mb-3">
+                                                <div
+                                                    class="absolute flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-secondary-800 bg-blue-400 z-10 transform left-1/2 -translate-x-1/2">
+                                                    <span class="text-xs font-bold text-white">1956</span>
+                                                </div>
+                                            </div>
+                                            <div class="ml-auto w-5/12 pl-8">
+                                                <div
+                                                    class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-400">
+                                                    <h4 class="text-lg font-medium text-blue-700 dark:text-blue-300">
+                                                        AI诞生啦！</h4>
+                                                    <p>在美国的达特茅斯，有一群科学家聚在一起，第一次提出了"人工智能"这个酷酷的词汇，从此AI正式登上舞台。</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 1997年 -->
+                                        <div class="relative mb-12">
+                                            <div class="flex items-center justify-center mb-3">
+                                                <div
+                                                    class="absolute flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-secondary-800 bg-indigo-400 z-10 transform left-1/2 -translate-x-1/2">
+                                                    <span class="text-xs font-bold text-white">1997</span>
+                                                </div>
+                                            </div>
+                                            <div class="mr-auto w-5/12 pr-8 text-right">
+                                                <div
+                                                    class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-r-4 border-indigo-400">
+                                                    <h4
+                                                        class="text-lg font-medium text-indigo-700 dark:text-indigo-300">
+                                                        AI赢了象棋冠军！</h4>
+                                                    <p>IBM的电脑"深蓝"战胜了人类世界冠军卡斯帕罗夫，让世界第一次真正意识到电脑也能这么厉害。</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 2011年 -->
+                                        <div class="relative mb-12">
+                                            <div class="flex items-center justify-center mb-3">
+                                                <div
+                                                    class="absolute flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-secondary-800 bg-purple-400 z-10 transform left-1/2 -translate-x-1/2">
+                                                    <span class="text-xs font-bold text-white">2011</span>
+                                                </div>
+                                            </div>
+                                            <div class="ml-auto w-5/12 pl-8">
+                                                <div
+                                                    class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-400">
+                                                    <h4
+                                                        class="text-lg font-medium text-purple-700 dark:text-purple-300">
+                                                        AI能答题啦！</h4>
+                                                    <p>IBM的Watson系统参加了美国著名问答节目《危险边缘》，轻松战胜人类选手，让大家看到了AI处理语言的能力。</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 2016年 -->
+                                        <div class="relative mb-12">
+                                            <div class="flex items-center justify-center mb-3">
+                                                <div
+                                                    class="absolute flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-secondary-800 bg-pink-400 z-10 transform left-1/2 -translate-x-1/2">
+                                                    <span class="text-xs font-bold text-white">2016</span>
+                                                </div>
+                                            </div>
+                                            <div class="mr-auto w-5/12 pr-8 text-right">
+                                                <div
+                                                    class="bg-pink-50 dark:bg-pink-900/20 p-4 rounded-lg border-r-4 border-pink-400">
+                                                    <h4 class="text-lg font-medium text-pink-700 dark:text-pink-300">
+                                                        AI征服了围棋！</h4>
+                                                    <p>谷歌的AlphaGo击败围棋高手李世石，证明AI能处理更加复杂、需要直觉的任务。</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 2022年 -->
+                                        <div class="relative mb-12">
+                                            <div class="flex items-center justify-center mb-3">
+                                                <div
+                                                    class="absolute flex items-center justify-center w-10 h-10 rounded-full border-4 border-white dark:border-secondary-800 bg-red-400 z-10 transform left-1/2 -translate-x-1/2">
+                                                    <span class="text-xs font-bold text-white">2022</span>
+                                                </div>
+                                            </div>
+                                            <div class="ml-auto w-5/12 pl-8">
+                                                <div
+                                                    class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-400">
+                                                    <h4 class="text-lg font-medium text-red-700 dark:text-red-300">
+                                                        AI能聊天了！</h4>
+                                                    <p>ChatGPT的发布让AI真正进入了我们的日常生活，我们终于可以和AI自然地对话，甚至感觉就像朋友一样。</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- 2023年 -->
+                                        <div class="relative">
+                                            <div class="flex items-center justify-center mb-3">
+                                                <div
+                                                    class="absolute flex items-center justify-center w-12 h-12 rounded-full border-4 border-white dark:border-secondary-800 bg-gradient-to-r from-primary-400 to-primary-600 text-white font-bold z-10 transform left-1/2 -translate-x-1/2 shadow-lg">
+                                                    <span class="text-xs font-bold">2023</span>
+                                                </div>
+                                            </div>
+                                            <div class="mr-auto w-5/12 pr-8 text-right">
+                                                <div
+                                                    class="bg-gradient-to-r from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/30 p-4 rounded-lg border-r-4 border-primary-400">
+                                                    <h4
+                                                        class="text-lg font-medium text-primary-700 dark:text-primary-300">
+                                                        AI越来越全面！</h4>
+                                                    <p>AI不仅能说话，还能识别图片、声音，开始拥有更多元的能力，像Gemini这样的AI模型，让我们看到更多可能性。</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AI现状 -->
+                            <div class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                <h3 class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
+                                    <i class="fas fa-clipboard-check mr-2"></i>现在时刻：AI已经在做什么？
+                                </h3>
+                                <div class="prose dark:prose-invert max-w-none">
+                                    <p class="mb-6">
+                                        现在的AI已经不只是个会聊天的小帮手，它开始能帮我们做各种各样的工作，比如自动编程、设计简单的网页、甚至帮助处理文档和数据分析。而且，AI正在从单纯完成某个任务，变成多个智能体合作完成复杂工作，比如帮你自动查资料、写报告甚至做PPT。
+                                    </p>
+
+                                    <div
+                                        class="bg-yellow-50 dark:bg-yellow-900/20 p-5 rounded-lg mb-6 border-l-4 border-yellow-400">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-exclamation-triangle text-yellow-500 mr-2 text-xl"></i>
+                                            <h4 class="text-lg font-medium text-yellow-700 dark:text-yellow-300">
+                                                AI的局限：幻觉问题</h4>
+                                        </div>
+                                        <p>但是，有时候AI也会说错话，我们称为"AI幻觉"，所以我们要学会对AI的回答保持批判性，懂得区分哪些可以用，哪些需要再检查。</p>
+                                    </div>
+
+                                    <!-- AI现状卡片展示 -->
+                                    <div class="grid md:grid-cols-3 gap-5">
+                                        <div
+                                            class="bg-white dark:bg-secondary-700 rounded-lg shadow-sm overflow-hidden">
+                                            <div class="h-3 bg-blue-400"></div>
+                                            <div class="p-4">
+                                                <div
+                                                    class="flex items-center justify-center w-12 h-12 mx-auto mb-3 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-300">
+                                                    <i class="fas fa-code text-xl"></i>
+                                                </div>
+                                                <h4 class="font-medium text-center mb-2">代码助手</h4>
+                                                <p class="text-sm text-center text-gray-600 dark:text-gray-300">
+                                                    帮助编程人员生成代码、解决错误、提升开发效率</p>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="bg-white dark:bg-secondary-700 rounded-lg shadow-sm overflow-hidden">
+                                            <div class="h-3 bg-green-400"></div>
+                                            <div class="p-4">
+                                                <div
+                                                    class="flex items-center justify-center w-12 h-12 mx-auto mb-3 bg-green-100 dark:bg-green-900/30 rounded-full text-green-600 dark:text-green-300">
+                                                    <i class="fas fa-paint-brush text-xl"></i>
+                                                </div>
+                                                <h4 class="font-medium text-center mb-2">创意伙伴</h4>
+                                                <p class="text-sm text-center text-gray-600 dark:text-gray-300">
+                                                    生成图像、文案、设计方案，激发人类创造力</p>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="bg-white dark:bg-secondary-700 rounded-lg shadow-sm overflow-hidden">
+                                            <div class="h-3 bg-purple-400"></div>
+                                            <div class="p-4">
+                                                <div
+                                                    class="flex items-center justify-center w-12 h-12 mx-auto mb-3 bg-purple-100 dark:bg-purple-900/30 rounded-full text-purple-600 dark:text-purple-300">
+                                                    <i class="fas fa-robot text-xl"></i>
+                                                </div>
+                                                <h4 class="font-medium text-center mb-2">智能体协作</h4>
+                                                <p class="text-sm text-center text-gray-600 dark:text-gray-300">
+                                                    多个AI智能体协作完成复杂任务，如研究和报告生成</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AI未来趋势 -->
+                            <div class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                <h3 class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
+                                    <i class="fas fa-binoculars mr-2"></i>预见未来：AI明天的样子
+                                </h3>
+                                <div class="prose dark:prose-invert max-w-none">
+                                    <p class="mb-5">AI的发展速度超级快，甚至连科学家们都无法准确预测未来，但我们可以看到几个重要的趋势：</p>
+
+                                    <div class="space-y-6">
+                                        <div
+                                            class="flex bg-gradient-to-r from-primary-50 to-white dark:from-primary-900/20 dark:to-secondary-800 rounded-lg overflow-hidden shadow-sm">
+                                            <div class="w-1 bg-primary-400"></div>
+                                            <div class="flex-1 p-5">
+                                                <div class="flex items-start mb-2">
+                                                    <div
+                                                        class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-full bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 mr-3">
+                                                        <i class="fas fa-users-cog"></i>
+                                                    </div>
+                                                    <h4 class="text-lg font-medium">更多智能协作</h4>
+                                                </div>
+                                                <p>AI将进入更多协作模式，多个智能工具组合起来，共同完成复杂的工作。</p>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="flex bg-gradient-to-r from-blue-50 to-white dark:from-blue-900/20 dark:to-secondary-800 rounded-lg overflow-hidden shadow-sm">
+                                            <div class="w-1 bg-blue-400"></div>
+                                            <div class="flex-1 p-5">
+                                                <div class="flex items-start mb-2">
+                                                    <div
+                                                        class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-800 text-blue-600 dark:text-blue-300 mr-3">
+                                                        <i class="fas fa-laptop-code"></i>
+                                                    </div>
+                                                    <h4 class="text-lg font-medium">程序员的好帮手</h4>
+                                                </div>
+                                                <p>今年内，AI可能就会大量替代基础程序开发工作，程序员会专注在更高级、更有创意的任务上。</p>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="flex bg-gradient-to-r from-green-50 to-white dark:from-green-900/20 dark:to-secondary-800 rounded-lg overflow-hidden shadow-sm">
+                                            <div class="w-1 bg-green-400"></div>
+                                            <div class="flex-1 p-5">
+                                                <div class="flex items-start mb-2">
+                                                    <div
+                                                        class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-800 text-green-600 dark:text-green-300 mr-3">
+                                                        <i class="fas fa-fingerprint"></i>
+                                                    </div>
+                                                    <h4 class="text-lg font-medium">更个性化的应用</h4>
+                                                </div>
+                                                <p>AI的应用会越来越贴合每个人的实际需求，更加个性化，更能解决我们日常生活的小问题。</p>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="flex bg-gradient-to-r from-purple-50 to-white dark:from-purple-900/20 dark:to-secondary-800 rounded-lg overflow-hidden shadow-sm">
+                                            <div class="w-1 bg-purple-400"></div>
+                                            <div class="flex-1 p-5">
+                                                <div class="flex items-start mb-2">
+                                                    <div
+                                                        class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-full bg-purple-100 dark:bg-purple-800 text-purple-600 dark:text-purple-300 mr-3">
+                                                        <i class="fas fa-brain"></i>
+                                                    </div>
+                                                    <h4 class="text-lg font-medium">批判性思维更重要</h4>
+                                                </div>
+                                                <p>未来懂得质疑AI回答的人，将更能掌控AI工具，不再成为AI的"奴隶"，而是AI的主人。</p>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="flex bg-gradient-to-r from-red-50 to-white dark:from-red-900/20 dark:to-secondary-800 rounded-lg overflow-hidden shadow-sm">
+                                            <div class="w-1 bg-red-400"></div>
+                                            <div class="flex-1 p-5">
+                                                <div class="flex items-start mb-2">
+                                                    <div
+                                                        class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-full bg-red-100 dark:bg-red-800 text-red-600 dark:text-red-300 mr-3">
+                                                        <i class="fas fa-crown"></i>
+                                                    </div>
+                                                    <h4 class="text-lg font-medium">掌握高势能的核心能力</h4>
+                                                </div>
+                                                <p>AI时代的核心竞争力不是某个工具的熟练程度，而是想象力、批判能力、创造力和提出好问题的能力，这些能力不会被快速变化的AI时代所取代。
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 总结部分 -->
+                            <div
+                                class="knowledge-card p-6 bg-gradient-to-br from-primary-50 to-blue-50 dark:from-primary-900/30 dark:to-blue-900/30 rounded-lg shadow-sm">
+                                <h3
+                                    class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400 flex items-center">
+                                    <i class="fas fa-award mr-2"></i>乘风破浪：与AI共创美好未来
+                                </h3>
+                                <div class="prose dark:prose-invert max-w-none">
+                                    <p class="text-lg leading-relaxed text-center mb-6">
+                                        AI已经在快速改变我们的生活，现在正是了解和掌握它的好时机，让我们一起准备好迎接未来吧！
+                                    </p>
+
+                                    <div
+                                        class="bg-white/70 dark:bg-secondary-700/70 p-5 rounded-lg shadow-sm border-l-4 border-primary-400">
+                                        <p class="italic text-lg text-center">
+                                            "未来已来，只是分布不均。" — 威廉·吉布森
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- AI工具 -->
+                        <section id="ai-tools"
+                            class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                            <h3 class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
+                                <i class="fas fa-toolbox mr-2"></i>AI工具导航
+                            </h3>
+
+                            <div class="prose dark:prose-invert max-w-none">
+                                <p class="mb-4">探索各种AI工具，帮助你在不同场景下更高效地工作与学习。我们精心挑选了最实用的工具，并按功能分类整理。</p>
+
+                                <!-- 重点推荐工具预览 -->
+                                <div class="grid md:grid-cols-5 gap-4 mb-6">
+                                    <div class="block p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-center">
+                                        <img src="/images/tools/doubao.png" alt="豆包"
+                                            class="w-12 h-12 mx-auto mb-2 rounded-lg">
+                                        <h5 class="font-medium text-sm">豆包</h5>
+                                    </div>
+                                    <div class="block p-4 bg-green-50 dark:bg-green-900/20 rounded-lg text-center">
+                                        <img src="/images/tools/tongyi.png" alt="通义千问"
+                                            class="w-12 h-12 mx-auto mb-2 rounded-lg">
+                                        <h5 class="font-medium text-sm">通义千问</h5>
+                                    </div>
+                                    <div class="block p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg text-center">
+                                        <img src="/images/tools/jimeng.png" alt="即梦"
+                                            class="w-12 h-12 mx-auto mb-2 rounded-lg">
+                                        <h5 class="font-medium text-sm">即梦</h5>
+                                    </div>
+                                    <div class="block p-4 bg-red-50 dark:bg-red-900/20 rounded-lg text-center">
+                                        <img src="/images/tools/claude.png" alt="Claude"
+                                            class="w-12 h-12 mx-auto mb-2 rounded-lg">
+                                        <h5 class="font-medium text-sm">Claude</h5>
+                                    </div>
+                                    <div class="block p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg text-center">
+                                        <img src="/images/tools/mita.png" alt="秘塔AI搜索"
+                                            class="w-12 h-12 mx-auto mb-2 rounded-lg">
+                                        <h5 class="font-medium text-sm">秘塔搜索</h5>
+                                    </div>
+                                </div>
+
+                                <!-- 分类预览 -->
+                                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                                    <div class="bg-white dark:bg-secondary-700 p-4 rounded-lg shadow-sm">
+                                        <h4
+                                            class="font-medium mb-2 flex items-center text-primary-600 dark:text-primary-400">
+                                            <i class="fas fa-pen-fancy mr-2"></i>AI文字写作
+                                        </h4>
+                                        <p class="text-sm text-gray-600 dark:text-gray-300">ChatGPT、文心一言、Gemini等</p>
+                                    </div>
+                                    <div class="bg-white dark:bg-secondary-700 p-4 rounded-lg shadow-sm">
+                                        <h4
+                                            class="font-medium mb-2 flex items-center text-primary-600 dark:text-primary-400">
+                                            <i class="fas fa-palette mr-2"></i>AI图像绘画
+                                        </h4>
+                                        <p class="text-sm text-gray-600 dark:text-gray-300">Midjourney、Stable
+                                            Diffusion、DALL·E 3</p>
+                                    </div>
+                                    <div class="bg-white dark:bg-secondary-700 p-4 rounded-lg shadow-sm">
+                                        <h4
+                                            class="font-medium mb-2 flex items-center text-primary-600 dark:text-primary-400">
+                                            <i class="fas fa-code mr-2"></i>AI编程开发
+                                        </h4>
+                                        <p class="text-sm text-gray-600 dark:text-gray-300">GitHub Copilot、Cursor
+                                            IDE、Tabnine</p>
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+                                    <a href="ai-tools.html"
+                                        class="inline-flex items-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1">
+                                        <i class="fas fa-search-plus mr-2"></i>
+                                        查看完整AI工具导航
+                                    </a>
+                                </div>
+
+                                <div class="mt-6 bg-gray-50 dark:bg-secondary-700/50 p-4 rounded-lg">
+                                    <h4 class="font-medium mb-2 flex items-center">
+                                        <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+                                        小贴士
+                                    </h4>
+                                    <p class="text-sm">在完整的AI工具导航页面，你将找到更详细的工具介绍、官方链接和使用建议。我们会定期更新工具列表，确保你能接触到最新最好的AI工具。
+                                    </p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- AI应用能力水平等级 -->
+                        <section id="ai-skill-levels" class="space-y-8">
+                            <h2
+                                class="text-2xl font-bold text-secondary-800 dark:text-white pb-2 border-b-2 border-primary-200 dark:border-primary-800">
+                                <i class="fas fa-graduation-cap text-blue-500 mr-2"></i>AI使用能力分级系统
+                            </h2>
+
+                            <div class="prose dark:prose-invert max-w-none">
+                                <p class="text-lg text-center mb-8 text-secondary-600 dark:text-secondary-300">
+                                    从入门到精通，测量并提升你的AI能力水平</p>
+
+                                <div class="relative py-4">
+                                    <!-- 连接线 -->
+                                    <div
+                                        class="absolute left-[40px] top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 via-purple-400 to-red-400 rounded-full">
+                                    </div>
+
+                                    <!-- 级别1：被动体验者 -->
+                                    <div class="mb-12 relative">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 z-10">
+                                                <div
+                                                    class="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-2xl shadow-lg">
+                                                    L1</div>
+                                            </div>
+                                            <div class="ml-8 flex-1">
+                                                <div
+                                                    class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+                                                    <h3
+                                                        class="text-xl font-bold text-blue-600 dark:text-blue-300 mb-3 flex items-center">
+                                                        被动体验者
+                                                        <span
+                                                            class="ml-3 px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded">入门阶段</span>
+                                                    </h3>
+                                                    <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-blue-500"></i>
+                                                            <span>只知道少数几个主流AI工具</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-blue-500"></i>
+                                                            <span>提问方式简单直接，缺乏提示词意识</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-blue-500"></i>
+                                                            <span>直接使用AI生成内容，不加修改</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-blue-500"></i>
+                                                            <span>将AI视为"神奇的搜索引擎"</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-blue-500"></i>
+                                                            <span>很少对AI回答进行验证和核实</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="absolute left-[38px] top-24 h-8 w-8 flex items-center justify-center">
+                                            <i class="fas fa-arrow-down text-primary-500 text-xl"></i>
+                                        </div>
+                                    </div>
+
+                                    <!-- 级别2：基础导航者 -->
+                                    <div class="mb-12 relative">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 z-10">
+                                                <div
+                                                    class="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold text-2xl shadow-lg">
+                                                    L2</div>
+                                            </div>
+                                            <div class="ml-8 flex-1">
+                                                <div
+                                                    class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+                                                    <h3
+                                                        class="text-xl font-bold text-green-600 dark:text-green-300 mb-3 flex items-center">
+                                                        基础导航者
+                                                        <span
+                                                            class="ml-3 px-2 py-1 text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 rounded">基础应用</span>
+                                                    </h3>
+                                                    <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-green-500"></i>
+                                                            <span>熟悉多个AI平台的基本功能和界面</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-green-500"></i>
+                                                            <span>知道提问需要具体、清晰</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-green-500"></i>
+                                                            <span>会比较不同模型的回答质量</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-green-500"></i>
+                                                            <span>能通过追问和修改提示进行迭代</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-green-500"></i>
+                                                            <span>了解AI的基本能力边界和局限性</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="absolute left-[38px] top-24 h-8 w-8 flex items-center justify-center">
+                                            <i class="fas fa-arrow-down text-primary-500 text-xl"></i>
+                                        </div>
+                                    </div>
+
+                                    <!-- 级别3：多模态整合者 -->
+                                    <div class="mb-12 relative">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 z-10">
+                                                <div
+                                                    class="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 text-white font-bold text-2xl shadow-lg">
+                                                    L3</div>
+                                            </div>
+                                            <div class="ml-8 flex-1">
+                                                <div
+                                                    class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+                                                    <h3
+                                                        class="text-xl font-bold text-purple-600 dark:text-purple-300 mb-3 flex items-center">
+                                                        多模态整合者
+                                                        <span
+                                                            class="ml-3 px-2 py-1 text-xs font-medium bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 rounded">进阶应用</span>
+                                                    </h3>
+                                                    <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-purple-500"></i>
+                                                            <span>熟练使用多种形式的AI工具</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-purple-500"></i>
+                                                            <span>将AI融入日常工作流程，提高效率</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-purple-500"></i>
+                                                            <span>有较成熟的提示词方法论</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-purple-500"></i>
+                                                            <span>关注AI新工具和技术发展</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-purple-500"></i>
+                                                            <span>能组合使用多种AI工具完成任务</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="absolute left-[38px] top-24 h-8 w-8 flex items-center justify-center">
+                                            <i class="fas fa-arrow-down text-primary-500 text-xl"></i>
+                                        </div>
+                                    </div>
+
+                                    <!-- 级别4：创新编排者 -->
+                                    <div class="mb-12 relative">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 z-10">
+                                                <div
+                                                    class="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold text-2xl shadow-lg">
+                                                    L4</div>
+                                            </div>
+                                            <div class="ml-8 flex-1">
+                                                <div
+                                                    class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+                                                    <h3
+                                                        class="text-xl font-bold text-orange-600 dark:text-orange-300 mb-3 flex items-center">
+                                                        创新编排者
+                                                        <span
+                                                            class="ml-3 px-2 py-1 text-xs font-medium bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-300 rounded">专业应用</span>
+                                                    </h3>
+                                                    <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-orange-500"></i>
+                                                            <span>创造性组合多种AI工具解决复杂问题</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-orange-500"></i>
+                                                            <span>积极跟踪AI前沿工具和应用趋势</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-orange-500"></i>
+                                                            <span>使用无代码/低代码平台构建工作流</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-orange-500"></i>
+                                                            <span>能设计AI系统解决方案</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-orange-500"></i>
+                                                            <span>理解工作流逻辑和系统设计思维</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="absolute left-[38px] top-24 h-8 w-8 flex items-center justify-center">
+                                            <i class="fas fa-arrow-down text-primary-500 text-xl"></i>
+                                        </div>
+                                    </div>
+
+                                    <!-- 级别5：定制缔造者 -->
+                                    <div class="relative">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 z-10">
+                                                <div
+                                                    class="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-red-500 to-red-600 text-white font-bold text-2xl shadow-lg">
+                                                    L5</div>
+                                            </div>
+                                            <div class="ml-8 flex-1">
+                                                <div
+                                                    class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+                                                    <h3
+                                                        class="text-xl font-bold text-red-600 dark:text-red-300 mb-3 flex items-center">
+                                                        定制缔造者
+                                                        <span
+                                                            class="ml-3 px-2 py-1 text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-300 rounded">专家级应用</span>
+                                                    </h3>
+                                                    <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-red-500"></i>
+                                                            <span>针对特定需求定制AI解决方案</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-red-500"></i>
+                                                            <span>深入理解AI应用原理和创新策略</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-red-500"></i>
+                                                            <span>创造全新的AI应用模式</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-red-500"></i>
+                                                            <span>评估和管理AI项目的技术风险</span>
+                                                        </li>
+                                                        <li class="flex items-start">
+                                                            <i
+                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-red-500"></i>
+                                                            <span>将AI深度融入业务或创作生态</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="absolute left-10 -bottom-3 transform -translate-x-1/2">
+                                            <div
+                                                class="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-primary-400 to-primary-600 text-white">
+                                                <i class="fas fa-flag-checkered"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="mt-12 bg-gradient-to-r from-primary-50 to-blue-50 dark:from-primary-900/30 dark:to-blue-900/30 p-5 rounded-lg text-center">
+                                    <p class="font-medium">您现在处于哪个级别？如何提升到下一级？</p>
+                                    <a href="#"
+                                        class="inline-flex items-center mt-3 px-5 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all">
+                                        <i class="fas fa-chart-line mr-2"></i>测试我的AI能力水平
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- AI应用场景 -->
+                        <!-- AI应用场景 -->
+                        <section id="ai-scenarios" class="space-y-8">
+                            <h2
+                                class="text-2xl font-bold text-secondary-800 dark:text-white pb-2 border-b-2 border-primary-200 dark:border-primary-800">
+                                <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>AI应用场景：无限可能的未来
+                            </h2>
+
+                            <!-- 引言部分 -->
+                            <div
+                                class="knowledge-card p-6 bg-gradient-to-r from-primary-50 to-blue-50 dark:from-primary-900/30 dark:to-blue-900/30 rounded-lg shadow-sm">
+                                <div class="prose dark:prose-invert max-w-none">
+                                    <h3
+                                        class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400 flex items-center">
+                                        <i class="fas fa-bolt mr-2"></i>AI：未来社会的基础设施
+                                    </h3>
+
+                                    <p class="mb-5 text-lg">
+                                        就像电力和互联网彻底改变了人类社会，AI正在成为下一个无处不在的基础设施。未来，AI不会是我们特意使用的工具，而会像空气一样融入我们的日常生活。</p>
+
+                                    <div
+                                        class="bg-white/70 dark:bg-secondary-800/70 p-5 rounded-lg border-l-4 border-primary-400 mb-6">
+                                        <p class="italic text-lg">
+                                            "这里展示的应用场景只是无限可能性的冰山一角，更多创新场景等待你去发现和创造。你不只是AI的使用者，更可以成为场景的创造者。每天多练习、多思考、多行动，你将发现AI能为你创造的价值远超想象。"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 场景分类展示 -->
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <!-- 对话和陪伴 -->
+                                <div
+                                    class="bg-white dark:bg-secondary-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all">
+                                    <div class="h-2 bg-gradient-to-r from-blue-400 to-indigo-500"></div>
+                                    <div class="p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div
+                                                class="flex-shrink-0 h-14 w-14 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300">
+                                                <i class="fas fa-comments text-2xl"></i>
+                                            </div>
+                                            <h3 class="ml-4 text-xl font-bold">对话和陪伴</h3>
+                                        </div>
+
+                                        <p class="mb-4 text-secondary-700 dark:text-secondary-300">
+                                            AI作为你的思考伙伴、情绪支持者和知识导师，帮助你解决问题、学习新知识、管理情绪。</p>
+
+                                        <div class="flex flex-wrap gap-2 mb-4">
+                                            <span
+                                                class="tag px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded-full text-xs">问题解决</span>
+                                            <span
+                                                class="tag px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded-full text-xs">情绪管理</span>
+                                            <span
+                                                class="tag px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded-full text-xs">知识学习</span>
+                                            <span
+                                                class="tag px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded-full text-xs">个人成长</span>
+                                        </div>
+
+                                        <div class="text-sm text-gray-600 dark:text-gray-400 italic">
+                                            "每天与AI对话，就像打开了一扇无限可能的窗户，它不仅能解答你的疑惑，还能成为你思考的催化剂。"
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 多模态AI应用 -->
+                                <div
+                                    class="bg-white dark:bg-secondary-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all">
+                                    <div class="h-2 bg-gradient-to-r from-purple-400 to-pink-500"></div>
+                                    <div class="p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div
+                                                class="flex-shrink-0 h-14 w-14 flex items-center justify-center rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300">
+                                                <i class="fas fa-photo-film text-2xl"></i>
+                                            </div>
+                                            <h3 class="ml-4 text-xl font-bold">创意与创作</h3>
+                                        </div>
+
+                                        <p class="mb-4 text-secondary-700 dark:text-secondary-300">
+                                            AI帮助你在各种媒体形式上释放创造力，从图像、视频、音乐到演示文稿，大幅降低创作门槛。</p>
+
+                                        <div class="flex flex-wrap gap-2 mb-4">
+                                            <span
+                                                class="tag px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 rounded-full text-xs">图像生成</span>
+                                            <span
+                                                class="tag px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 rounded-full text-xs">视频制作</span>
+                                            <span
+                                                class="tag px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 rounded-full text-xs">音乐创作</span>
+                                            <span
+                                                class="tag px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 rounded-full text-xs">内容设计</span>
+                                        </div>
+
+                                        <div class="text-sm text-gray-600 dark:text-gray-400 italic">
+                                            "通过AI，你可以将脑中的想法转化为可见的作品，不再受限于技术门槛，让创意自由流动。"
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 个人效率与管理 -->
+                                <div
+                                    class="bg-white dark:bg-secondary-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all">
+                                    <div class="h-2 bg-gradient-to-r from-green-400 to-teal-500"></div>
+                                    <div class="p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div
+                                                class="flex-shrink-0 h-14 w-14 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300">
+                                                <i class="fas fa-tasks text-2xl"></i>
+                                            </div>
+                                            <h3 class="ml-4 text-xl font-bold">效率与管理</h3>
+                                        </div>
+
+                                        <p class="mb-4 text-secondary-700 dark:text-secondary-300">
+                                            AI作为你的个人助理，帮助规划任务、复盘进度、管理时间，让生活和工作更高效有序。</p>
+
+                                        <div class="flex flex-wrap gap-2 mb-4">
+                                            <span
+                                                class="tag px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 rounded-full text-xs">任务规划</span>
+                                            <span
+                                                class="tag px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 rounded-full text-xs">时间管理</span>
+                                            <span
+                                                class="tag px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 rounded-full text-xs">生活规划</span>
+                                            <span
+                                                class="tag px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 rounded-full text-xs">自我提升</span>
+                                        </div>
+
+                                        <div class="text-sm text-gray-600 dark:text-gray-400 italic">
+                                            "AI不仅能帮你完成任务，更能帮你思考如何更智慧地规划任务，让每一分钟都创造最大价值。"
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 分析研究与学习 -->
+                                <div
+                                    class="bg-white dark:bg-secondary-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all">
+                                    <div class="h-2 bg-gradient-to-r from-amber-400 to-orange-500"></div>
+                                    <div class="p-6">
+                                        <div class="flex items-center mb-4">
+                                            <div
+                                                class="flex-shrink-0 h-14 w-14 flex items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-300">
+                                                <i class="fas fa-brain text-2xl"></i>
+                                            </div>
+                                            <h3 class="ml-4 text-xl font-bold">分析与学习</h3>
+                                        </div>
+
+                                        <p class="mb-4 text-secondary-700 dark:text-secondary-300">
+                                            AI作为你的研究助手和学习伙伴，帮助你分析数据、搜集资料、学习语言，加速知识获取。</p>
+
+                                        <div class="flex flex-wrap gap-2 mb-4">
+                                            <span
+                                                class="tag px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-300 rounded-full text-xs">数据分析</span>
+                                            <span
+                                                class="tag px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-300 rounded-full text-xs">语言学习</span>
+                                            <span
+                                                class="tag px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-300 rounded-full text-xs">资料整理</span>
+                                            <span
+                                                class="tag px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-300 rounded-full text-xs">知识构建</span>
+                                        </div>
+
+                                        <div class="text-sm text-gray-600 dark:text-gray-400 italic">
+                                            "有了AI，你可以将注意力从繁琐的资料收集转向深度思考和创新，让学习更高效、更有趣。"
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 实践建议 -->
+                            <div class="bg-white dark:bg-secondary-800 p-6 rounded-lg shadow-md">
+                                <h3
+                                    class="text-xl font-semibold mb-5 text-primary-600 dark:text-primary-400 flex items-center">
+                                    <i class="fas fa-rocket mr-2"></i>如何成为AI场景创造者？
+                                </h3>
+
+                                <div class="grid md:grid-cols-3 gap-5">
+                                    <div
+                                        class="p-4 bg-gray-50 dark:bg-secondary-700/50 rounded-lg border-t-4 border-primary-400">
+                                        <div class="text-3xl text-primary-500 mb-3">01</div>
+                                        <h4 class="font-medium mb-2">每日实践</h4>
+                                        <p class="text-sm text-gray-600 dark:text-gray-300">
+                                            每天选择一个场景将AI融入工作或生活，记录使用过程与效果，持续优化体验。</p>
+                                    </div>
+
+                                    <div
+                                        class="p-4 bg-gray-50 dark:bg-secondary-700/50 rounded-lg border-t-4 border-primary-400">
+                                        <div class="text-3xl text-primary-500 mb-3">02</div>
+                                        <h4 class="font-medium mb-2">组合思维</h4>
+                                        <p class="text-sm text-gray-600 dark:text-gray-300">
+                                            尝试将不同AI工具组合使用，创造出独特的工作流，解决更复杂的问题。</p>
+                                    </div>
+
+                                    <div
+                                        class="p-4 bg-gray-50 dark:bg-secondary-700/50 rounded-lg border-t-4 border-primary-400">
+                                        <div class="text-3xl text-primary-500 mb-3">03</div>
+                                        <h4 class="font-medium mb-2">分享交流</h4>
+                                        <p class="text-sm text-gray-600 dark:text-gray-300">
+                                            与他人分享你的AI使用心得，相互启发，共同探索更多创新场景。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 行动号召 -->
+                            <div
+                                class="text-center p-6 bg-gradient-to-r from-primary-50 to-blue-50 dark:from-primary-900/30 dark:to-blue-900/30 rounded-lg">
+                                <p class="text-lg mb-4 font-medium">别只是阅读，行动起来！从今天开始，每天用AI解决一个实际问题</p>
+                                <a href="#"
+                                    class="inline-flex items-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1">
+                                    <i class="fas fa-play-circle mr-2"></i>
+                                    开始我的AI应用之旅
+                                </a>
+                            </div>
+                        </section>
+
+                        <!-- AI应用场景知识 部分 -->
+                        <section class="space-y-8">
+                            <h2
+                                class="text-2xl font-bold text-secondary-800 dark:text-white pb-2 border-b-2 border-primary-200 dark:border-primary-800">
+                                AI应用场景知识
+                            </h2>
+
+                            <!-- 模块1 Week1 -->
+                            <section class="space-y-6">
+                                <h3
+                                    class="text-xl font-semibold text-primary-600 dark:text-primary-400 pl-4 border-l-4 border-primary-400">
+                                    模块1 (Week1)
+                                </h3>
+
+                                <!-- 场景1 -->
+                                <section id="week1-scene1"
+                                    class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                    <h4 class="text-lg font-medium mb-3 text-primary-600 dark:text-primary-400">
+                                        场景1
+                                    </h4>
+                                    <div class="prose dark:prose-invert">
+                                        <p class="text-secondary-500 dark:text-secondary-400 italic">
+                                            内容待添加...
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- 场景2 -->
+                                <section id="week1-scene2"
+                                    class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                    <h4 class="text-lg font-medium mb-3 text-primary-600 dark:text-primary-400">
+                                        场景2
+                                    </h4>
+                                    <div class="prose dark:prose-invert">
+                                        <p class="text-secondary-500 dark:text-secondary-400 italic">
+                                            内容待添加...
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- 场景3 -->
+                                <section id="week1-scene3"
+                                    class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                    <h4 class="text-lg font-medium mb-3 text-primary-600 dark:text-primary-400">
+                                        场景3
+                                    </h4>
+                                    <div class="prose dark:prose-invert">
+                                        <p class="text-secondary-500 dark:text-secondary-400 italic">
+                                            内容待添加...
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- 场景4 -->
+                                <section id="week1-scene4"
+                                    class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                    <h4 class="text-lg font-medium mb-3 text-primary-600 dark:text-primary-400">
+                                        场景4
+                                    </h4>
+                                    <div class="prose dark:prose-invert">
+                                        <p class="text-secondary-500 dark:text-secondary-400 italic">
+                                            内容待添加...
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- 场景5 -->
+                                <section id="week1-scene5"
+                                    class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                    <h4 class="text-lg font-medium mb-3 text-primary-600 dark:text-primary-400">
+                                        场景5
+                                    </h4>
+                                    <div class="prose dark:prose-invert">
+                                        <p class="text-secondary-500 dark:text-secondary-400 italic">
+                                            内容待添加...
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- 场景练习 -->
+                                <section id="week1-practice"
+                                    class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                    <h4 class="text-lg font-medium mb-3 text-primary-600 dark:text-primary-400">
+                                        场景练习
+                                    </h4>
+                                    <div class="prose dark:prose-invert">
+                                        <p class="text-secondary-500 dark:text-secondary-400 italic">
+                                            内容待添加...
+                                        </p>
+                                    </div>
+                                </section>
+                            </section>
+
+                            <!-- 模块2 Week2 -->
+                            <section class="space-y-6">
+                                <h3
+                                    class="text-xl font-semibold text-primary-600 dark:text-primary-400 pl-4 border-l-4 border-primary-400">
+                                    模块2 (Week2)
+                                </h3>
+
+                                <!-- 场景1 -->
+                                <section id="week2-scene1"
+                                    class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
+                                    <h4 class="text-lg font-medium mb-3 text-primary-600 dark:text-primary-400">
+                                        场景1
+                                    </h4>
+                                    <div class="prose dark:prose-invert">
+                                        <p class="text-secondary-500 dark:text-secondary-400 italic">
+                                            内容待添加...
+                                        </p>
+                                    </div>
+                                </section>
+
+                                <!-- 更多的场景将按照类似的模式添加 -->
+                                <div class="p-6 bg-primary-50 dark:bg-primary-900/20 rounded-lg text-center">
+                                    <p class="text-secondary-600 dark:text-secondary-300">
+                                        更多场景内容将按需添加...
+                                    </p>
+                                </div>
+                            </section>
+
+                            <!-- 模块3-5 占位符 -->
+                            <div class="p-6 bg-primary-50 dark:bg-primary-900/20 rounded-lg text-center">
+                                <p class="text-secondary-600 dark:text-secondary-300">
+                                    模块3至模块5的内容将按照相同结构添加，每个模块包含5个场景和场景练习...
+                                </p>
+                            </div>
+                        </section>
+
+                        <!-- 行动呼吁 -->
+                        <div
+                            class="p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm border border-primary-200 dark:border-primary-800">
+                            <div class="text-center">
+                                <h3 class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
+                                    准备好踏上AI学习之旅了吗？
+                                </h3>
+                                <p class="mb-6 text-secondary-600 dark:text-secondary-300">
+                                    每天30分钟，培养AI思维，掌握实用技能
+                                </p>
+                                <button
+                                    class="px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all shadow-md hover:shadow-lg">
+                                    立即加入训练营
+                                </button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 返回顶部按钮 -->
+    <button id="backToTop"
+        class="fixed bottom-8 right-8 p-3 bg-primary-600 text-white rounded-full shadow-lg opacity-0 transition-opacity duration-300 hover:bg-primary-700">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 页面加载完成后初始化所有功能
+        document.addEventListener('DOMContentLoaded', function () {
+            // 暗黑模式切换
+            initDarkMode();
+
+            // 导航菜单折叠/展开
+            initNavMenuToggle();
+
+            // 目录高亮
+            initTocHighlight();
+
+            // 返回顶部按钮
+            initBackToTopButton();
+        });
+
+        // 初始化暗黑模式
+        function initDarkMode() {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const html = document.documentElement;
+
+            // 检查用户偏好
+            if (localStorage.getItem('darkMode') === 'true' ||
+                (window.matchMedia('(prefers-color-scheme: dark)').matches &&
+                    !localStorage.getItem('darkMode'))) {
+                html.classList.add('dark');
+            }
+
+            darkModeToggle.addEventListener('click', function () {
+                html.classList.toggle('dark');
+                localStorage.setItem('darkMode', html.classList.contains('dark'));
+            });
+        }
+
+        // 初始化导航菜单折叠/展开
+        function initNavMenuToggle() {
+            const navGroups = document.querySelectorAll('.nav-group');
+
+            navGroups.forEach(group => {
+                const toggle = group.querySelector('.nav-group-toggle');
+
+                // 设置初始展开状态
+                if (group.classList.contains('expanded')) {
+                    const content = group.querySelector('.nav-group-content');
+                    if (content) {
+                        content.style.maxHeight = 'none';
+                    }
+                }
+
+                if (toggle) {
+                    toggle.addEventListener('click', () => {
+                        group.classList.toggle('expanded');
+
+                        // 处理子导航组
+                        const subGroups = group.querySelectorAll('.nav-group');
+                        if (group.classList.contains('expanded')) {
+                            subGroups.forEach(subGroup => {
+                                if (subGroup.classList.contains('expanded')) {
+                                    const subContent = subGroup.querySelector('.nav-group-content');
+                                    if (subContent) subContent.style.maxHeight = 'none';
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+        }
+
+        // 初始化目录高亮
+        function initTocHighlight() {
+            const tocLinks = document.querySelectorAll('.toc-link');
+            const sections = document.querySelectorAll('section[id]');
+
+            // 为所有目录链接添加平滑滚动
+            tocLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        // 计算位置，考虑固定导航栏
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                        const offsetPosition = targetPosition - 80; // 导航栏高度
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+
+                        // 更新URL
+                        history.pushState(null, null, targetId);
+                    }
+                });
+            });
+
+            function highlightToc() {
+                let scrollY = window.pageYOffset;
+
+                sections.forEach(section => {
+                    const sectionHeight = section.offsetHeight;
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionId = section.getAttribute('id');
+
+                    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                        const link = document.querySelector(`.toc-link[href="#${sectionId}"]`);
+                        if (link) {
+                            link.classList.add('active');
+
+                            // 展开当前活动链接所在的导航组
+                            let parent = link.closest('.nav-group-content');
+                            while (parent) {
+                                const group = parent.closest('.nav-group');
+                                if (group) {
+                                    group.classList.add('expanded');
+                                    parent = group.parentElement.closest('.nav-group-content');
+                                } else {
+                                    break;
+                                }
+                            }
+                        }
+                    } else {
+                        const link = document.querySelector(`.toc-link[href="#${sectionId}"]`);
+                        if (link) link.classList.remove('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', highlightToc);
+
+            // 初始执行一次以处理页面加载时的位置
+            highlightToc();
+        }
+
+        // 初始化返回顶部按钮
+        function initBackToTopButton() {
+            const backToTopButton = document.getElementById('backToTop');
+
+            function toggleBackToTopButton() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.remove('opacity-0');
+                    backToTopButton.classList.add('opacity-100');
+                } else {
+                    backToTopButton.classList.remove('opacity-100');
+                    backToTopButton.classList.add('opacity-0');
+                }
+            }
+
+            window.addEventListener('scroll', toggleBackToTopButton);
+
+            backToTopButton.addEventListener('click', function () {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // 初始执行一次以处理页面加载时的位置
+            toggleBackToTopButton();
+        }
+    </script>
+
+    <!-- Preline UI JS -->
+    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js"></script>
+</body>
+
+</html>
