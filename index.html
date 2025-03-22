@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI时代的学习革命：为孩子的未来赋能！</title>
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Preline UI -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline/dist/preline.min.css"/>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f5f5e0',
+                            100: '#ececcb',
+                            200: '#dfdfb3',
+                            300: '#d0d08f',
+                            400: '#bfbf54',
+                            500: '#a9a937',
+                            600: '#878726',
+                            700: '#77771d',
+                            800: '#5d5d13',
+                            900: '#3b3b0c',
+                        },
+                        secondary: {
+                            50: '#d7eded',
+                            100: '#c4e2e2',
+                            200: '#b0d3d3',
+                            300: '#8fc1c1',
+                            400: '#58abab',
+                            500: '#409090',
+                            600: '#2c7171',
+                            700: '#226262',
+                            800: '#164a4a',
+                            900: '#0d2a2a',
+                        },
+                        neutral: {
+                            50: '#ffffff',
+                            100: '#ffffff',
+                            200: '#ffffff',
+                            300: '#ffffff',
+                            400: '#f3f3f2',
+                            500: '#dbddd5',
+                            600: '#c4c9b6',
+                            700: '#bbc2a3',
+                            800: '#adb989',
+                            900: '#9baa6f',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
+            },
+            darkMode: 'class',
+        }
+    </script>
+    
+    <style>
+        @layer base {
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hover-scale {
+            transition: transform 0.2s ease;
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="bg-neutral-50 dark:bg-secondary-900 text-secondary-900 dark:text-neutral-50">
+    <!-- 导航栏 -->
+    <nav class="fixed w-full bg-white/80 dark:bg-secondary-800/80 backdrop-blur-md z-50 border-b border-neutral-200 dark:border-secondary-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold text-primary-600 dark:text-primary-400">AI学习革命</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="darkModeToggle" class="p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-secondary-700">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <header class="pt-32 pb-20 px-4 bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-secondary-800 dark:to-secondary-900">
+        <div class="max-w-4xl mx-auto text-center fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-primary-600 dark:text-primary-400">
+                AI时代的学习革命：为孩子的未来赋能！
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-secondary-600 dark:text-secondary-300">
+                私人AI教练 | 每周一次高能课程 | 五大核心技能培养
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="px-8 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-lg hover-scale">
+                    立即报名
+                </button>
+                <button class="px-8 py-3 border-2 border-primary-500 text-primary-500 hover:bg-primary-50 rounded-lg hover-scale dark:border-primary-400 dark:text-primary-400">
+                    了解更多
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区 -->
+    <main class="max-w-7xl mx-auto px-4 py-16">
+        <!-- WHY LEARN 部分 -->
+        <section class="mb-20 fade-in">
+            <h2 class="text-3xl font-bold mb-12 text-center text-primary-600 dark:text-primary-400">
+                <i class="fas fa-star text-yellow-400 mr-2"></i>
+                WHY LEARN 为什么选择我们的AI陪跑计划？
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 优势卡片 1 -->
+                <div class="bg-white dark:bg-secondary-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <div class="text-primary-500 mb-4">
+                        <i class="fas fa-rocket text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">抢占时代先机</h3>
+                    <p class="text-secondary-600 dark:text-secondary-300">
+                        国家教育部门已在部分城市试点AI课程，家庭教育的提前介入将决定孩子的未来优势。
+                    </p>
+                </div>
+                
+                <!-- 优势卡片 2 -->
+                <div class="bg-white dark:bg-secondary-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <div class="text-primary-500 mb-4">
+                        <i class="fas fa-brain text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">培养批判性思维</h3>
+                    <p class="text-secondary-600 dark:text-secondary-300">
+                        教会孩子理解AI的局限，做"AI的主人"，而非"AI的奴隶"。
+                    </p>
+                </div>
+
+                <!-- 优势卡片 3 -->
+                <div class="bg-white dark:bg-secondary-800 p-6 rounded-lg shadow-lg hover-scale">
+                    <div class="text-primary-500 mb-4">
+                        <i class="fas fa-graduation-cap text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">高度定制化学习</h3>
+                    <p class="text-secondary-600 dark:text-secondary-300">
+                        通过AI深度探索兴趣领域，突破传统课程表限制。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 课程特色 -->
+        <section class="mb-20 fade-in">
+            <h2 class="text-3xl font-bold mb-12 text-center text-primary-600 dark:text-primary-400">
+                <i class="fas fa-bullseye text-red-500 mr-2"></i>
+                THE COURSE HIGHLIGHTS 课程特色
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-secondary-800 p-8 rounded-lg shadow-lg hover-scale">
+                    <h3 class="text-xl font-semibold mb-6">5周培养AI思维与实践能力</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary-500 mt-1 mr-3"></i>
+                            <span>AI入门与提示词设计</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary-500 mt-1 mr-3"></i>
+                            <span>多工具探索与应用</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary-500 mt-1 mr-3"></i>
+                            <span>AI项目制学习</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary-500 mt-1 mr-3"></i>
+                            <span>AI辅助学术研究</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary-500 mt-1 mr-3"></i>
+                            <span>AI创意与游戏开发</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white dark:bg-secondary-800 p-8 rounded-lg shadow-lg hover-scale">
+                    <h3 class="text-xl font-semibold mb-6">量化成果让进步看得见</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-yellow-400 mt-1 mr-3"></i>
+                            <span>掌握5种提示词设计框架</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-yellow-400 mt-1 mr-3"></i>
+                            <span>熟悉4种生成式AI工具</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-yellow-400 mt-1 mr-3"></i>
+                            <span>完成3个个人提效工作流设计</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-yellow-400 mt-1 mr-3"></i>
+                            <span>深度参与1篇科技论文的AI辅助学习</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-star text-yellow-400 mt-1 mr-3"></i>
+                            <span>设计并实现1个AI创意小游戏</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 家长收获 -->
+        <section class="mb-20 fade-in">
+            <h2 class="text-3xl font-bold mb-12 text-center text-primary-600 dark:text-primary-400">
+                <i class="fas fa-fire text-orange-500 mr-2"></i>
+                家长收获
+            </h2>
+            <div class="bg-white dark:bg-secondary-800 p-8 rounded-lg shadow-lg">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <i class="fas fa-heart text-4xl text-red-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-4">减轻学习辅导压力</h3>
+                        <p class="text-secondary-600 dark:text-secondary-300">见证孩子的成长</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-trophy text-4xl text-yellow-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-4">提升未来竞争力</h3>
+                        <p class="text-secondary-600 dark:text-secondary-300">抢占AI时代先机</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-lightbulb text-4xl text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-4">培养创新思维</h3>
+                        <p class="text-secondary-600 dark:text-secondary-300">激发无限潜能</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-secondary-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">AI学习革命</h3>
+                    <p class="text-secondary-300">Imagination Is All Children Need！</p>
+                </div>
+                <div class="flex justify-end space-x-6">
+                    <a href="https://twitter.com/ailearning" class="hover:text-primary-400">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="#" class="hover:text-primary-400">
+                        <i class="fab fa-weixin text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-secondary-700 pt-8 text-center text-secondary-400">
+                <p>&copy; 2024 AI学习革命. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Preline UI JS -->
+    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js"></script>
+    
+    <!-- 深色模式切换脚本 -->
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        
+        // 检查系统主题偏好
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        darkModeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+        
+        // 添加滚动动画
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        
+        fadeElements.forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(20px)';
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html> 

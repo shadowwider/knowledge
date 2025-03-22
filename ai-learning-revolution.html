@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI时代的学习革命：为孩子的未来赋能</title>
+    <meta name="description" content="私人AI教练 | 每周一次高能课程 | 五大核心技能培养">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Preline UI -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline/dist/preline.min.css" />
+    
+    <!-- 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- 字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@400;700&family=Fira+Code&family=Montserrat:wght@500;600;700&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            "50": "#f5f5e0",
+                            "100": "#ececcb",
+                            "200": "#dfdfb3",
+                            "300": "#d0d08f",
+                            "400": "#bfbf54",
+                            "500": "#a9a937",
+                            "600": "#878726",
+                            "700": "#77771d",
+                            "800": "#5d5d13",
+                            "900": "#3b3b0c"
+                        },
+                        secondary: {
+                            "50": "#d7eded",
+                            "100": "#c4e2e2",
+                            "200": "#b0d3d3",
+                            "300": "#8fc1c1",
+                            "400": "#58abab",
+                            "500": "#409090",
+                            "600": "#2c7171",
+                            "700": "#226262",
+                            "800": "#164a4a",
+                            "900": "#0d2a2a"
+                        },
+                        neutral: {
+                            "50": "#ffffff",
+                            "100": "#ffffff",
+                            "200": "#ffffff",
+                            "300": "#ffffff",
+                            "400": "#f3f3f2",
+                            "500": "#dbddd5",
+                            "600": "#c4c9b6",
+                            "700": "#bbc2a3",
+                            "800": "#adb989",
+                            "900": "#9baa6f"
+                        }
+                    },
+                    borderRadius: {
+                        DEFAULT: '0px',
+                    },
+                    typography: {
+                        DEFAULT: {
+                            css: {
+                                fontSize: '18px',
+                                lineHeight: 1.4,
+                            }
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Merriweather', 'Georgia', 'serif'],
+                        mono: ['Fira Code', 'monospace'],
+                        display: ['Montserrat', 'system-ui', 'sans-serif'],
+                        handwriting: ['Caveat', 'cursive'],
+                    }
+                }
+            },
+        }
+    </script>
+    
+    <style>
+        /* 自定义CSS变量 */
+        :root {
+            /* Color System */
+            --color-primary-50: #f5f5e0;
+            --color-primary-100: #ececcb;
+            --color-primary-200: #dfdfb3;
+            --color-primary-300: #d0d08f;
+            --color-primary-400: #bfbf54;
+            --color-primary-500: #a9a937;
+            --color-primary-600: #878726;
+            --color-primary-700: #77771d;
+            --color-primary-800: #5d5d13;
+            --color-primary-900: #3b3b0c;
+            
+            --color-secondary-50: #d7eded;
+            --color-secondary-100: #c4e2e2;
+            --color-secondary-200: #b0d3d3;
+            --color-secondary-300: #8fc1c1;
+            --color-secondary-400: #58abab;
+            --color-secondary-500: #409090;
+            --color-secondary-600: #2c7171;
+            --color-secondary-700: #226262;
+            --color-secondary-800: #164a4a;
+            --color-secondary-900: #0d2a2a;
+            
+            --color-neutral-50: #ffffff;
+            --color-neutral-100: #ffffff;
+            --color-neutral-200: #ffffff;
+            --color-neutral-300: #ffffff;
+            --color-neutral-400: #f3f3f2;
+            --color-neutral-500: #dbddd5;
+            --color-neutral-600: #c4c9b6;
+            --color-neutral-700: #bbc2a3;
+            --color-neutral-800: #adb989;
+            --color-neutral-900: #9baa6f;
+            
+            /* Typography */
+            --font-family-heading: Inter, system-ui, sans-serif;
+            --font-family-body: Inter, system-ui, sans-serif;
+            --font-size-base: 18px;
+            --line-height: 1.4;
+            --heading-scale: 1.28;
+            --heading-weight: 500;
+            
+            /* UI Style */
+            --border-radius: 0px;
+            --shadow-level: 3;
+            --spacing-scale: 1.26;
+            --button-style: 2;
+            --animation-level: 1;
+        }
+
+        /* 自定义动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        /* 卡片悬停效果 */
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: var(--color-primary-400);
+        }
+        
+        /* 按钮悬停效果 */
+        .btn-hover {
+            transition: all 0.2s ease;
+        }
+        
+        .btn-hover:hover {
+            transform: scale(1.05);
+        }
+        
+        /* 深色模式变量 */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-primary: var(--color-neutral-900);
+                --text-primary: var(--color-neutral-50);
+                --text-secondary: var(--color-neutral-200);
+            }
+        }
+        
+        /* 懒加载图片 */
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        
+        .lazy-load.loaded {
+            opacity: 1;
+        }
+        
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-neutral-50 dark:bg-gray-900 text-gray-800 dark:text-white font-sans">
+    <!-- 导航栏 -->
+    <header class="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow-md transition-all duration-300">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-primary-600 dark:text-primary-400 text-3xl">
+                    <i class="fas fa-brain"></i>
+                </span>
+                <h1 class="text-xl font-display font-semibold tracking-tight">AI学习革命</h1>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#why" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">为什么选择我们</a>
+                <a href="#highlights" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">课程特色</a>
+                <a href="#schedule" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">课程安排</a>
+                <a href="#benefits" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">学习成果</a>
+            </div>
+            
+            <!-- 主题切换按钮 -->
+            <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block"></i>
+            </button>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 shadow-lg">
+            <div class="container mx-auto px-4 py-3 space-y-3">
+                <a href="#why" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">为什么选择我们</a>
+                <a href="#highlights" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">课程特色</a>
+                <a href="#schedule" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">课程安排</a>
+                <a href="#benefits" class="block py-2 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">学习成果</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main>
+        <!-- 英雄区域 -->
+        <section class="bg-gradient-to-br from-primary-100 to-secondary-100 dark:from-gray-800 dark:to-gray-900 py-16 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-4xl mx-auto text-center animate-fadeIn">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 tracking-tight text-gray-900 dark:text-white">
+                        AI时代的学习革命：<br>
+                        <span class="text-primary-600 dark:text-primary-400">为孩子的未来赋能</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8">
+                        私人AI教练 | 每周一次高能课程 | 五大核心技能培养
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4 mt-10">
+                        <a href="#why" class="btn-hover bg-primary-600 hover:bg-primary-700 text-white py-3 px-8 rounded-sm shadow-lg transition-colors">
+                            了解更多
+                        </a>
+                        <a href="#schedule" class="btn-hover bg-white dark:bg-gray-800 text-primary-600 dark:text-primary-400 border border-primary-600 dark:border-primary-400 py-3 px-8 rounded-sm shadow-lg transition-colors">
+                            查看课程安排
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 为什么选择我们 -->
+        <section id="why" class="py-16 md:py-24 bg-white dark:bg-gray-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <span class="inline-block py-1 px-3 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-300 text-sm font-semibold mb-4 rounded-sm">WHY LEARN</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mb-6 text-gray-900 dark:text-white">为什么选择我们的AI陪跑计划？</h2>
+                    <p class="text-lg text-gray-700 dark:text-gray-300">让孩子从小掌握人工智能技能，在未来竞争中占据先机</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 优势卡片1 -->
+                    <div class="card-hover bg-neutral-50 dark:bg-gray-800 p-6 border border-neutral-200 dark:border-gray-700 rounded-sm shadow-md">
+                        <div class="text-primary-600 dark:text-primary-400 text-2xl mb-4">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-semibold mb-3 text-gray-900 dark:text-white">抢占时代先机</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">
+                            国家教育部门已在部分城市试点AI课程，但进度慢、内容浅。家庭教育的提前介入将决定孩子的未来优势。
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            <i class="fas fa-check text-primary-500 mr-2"></i>
+                            国外顶尖家庭已开始通过AI提供最优质的教育支持
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">
+                            <i class="fas fa-check text-primary-500 mr-2"></i>
+                            微软总裁萨提亚·纳德拉的女儿在用AI辅助学术研究
+                        </p>
+                    </div>
+                    
+                    <!-- 优势卡片2 -->
+                    <div class="card-hover bg-neutral-50 dark:bg-gray-800 p-6 border border-neutral-200 dark:border-gray-700 rounded-sm shadow-md">
+                        <div class="text-primary-600 dark:text-primary-400 text-2xl mb-4">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-semibold mb-3 text-gray-900 dark:text-white">适合好奇心强的孩子</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">
+                            有"十万个为什么"的孩子通过AI可以释放家长压力，满足求知欲，提升探索能力。
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            <i class="fas fa-check text-primary-500 mr-2"></i>
+                            孩子通过AI解决问题，家长不用时刻忙于辅导
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">
+                            <i class="fas fa-check text-primary-500 mr-2"></i>
+                            AI不仅是学习助手，更是探索世界的工具
+                        </p>
+                    </div>
+                    
+                    <!-- 优势卡片3 -->
+                    <div class="card-hover bg-neutral-50 dark:bg-gray-800 p-6 border border-neutral-200 dark:border-gray-700 rounded-sm shadow-md">
+                        <div class="text-primary-600 dark:text-primary-400 text-2xl mb-4">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-semibold mb-3 text-gray-900 dark:text-white">培养批判性思维</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">
+                            从"工具使用者"到"思维领导者"，教会孩子理解AI的局限，做"AI的主人"而非"AI的奴隶"。
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            <i class="fas fa-check text-primary-500 mr-2"></i>
+                            帮助孩子拆解任务、判断优劣
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">
+                            <i class="fas fa-check text-primary-500 mr-2"></i>
+                            培养解决复杂问题的能力
+                        </p>
+                    </div>
+                    
+                    <!-- 优势卡片4 -->
+                    <div class="card-hover bg-neutral-50 dark:bg-gray-800 p-6 border border-neutral-200 dark:border-gray-700 rounded-sm shadow-md">
+                        <div class="text-primary-600 dark:text-primary-400 text-2xl mb-4">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-semibold mb-3 text-gray-900 dark:text-white">高度定制化学习</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">
+                            未来的名校竞争力保障，通过AI深度探索兴趣领域，突破学科界限，扫清盲区。
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            <i class="fas fa-check text-primary-500 mr-2"></i>
+                            拆解顶尖学术论文并完成初步研究
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">
+                            <i class="fas fa-check text-primary-500 mr-2"></i>
+                            用AI无限深入知识点，真正理解而非浅尝辄止
+                        </p>
+                    </div>
+                    
+                    <!-- 优势卡片5 -->
+                    <div class="card-hover bg-neutral-50 dark:bg-gray-800 p-6 border border-neutral-200 dark:border-gray-700 rounded-sm shadow-md">
+                        <div class="text-primary-600 dark:text-primary-400 text-2xl mb-4">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-semibold mb-3 text-gray-900 dark:text-white">综合提升学科能力</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">
+                            全面提升语文、英语、数学核心能力，培养未来职场和学术中不可或缺的技能。
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            <i class="fas fa-check text-primary-500 mr-2"></i>
+                            语文：通过AI生成与优化文章，锻炼清晰表达能力
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">
+                            <i class="fas fa-check text-primary-500 mr-2"></i>
+                            英语：AI口语教练提供沉浸式环境，性价比最高的外教
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">
+                            <i class="fas fa-check text-primary-500 mr-2"></i>
+                            数学：AI提供解题思路，巩固知识，找到正确答案
+                        </p>
+                    </div>
+                    
+                    <!-- 优势卡片6 -->
+                    <div class="card-hover bg-neutral-50 dark:bg-gray-800 p-6 border border-neutral-200 dark:border-gray-700 rounded-sm shadow-md">
+                        <div class="text-primary-600 dark:text-primary-400 text-2xl mb-4">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-semibold mb-3 text-gray-900 dark:text-white">激发创造力</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">
+                            想象力是未来世界最宝贵的财富，AI成为创造的伙伴，突破传统教育的天花板。
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            <i class="fas fa-check text-primary-500 mr-2"></i>
+                            用AI生成故事、画画、设计小游戏
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">
+                            <i class="fas fa-check text-primary-500 mr-2"></i>
+                            AI有着极高的上限，激发孩子最独特的想法
+                        </p>
+                    </div>
+                    
+                    <!-- 优势卡片7 -->
+                    <div class="card-hover bg-neutral-50 dark:bg-gray-800 p-6 border border-neutral-200 dark:border-gray-700 rounded-sm shadow-md md:col-span-2 lg:col-span-3">
+                        <div class="text-primary-600 dark:text-primary-400 text-2xl mb-4">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="text-xl font-display font-semibold mb-3 text-gray-900 dark:text-white">长线竞争力培养</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">
+                            为未来学术、竞赛与职业打基础，提前学习和实践，获得更好的成绩与认可。
+                        </p>
+                        <div class="grid md:grid-cols-3 gap-4 mt-4">
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                <i class="fas fa-check text-primary-500 mr-2"></i>
+                                未来学校中AI竞赛将成为主流
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                <i class="fas fa-check text-primary-500 mr-2"></i>
+                                高效完成复杂文书工作，为班长竞选或申请名校加分
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                <i class="fas fa-check text-primary-500 mr-2"></i>
+                                通过AI脚手架快速启动项目，培养落地执行能力
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 课程特色 -->
+        <section id="highlights" class="py-16 md:py-24 bg-neutral-100 dark:bg-gray-800">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <span class="inline-block py-1 px-3 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-300 text-sm font-semibold mb-4 rounded-sm">THE COURSE HIGHLIGHTS</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mb-6 text-gray-900 dark:text-white">课程特色</h2>
+                    <p class="text-lg text-gray-700 dark:text-gray-300">精心设计的课程体系，全方位提升孩子的AI能力</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="relative overflow-hidden rounded-sm shadow-lg">
+                        <div class="absolute inset-0 bg-primary-600 opacity-80"></div>
+                        <div class="relative p-8 z-10 text-white">
+                            <i class="fas fa-chalkboard-teacher text-3xl mb-4"></i>
+                            <h3 class="text-2xl font-display font-semibold mb-3">系统性教学</h3>
+                            <p class="mb-4">从基础到进阶，手把手引导孩子掌握AI核心技能。</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <span>循序渐进的学习路径</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <span>专业导师全程指导</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <span>完整的知识体系构建</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="relative overflow-hidden rounded-sm shadow-lg">
+                        <div class="absolute inset-0 bg-secondary-600 opacity-80"></div>
+                        <div class="relative p-8 z-10 text-white">
+                            <i class="fas fa-project-diagram text-3xl mb-4"></i>
+                            <h3 class="text-2xl font-display font-semibold mb-3">项目式学习</h3>
+                            <p class="mb-4">让孩子边学边用，完成实际项目，见证成果。</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <span>实践中巩固理论知识</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <span>培养解决问题的能力</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <span>建立成就感和自信心</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="relative overflow-hidden rounded-sm shadow-lg">
+                        <div class="absolute inset-0 bg-secondary-600 opacity-80"></div>
+                        <div class="relative p-8 z-10 text-white">
+                            <i class="fas fa-user-cog text-3xl mb-4"></i>
+                            <h3 class="text-2xl font-display font-semibold mb-3">个性化指导</h3>
+                            <p class="mb-4">根据孩子特点调整教学内容，保证学习效果。</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <span>因材施教，关注个体差异</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <span>针对性解决学习难点</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <span>挖掘孩子的潜能和优势</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="relative overflow-hidden rounded-sm shadow-lg">
+                        <div class="absolute inset-0 bg-primary-600 opacity-80"></div>
+                        <div class="relative p-8 z-10 text-white">
+                            <i class="fas fa-rocket text-3xl mb-4"></i>
+                            <h3 class="text-2xl font-display font-semibold mb-3">前沿性保障</h3>
+                            <p class="mb-4">探索AI的无限可能，让孩子在未来竞争中脱颖而出。</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <span>紧跟AI技术最新发展</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <span>接触行业领先的AI工具</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle mt-1 mr-2"></i>
+                                    <span>培养面向未来的思维方式</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 课程安排 -->
+        <section id="schedule" class="py-16 md:py-24 bg-white dark:bg-gray-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <span class="inline-block py-1 px-3 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-300 text-sm font-semibold mb-4 rounded-sm">SCHEDULE</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mb-6 text-gray-900 dark:text-white">课程安排</h2>
+                    <p class="text-lg text-gray-700 dark:text-gray-300">5周培养AI思维与实践能力，每周一次系统教学 + 实践作业 + 项目展示</p>
+                </div>
+
+                <div class="space-y-6 md:space-y-0 md:grid md:grid-cols-5 md:gap-x-6">
+                    <!-- 第1周 -->
+                    <div class="card-hover group relative overflow-hidden">
+                        <div class="card-hover h-full bg-neutral-50 dark:bg-gray-800 border border-neutral-200 dark:border-gray-700 p-6 rounded-sm shadow-md">
+                            <!-- 周数指示 -->
+                            <div class="absolute top-3 right-3 flex items-center justify-center w-10 h-10 bg-primary-600 text-white rounded-full shadow-md font-bold">
+                                1
+                            </div>
+                            
+                            <h3 class="text-xl font-display font-semibold mb-3 mt-6 text-gray-900 dark:text-white">AI入门与提示词设计</h3>
+                            
+                            <div class="h-1 w-16 bg-primary-500 mb-4"></div>
+                            
+                            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                                学会5种提示词思考框架，引导AI精准完成任务。
+                            </p>
+                            
+                            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                                <p class="text-primary-600 dark:text-primary-400 font-semibold">实战内容：</p>
+                                <p class="text-gray-600 dark:text-gray-400 mt-2">
+                                    用提示词与AI生成故事情节，快速掌握AI交互。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 第2周 -->
+                    <div class="card-hover group relative overflow-hidden">
+                        <div class="card-hover h-full bg-neutral-50 dark:bg-gray-800 border border-neutral-200 dark:border-gray-700 p-6 rounded-sm shadow-md">
+                            <!-- 周数指示 -->
+                            <div class="absolute top-3 right-3 flex items-center justify-center w-10 h-10 bg-primary-600 text-white rounded-full shadow-md font-bold">
+                                2
+                            </div>
+                            
+                            <h3 class="text-xl font-display font-semibold mb-3 mt-6 text-gray-900 dark:text-white">多工具探索与应用</h3>
+                            
+                            <div class="h-1 w-16 bg-primary-500 mb-4"></div>
+                            
+                            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                                掌握4种主流AI工具及其适用场景，学习不同工具的优劣势分析。
+                            </p>
+                            
+                            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                                <p class="text-primary-600 dark:text-primary-400 font-semibold">实战内容：</p>
+                                <p class="text-gray-600 dark:text-gray-400 mt-2">
+                                    通过AI完成一篇新闻热点文案和小实验数据分析。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 第3周 -->
+                    <div class="card-hover group relative overflow-hidden">
+                        <div class="card-hover h-full bg-neutral-50 dark:bg-gray-800 border border-neutral-200 dark:border-gray-700 p-6 rounded-sm shadow-md">
+                            <!-- 周数指示 -->
+                            <div class="absolute top-3 right-3 flex items-center justify-center w-10 h-10 bg-primary-600 text-white rounded-full shadow-md font-bold">
+                                3
+                            </div>
+                            
+                            <h3 class="text-xl font-display font-semibold mb-3 mt-6 text-gray-900 dark:text-white">AI项目制学习</h3>
+                            
+                            <div class="h-1 w-16 bg-primary-500 mb-4"></div>
+                            
+                            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                                完成3个提效工作流设计，探索自动化流程的魔力。
+                            </p>
+                            
+                            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                                <p class="text-primary-600 dark:text-primary-400 font-semibold">实战内容：</p>
+                                <p class="text-gray-600 dark:text-gray-400 mt-2">
+                                    与AI协作完成一个可用的学习或生活小工具。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 第4周 -->
+                    <div class="card-hover group relative overflow-hidden">
+                        <div class="card-hover h-full bg-neutral-50 dark:bg-gray-800 border border-neutral-200 dark:border-gray-700 p-6 rounded-sm shadow-md">
+                            <!-- 周数指示 -->
+                            <div class="absolute top-3 right-3 flex items-center justify-center w-10 h-10 bg-primary-600 text-white rounded-full shadow-md font-bold">
+                                4
+                            </div>
+                            
+                            <h3 class="text-xl font-display font-semibold mb-3 mt-6 text-gray-900 dark:text-white">AI辅助学术研究</h3>
+                            
+                            <div class="h-1 w-16 bg-primary-500 mb-4"></div>
+                            
+                            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                                深入学习一篇高水平学术文章，用AI辅助生成科技论文初稿。
+                            </p>
+                            
+                            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                                <p class="text-primary-600 dark:text-primary-400 font-semibold">实战内容：</p>
+                                <p class="text-gray-600 dark:text-gray-400 mt-2">
+                                    模仿顶尖学者，体验顶级学术研究的魅力。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 第5周 -->
+                    <div class="card-hover group relative overflow-hidden">
+                        <div class="card-hover h-full bg-neutral-50 dark:bg-gray-800 border border-neutral-200 dark:border-gray-700 p-6 rounded-sm shadow-md">
+                            <!-- 周数指示 -->
+                            <div class="absolute top-3 right-3 flex items-center justify-center w-10 h-10 bg-primary-600 text-white rounded-full shadow-md font-bold">
+                                5
+                            </div>
+                            
+                            <h3 class="text-xl font-display font-semibold mb-3 mt-6 text-gray-900 dark:text-white">AI创意与游戏开发</h3>
+                            
+                            <div class="h-1 w-16 bg-primary-500 mb-4"></div>
+                            
+                            <p class="text-gray-700 dark:text-gray-300 mb-4">
+                                通过AI设计并实现一个简单的小游戏，从创意到落地，全面锻炼动手能力。
+                            </p>
+                            
+                            <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                                <p class="text-primary-600 dark:text-primary-400 font-semibold">实战内容：</p>
+                                <p class="text-gray-600 dark:text-gray-400 mt-2">
+                                    完成属于自己的AI创意项目，记录学习成果。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 成长收获 -->
+        <section id="benefits" class="py-16 md:py-24 bg-neutral-100 dark:bg-gray-800">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <span class="inline-block py-1 px-3 bg-primary-100 dark:bg-primary-900 text-primary-800 dark:text-primary-300 text-sm font-semibold mb-4 rounded-sm">GROWTH & BENEFITS</span>
+                    <h2 class="text-3xl md:text-4xl font-display font-bold mb-6 text-gray-900 dark:text-white">孩子成长：量化成果让进步看得见</h2>
+                    <p class="text-lg text-gray-700 dark:text-gray-300">通过我们的课程，孩子将获得这些实实在在的能力提升</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                    <!-- 成果项1 -->
+                    <div class="bg-white dark:bg-gray-900 p-8 rounded-sm shadow-md border border-neutral-200 dark:border-gray-700 flex flex-col">
+                        <div class="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">5</div>
+                        <h3 class="text-xl font-display font-semibold mb-4 text-gray-900 dark:text-white">提示词设计框架</h3>
+                        <p class="text-gray-700 dark:text-gray-300 flex-grow">
+                            掌握5种提示词设计框架，学会精准与AI沟通，让人工智能成为最佳助手。
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                    <div class="bg-primary-600 h-2.5 rounded-full" style="width: 100%"></div>
+                                </div>
+                                <span class="text-sm ml-2 text-gray-600 dark:text-gray-400">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 成果项2 -->
+                    <div class="bg-white dark:bg-gray-900 p-8 rounded-sm shadow-md border border-neutral-200 dark:border-gray-700 flex flex-col">
+                        <div class="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">4</div>
+                        <h3 class="text-xl font-display font-semibold mb-4 text-gray-900 dark:text-white">生成式AI工具</h3>
+                        <p class="text-gray-700 dark:text-gray-300 flex-grow">
+                            熟悉4种生成式AI工具的使用，明确其优劣势和适用场景，灵活应对不同需求。
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                    <div class="bg-primary-600 h-2.5 rounded-full" style="width: 100%"></div>
+                                </div>
+                                <span class="text-sm ml-2 text-gray-600 dark:text-gray-400">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 成果项3 -->
+                    <div class="bg-white dark:bg-gray-900 p-8 rounded-sm shadow-md border border-neutral-200 dark:border-gray-700 flex flex-col">
+                        <div class="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">3</div>
+                        <h3 class="text-xl font-display font-semibold mb-4 text-gray-900 dark:text-white">提效工作流设计</h3>
+                        <p class="text-gray-700 dark:text-gray-300 flex-grow">
+                            完成3个个人提效工作流设计，实际体验AI带来的效率提升，让学习更高效。
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                    <div class="bg-primary-600 h-2.5 rounded-full" style="width: 100%"></div>
+                                </div>
+                                <span class="text-sm ml-2 text-gray-600 dark:text-gray-400">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 成果项4 -->
+                    <div class="bg-white dark:bg-gray-900 p-8 rounded-sm shadow-md border border-neutral-200 dark:border-gray-700 flex flex-col">
+                        <div class="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">1</div>
+                        <h3 class="text-xl font-display font-semibold mb-4 text-gray-900 dark:text-white">科技论文学习</h3>
+                        <p class="text-gray-700 dark:text-gray-300 flex-grow">
+                            深度参与1篇科技论文的AI辅助学习，体验学术研究的乐趣，培养科研兴趣。
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                    <div class="bg-primary-600 h-2.5 rounded-full" style="width: 100%"></div>
+                                </div>
+                                <span class="text-sm ml-2 text-gray-600 dark:text-gray-400">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 成果项5 -->
+                    <div class="bg-white dark:bg-gray-900 p-8 rounded-sm shadow-md border border-neutral-200 dark:border-gray-700 flex flex-col">
+                        <div class="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2">1</div>
+                        <h3 class="text-xl font-display font-semibold mb-4 text-gray-900 dark:text-white">AI创意小游戏</h3>
+                        <p class="text-gray-700 dark:text-gray-300 flex-grow">
+                            设计并实现1个AI创意小游戏，从创意到落地，全程亲手参与，锻炼实操能力。
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+                                    <div class="bg-primary-600 h-2.5 rounded-full" style="width: 100%"></div>
+                                </div>
+                                <span class="text-sm ml-2 text-gray-600 dark:text-gray-400">100%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 成果项6：综合能力 -->
+                    <div class="bg-white dark:bg-gray-900 p-8 rounded-sm shadow-md border border-neutral-200 dark:border-gray-700 flex flex-col">
+                        <div class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-2">综合能力</div>
+                        <h3 class="text-xl font-display font-semibold mb-4 text-gray-900 dark:text-white">三大学科能力提升</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            <span class="font-semibold">语文能力：</span>提升逻辑清晰度和叙事能力
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            <span class="font-semibold">英语水平：</span>AI口语教练沉浸式体验，快速提升听说能力
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            <span class="font-semibold">数学能力：</span>通过AI拆解复杂题目，培养独立思考和解决问题的能力
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- 家长收获 -->
+                <div class="bg-primary-50 dark:bg-gray-700 p-8 rounded-sm shadow-lg border border-primary-200 dark:border-gray-600 mt-16">
+                    <h3 class="text-2xl font-display font-semibold mb-4 text-gray-900 dark:text-white">家长收获</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-primary-500 mt-1 mr-3"></i>
+                            <p class="text-gray-700 dark:text-gray-300">减轻学习辅导压力，见证孩子的成长。</p>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-primary-500 mt-1 mr-3"></i>
+                            <p class="text-gray-700 dark:text-gray-300">提升孩子未来竞争力，抢占AI时代先机。</p>
+                        </div>
+                    </div>
+                    <div class="text-center mt-8">
+                        <p class="text-lg font-display text-primary-800 dark:text-primary-300 italic">
+                            "孩子的未来从这里启航，来和我们一起培养AI时代的领航者吧！"
+                        </p>
+                        <p class="text-xl font-handwriting text-primary-600 dark:text-primary-400 mt-2">
+                            Imagination Is All Children Need！
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 行动召唤 -->
+        <section class="py-16 md:py-20 bg-primary-600 dark:bg-primary-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-4xl font-display font-bold mb-6 text-white">准备好让孩子领先一步了吗？</h2>
+                <p class="text-xl text-white/90 mb-10 max-w-3xl mx-auto">
+                    立即报名参加我们的AI陪跑计划，为孩子的未来赋能！
+                </p>
+                <a href="#" class="btn-hover inline-block bg-white text-primary-600 dark:bg-gray-800 dark:text-primary-400 py-4 px-8 rounded-sm shadow-lg transition-colors text-lg font-semibold">
+                    立即报名
+                </a>
+            </div>
+        </section>
+    </main>
+    
+    <!-- 页脚 -->
+    <footer class="bg-gray-100 dark:bg-gray-900 py-12 md:py-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-primary-600 dark:text-primary-400 text-2xl">
+                            <i class="fas fa-brain"></i>
+                        </span>
+                        <h3 class="text-lg font-display font-semibold text-gray-900 dark:text-white">AI学习革命</h3>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        为孩子的未来赋能，培养AI时代的领导者。通过最前沿的AI教育理念，帮助孩子获得未来竞争力。
+                    </p>
+                    <div class="flex space-x-4 text-gray-600 dark:text-gray-400">
+                        <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            <i class="fab fa-weixin"></i>
+                        </a>
+                        <a href="#" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                            <i class="fab fa-weibo"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-display font-semibold mb-4 text-gray-900 dark:text-white">快速链接</h3>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                        <li><a href="#why" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">为什么选择我们</a></li>
+                        <li><a href="#highlights" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">课程特色</a></li>
+                        <li><a href="#schedule" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">课程安排</a></li>
+                        <li><a href="#benefits" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">学习成果</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-display font-semibold mb-4 text-gray-900 dark:text-white">联系我们</h3>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2 text-primary-500"></i>
+                            <span>北京市海淀区中关村科技园</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-2 text-primary-500"></i>
+                            <span>+86 10 1234 5678</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-2 text-primary-500"></i>
+                            <span>contact@ailearning.com</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-display font-semibold mb-4 text-gray-900 dark:text-white">订阅通讯</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        订阅我们的通讯，获取最新AI教育动态和独家课程内容。
+                    </p>
+                    <form class="flex flex-col sm:flex-row gap-2">
+                        <input type="email" placeholder="您的邮箱地址" class="px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+                        <button type="submit" class="btn-hover bg-primary-600 hover:bg-primary-700 text-white py-2 px-4 rounded-sm shadow-md transition-colors">
+                            订阅
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-200 dark:border-gray-700 pt-8 text-center">
+                <p class="text-gray-600 dark:text-gray-400">
+                    &copy; 2024 AI学习革命. 版权所有. 作者：[AI教育研究团队] 
+                    <a href="https://twitter.com/ai_education" class="text-primary-600 dark:text-primary-400 hover:underline">Twitter</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Preline UI JS -->
+    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js"></script>
+    
+    <!-- JavaScript -->
+    <script>
+        // 移动菜单切换
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 暗黑模式切换
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        // 检查用户首选项
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        
+        themeToggle.addEventListener('click', function() {
+            // 切换类
+            document.documentElement.classList.toggle('dark');
+            
+            // 保存首选项
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('color-theme', 'dark');
+            } else {
+                localStorage.setItem('color-theme', 'light');
+            }
+        });
+        
+        // 图片懒加载
+        document.addEventListener("DOMContentLoaded", function() {
+            const lazyImages = [].slice.call(document.querySelectorAll(".lazy-load"));
+            
+            if ("IntersectionObserver" in window) {
+                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            let lazyImage = entry.target;
+                            lazyImage.src = lazyImage.dataset.src;
+                            lazyImage.classList.add("loaded");
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                });
+                
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImageObserver.observe(lazyImage);
+                });
+            } else {
+                // 回退到传统的延迟加载方法
+                let active = false;
+                
+                const lazyLoad = function() {
+                    if (active === false) {
+                        active = true;
+                        
+                        setTimeout(function() {
+                            lazyImages.forEach(function(lazyImage) {
+                                if ((lazyImage.getBoundingClientRect().top <= window.innerHeight && lazyImage.getBoundingClientRect().bottom >= 0) && getComputedStyle(lazyImage).display !== "none") {
+                                    lazyImage.src = lazyImage.dataset.src;
+                                    lazyImage.classList.add("loaded");
+                                    
+                                    lazyImages = lazyImages.filter(function(image) {
+                                        return image !== lazyImage;
+                                    });
+                                    
+                                    if (lazyImages.length === 0) {
+                                        document.removeEventListener("scroll", lazyLoad);
+                                        window.removeEventListener("resize", lazyLoad);
+                                        window.removeEventListener("orientationchange", lazyLoad);
+                                    }
+                                }
+                            });
+                            
+                            active = false;
+                        }, 200);
+                    }
+                };
+                
+                document.addEventListener("scroll", lazyLoad);
+                window.addEventListener("resize", lazyLoad);
+                window.addEventListener("orientationchange", lazyLoad);
+            }
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // 如果是移动菜单中的链接，点击后关闭菜单
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+        
+        // 滚动动画
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.card-hover');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.classList.add('animate-fadeIn');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html> 
