@@ -6,11 +6,12 @@
       "use": "@vercel/static"
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/:path(\\.html)", "destination": "/:path" },
+    { "source": "/:path", "destination": "/:path.html" },
+    { "source": "/:path*/", "destination": "/:path*.html" },
+    { "source": "/static/:path*", "destination": "/static/:path*" }
   ],
   "github": {
     "silent": true

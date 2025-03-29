@@ -291,28 +291,47 @@
         </div>
 
         <!-- 场景导航 -->
-        <div class="flex flex-wrap justify-center gap-3 mb-10">
-            <a href="#ai-dialogue" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
-                <i class="fas fa-comments mr-1"></i>AI对话
-            </a>
-            <a href="#multi-tool" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
-                <i class="fas fa-tools mr-1"></i>多工具对比
-            </a>
-            <a href="#task-breakdown" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
-                <i class="fas fa-project-diagram mr-1"></i>任务拆解
-            </a>
-            <a href="#ppt-creation" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
-                <i class="fas fa-file-powerpoint mr-1"></i>PPT制作
-            </a>
-            <a href="#ai-reading" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
-                <i class="fas fa-book-reader mr-1"></i>AI辅助阅读
-            </a>
-            <a href="#critical-thinking" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
-                <i class="fas fa-brain mr-1"></i>批判性思维
-            </a>
-            <a href="#scene-practice" class="px-4 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white rounded-full text-sm font-medium transition-colors animate-pulse">
-                <i class="fas fa-tasks mr-1"></i>场景训练任务
-            </a>
+        <div class="mb-10">
+            <!-- 第一行：知识点 -->
+            <div class="flex flex-wrap justify-center gap-3 mb-4">
+                <h3 class="w-full text-center text-lg font-semibold text-primary-600 dark:text-primary-400 mb-3">知识点</h3>
+                <a href="#ai-dialogue" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
+                    <i class="fas fa-comments mr-1"></i>AI对话
+                </a>
+                <a href="#critical-thinking" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
+                    <i class="fas fa-brain mr-1"></i>批判性思维
+                </a>
+                <a href="#multi-tool" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
+                    <i class="fas fa-tools mr-1"></i>多工具对比
+                </a>
+                <a href="#task-breakdown" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
+                    <i class="fas fa-project-diagram mr-1"></i>任务拆解
+                </a>
+                <a href="#ppt-creation" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
+                    <i class="fas fa-file-powerpoint mr-1"></i>PPT制作
+                </a>
+                <a href="#ai-reading" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
+                    <i class="fas fa-book-reader mr-1"></i>AI辅助阅读
+                </a>
+            </div>
+            
+            <!-- 第二行：每日任务 -->
+            <div class="flex flex-wrap justify-center gap-3">
+                <h3 class="w-full text-center text-lg font-semibold text-amber-500 mb-3">每日任务</h3>
+                <a href="#monday-task" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full text-sm font-medium transition-colors">
+                    <i class="fas fa-calendar-day mr-1"></i>周一任务
+                </a>
+                <a href="#tuesday-task" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full text-sm font-medium transition-colors">
+                    <i class="fas fa-calendar-day mr-1"></i>周二任务
+                </a>
+                <a href="#wednesday-task" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full text-sm font-medium transition-colors">
+                    <i class="fas fa-calendar-day mr-1"></i>周三任务
+                </a>
+               
+                <a href="#scene-practice" class="px-4 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white rounded-full text-sm font-medium transition-colors animate-pulse">
+                    <i class="fas fa-tasks mr-1"></i>周末场景挑战任务
+                </a>
+            </div>
         </div>
         
         <!-- 场景卡片区域 -->
@@ -603,11 +622,632 @@
                 </div>
             </section>
             
-            <!-- 场景2：多工具并行使用 -->
+            <!-- 场景2：批判性思维 (原场景6) -->
+            <section id="critical-thinking" class="scene-card bg-gradient-to-br from-gray-900/90 to-zinc-900/90 p-6 md:p-8">
+                <!-- 场景标题 -->
+                <div class="mb-8">
+                    <span class="inline-block px-3 py-1 text-xs font-semibold bg-gray-800 text-gray-100 rounded-full mb-4">场景 02</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-2 flex items-center">
+                        <i class="fas fa-brain mr-3 text-gray-400"></i>
+                        批判性思维：评估AI生成内容的真实性与准确性
+                    </h2>
+                    <p class="text-gray-300 max-w-3xl">
+                        学习如何审慎地分析和评价AI生成的内容，识别可能的错误、偏见和"幻觉"，培养信息时代必备的批判性思维能力
+                    </p>
+                </div>
+                
+                <!-- 内容部分 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 左侧：批判性思维的重要性和AI幻觉原理 -->
+                    <div>
+                        <div class="bg-zinc-800/50 p-6 rounded-xl backdrop-blur-sm">
+                            <h3 class="text-xl font-semibold text-white mb-5 flex items-center">
+                                <i class="fas fa-brain text-gray-400 mr-3"></i>
+                                为什么批判性思维在AI时代尤为关键
+                            </h3>
+                            
+                            <div class="space-y-6">
+                                <p class="text-gray-300">
+                                    在充斥着各种信息和观点的数字时代，批判性思维是我们区分事实与虚构、理性与煽动的核心能力。随着生成式AI的普及，这种能力变得更加重要。
+                                </p>
+                                
+                                <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                    <h4 class="text-white font-medium mb-3">批判性思维的价值</h4>
+                                    <ul class="text-gray-300 space-y-3">
+                                        <li class="flex items-start">
+                                            <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-gray-600 text-gray-200 mr-3 mt-0.5">
+                                                <i class="fas fa-shield-alt text-xs"></i>
+                                            </span>
+                                            <span>在信息泛滥中筛选出真实可靠的内容，避免被错误信息或偏见所误导</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-gray-600 text-gray-200 mr-3 mt-0.5">
+                                                <i class="fas fa-balance-scale text-xs"></i>
+                                            </span>
+                                            <span>全面评估AI生成内容的可靠性和价值，成为AI的主人而非仆人</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-gray-600 text-gray-200 mr-3 mt-0.5">
+                                                <i class="fas fa-heart-pulse text-xs"></i>
+                                            </span>
+                                            <span>减轻信息焦虑，知道大部分危言耸听的预测和宣传都经不起推敲</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-gray-600 text-gray-200 mr-3 mt-0.5">
+                                                <i class="fas fa-lightbulb text-xs"></i>
+                                            </span>
+                                            <span>提高解决问题的能力，对复杂问题形成更全面深入的理解</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- AI幻觉原理 -->
+                                <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                    <h4 class="text-white font-medium mb-3">AI幻觉的原理与表现</h4>
+                                    <p class="text-gray-300 mb-4">
+                                        AI幻觉是指AI模型生成看似可信但实际上不准确或完全虚构的内容。了解这一现象的原理，有助于我们更好地识别和应对它。
+                                    </p>
+                                    
+                                    <div class="bg-zinc-600/40 p-3 rounded-lg mb-3">
+                                        <h5 class="text-white font-medium mb-2">产生原因</h5>
+                                        <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                            <li>模型基于概率生成内容，而非检索确定的事实</li>
+                                            <li>训练数据中可能包含错误或矛盾的信息</li>
+                                            <li>模型倾向于生成流畅连贯的文本，即使需要"编造"细节</li>
+                                            <li>复杂问题可能超出模型的知识范围或上下文理解能力</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-zinc-600/40 p-3 rounded-lg">
+                                        <h5 class="text-white font-medium mb-2">常见表现</h5>
+                                        <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                            <li>编造不存在的参考文献、数据或事件</li>
+                                            <li>错误引用真实人物的言论或观点</li>
+                                            <li>自信地提供看似精确但实际不正确的细节</li>
+                                            <li>在不确定的问题上给出过度确定的回答</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 批判性思维练习方法 -->
+                        <div class="mt-6 bg-gradient-to-r from-zinc-800/70 to-zinc-700/70 p-5 rounded-xl backdrop-blur-sm">
+                            <h3 class="text-xl font-semibold text-white mb-4 flex items-center">
+                                <i class="fas fa-dumbbell text-gray-400 mr-2"></i>
+                                培养批判性思维的日常练习
+                            </h3>
+                            
+                            <div class="space-y-4">
+                                <p class="text-gray-300">
+                                    批判性思维不是天生的，而是需要通过持续练习培养的能力。以下是一些可以融入日常生活的批判性思维训练方法：
+                                </p>
+                                
+                                <!-- 练习方法卡片 -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-question-circle text-gray-400 mr-2"></i>
+                                            <span class="text-white font-medium">质疑资讯源</span>
+                                        </div>
+                                        <p class="text-gray-300 text-sm">
+                                            每天选择1-2条社交媒体热门信息，追查其原始来源和证据链，评估可信度。
+                                        </p>
+                                    </div>
+                                    <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-balance-scale-right text-gray-400 mr-2"></i>
+                                            <span class="text-white font-medium">寻找反方论述</span>
+                                        </div>
+                                        <p class="text-gray-300 text-sm">
+                                            对你认同的观点，主动寻找理性的反对意见，尝试理解不同立场的合理性。
+                                        </p>
+                                    </div>
+                                    <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-robot text-gray-400 mr-2"></i>
+                                            <span class="text-white font-medium">AI内容评估</span>
+                                        </div>
+                                        <p class="text-gray-300 text-sm">
+                                            要求AI分析可能存在偏见或错误的内容，然后评估AI的分析质量和盲点。
+                                        </p>
+                                    </div>
+                                    <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-pen-to-square text-gray-400 mr-2"></i>
+                                            <span class="text-white font-medium">反思日记</span>
+                                        </div>
+                                        <p class="text-gray-300 text-sm">
+                                            每周记录一次你改变主意或发现自己错误的经历，分析思维过程和学习点。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 右侧：批判性思维练习实践与提示词 -->
+                    <div>
+                        <div class="bg-zinc-800/50 p-6 rounded-xl backdrop-blur-sm">
+                            <h3 class="text-xl font-semibold text-white mb-5 flex items-center">
+                                <i class="fas fa-chess text-gray-400 mr-3"></i>
+                                AI辅助批判性思维实践
+                            </h3>
+                            
+                            <div class="space-y-5">
+                                <p class="text-gray-300">
+                                    AI既是我们需要用批判性思维评估的对象，也可以成为培养批判性思维的助手。以下是几种结合AI进行批判性思维训练的方法：
+                                </p>
+                                
+                                <!-- 新闻分析练习 -->
+                                <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                    <h4 class="text-white font-medium mb-3">新闻/社媒内容分析练习</h4>
+                                    <p class="text-gray-300 mb-3">
+                                        每天选择一则新闻或社交媒体内容，与AI一起分析可能存在的偏见、不准确或误导性表述。这种练习帮助培养媒体素养，同时也锻炼你对AI回答的评估能力。
+                                    </p>
+                                    
+                                    <div class="bg-zinc-600/40 p-3 rounded-lg mb-3">
+                                        <h5 class="text-white font-medium mb-2">练习步骤</h5>
+                                        <ol class="list-decimal list-inside text-gray-300 space-y-1 text-sm">
+                                            <li>选择当天的一则新闻或社交媒体热门内容</li>
+                                            <li>请AI分析其中可能存在的偏见、误导或逻辑问题</li>
+                                            <li>评估AI的分析是否合理，是否遗漏了重要角度</li>
+                                            <li>思考如何验证文章中的关键事实声明</li>
+                                            <li>记录你的思考过程和从这次分析中学到的洞见</li>
+                                        </ol>
+                                    </div>
+                                    
+                                    <div class="bg-zinc-600/40 p-3 rounded-lg">
+                                        <h5 class="text-white font-medium mb-2">分析要点</h5>
+                                        <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                            <li>信息源的可靠性和可能的利益关系</li>
+                                            <li>论据与结论之间的逻辑关系</li>
+                                            <li>情感化语言和框架选择的影响</li>
+                                            <li>重要背景信息的省略或不当强调</li>
+                                            <li>统计数据的正确使用与解释</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <!-- 交叉验证练习 -->
+                                <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                    <h4 class="text-white font-medium mb-3">AI交叉验证练习</h4>
+                                    <p class="text-gray-300 mb-3">
+                                        向多个AI工具提出同一问题，对比它们的回答，寻找共识点和分歧点。这种方法有助于识别AI幻觉，培养对AI回答的健康怀疑态度。
+                                    </p>
+                                    
+                                    <div class="bg-zinc-600/40 p-3 rounded-lg">
+                                        <h5 class="text-white font-medium mb-2">有效问题类型</h5>
+                                        <ul class="space-y-2 text-sm">
+                                            <li class="bg-zinc-700/70 p-2 rounded">
+                                                <span class="text-gray-200">关于争议性话题的多角度分析</span>
+                                            </li>
+                                            <li class="bg-zinc-700/70 p-2 rounded">
+                                                <span class="text-gray-200">特定学术概念或理论的解释</span>
+                                            </li>
+                                            <li class="bg-zinc-700/70 p-2 rounded">
+                                                <span class="text-gray-200">历史事件的影响评估</span>
+                                            </li>
+                                            <li class="bg-zinc-700/70 p-2 rounded">
+                                                <span class="text-gray-200">技术或产品的优缺点比较</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 提示词模板 -->
+                        <div class="mt-6 bg-gradient-to-r from-zinc-800/70 to-zinc-700/70 p-5 rounded-xl backdrop-blur-sm">
+                            <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
+                                <i class="fas fa-file-alt text-gray-400 mr-2"></i>
+                                批判性思维训练提示词
+                            </h3>
+                            
+                            <!-- 模板1：新闻分析 -->
+                            <div class="bg-zinc-700/40 p-4 rounded-lg mb-4">
+                                <h4 class="text-white font-medium mb-2">新闻/社媒内容分析</h4>
+                                <div class="prompt-card p-4">
+                                    <button class="copy-button" data-prompt="请帮我分析以下新闻/社交媒体内容可能存在的偏见、误导或逻辑问题。我希望你能从多个角度进行客观分析，包括：\n\n1. 信息源的可靠性和潜在利益关系\n2. 表述中的情感化语言或框架选择\n3. 论据与结论之间的逻辑关系\n4. 重要背景信息的省略\n5. 统计数据的使用是否恰当\n6. 可能存在的确认偏误或其他认知偏见\n\n内容如下：\n\"[粘贴新闻或社交媒体内容]\"\n\n在你的分析后，请提供2-3个问题，这些问题可以帮助我进一步验证或探索这则信息的真实性和全面性。">
+                                        <i class="fas fa-copy"></i> 复制
+                                    </button>
+                                    <p class="text-sm leading-relaxed whitespace-pre-wrap">请帮我分析以下新闻/社交媒体内容可能存在的偏见、误导或逻辑问题。我希望你能从多个角度进行客观分析，包括：
+
+1. 信息源的可靠性和潜在利益关系
+2. 表述中的情感化语言或框架选择
+3. 论据与结论之间的逻辑关系
+4. 重要背景信息的省略
+5. 统计数据的使用是否恰当
+6. 可能存在的确认偏误或其他认知偏见
+
+内容如下：
+"[粘贴新闻或社交媒体内容]"
+
+在你的分析后，请提供2-3个问题，这些问题可以帮助我进一步验证或探索这则信息的真实性和全面性。</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 模板2：幻觉测试 -->
+                            <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                <h4 class="text-white font-medium mb-2">AI幻觉测试与评估</h4>
+                                <div class="prompt-card p-4">
+                                    <button class="copy-button" data-prompt="我想测试你对[特定主题]的知识准确性，并练习我的批判性思维能力。请回答以下问题：\n\n[关于该主题的具体问题]\n\n在你回答的同时，请：\n\n1. 标明哪些信息你非常确定（90%以上的把握）\n2. 哪些信息你中等确定（60-90%的把握）\n3. 哪些信息你不太确定（低于60%的把握）\n4. 明确指出任何你不知道或无法确定的部分\n\n此外，请提供2-3个方法，说明我如何可以验证你提供的关键信息的准确性。">
+                                        <i class="fas fa-copy"></i> 复制
+                                    </button>
+                                    <p class="text-sm leading-relaxed whitespace-pre-wrap">我想测试你对[特定主题]的知识准确性，并练习我的批判性思维能力。请回答以下问题：
+
+[关于该主题的具体问题]
+
+在你回答的同时，请：
+
+1. 标明哪些信息你非常确定（90%以上的把握）
+2. 哪些信息你中等确定（60-90%的把握）
+3. 哪些信息你不太确定（低于60%的把握）
+4. 明确指出任何你不知道或无法确定的部分
+
+此外，请提供2-3个方法，说明我如何可以验证你提供的关键信息的准确性。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 图片展示区 -->
+                <div class="mt-10">
+                    <h3 class="text-xl font-semibold text-white mb-6">
+                        <i class="fas fa-image text-gray-400 mr-2"></i>
+                        批判性思维实践案例
+                    </h3>
+                    
+                    <!-- 修改所有轮播框，使用两层div结构并统一样式 -->
+                    <!-- 第一个轮播框 -->
+                    <div class="image-gallery swiper rounded-xl overflow-hidden">
+                        <div class="swiper-wrapper">
+                            <!-- 图片1 -->
+                            <div class="swiper-slide">
+                                <div class="image-container">
+                                    <img src="static/images/scenes/critical-thinking1.jpg" alt="批判性思维分析案例" class="contained-image" />
+                                </div>
+                            </div>
+                            <!-- 图片2 -->
+                            <div class="swiper-slide">
+                                <div class="image-container">
+                                    <img src="static/images/scenes/critical-thinking2.jpg" alt="AI幻觉示例" class="contained-image" />
+                                </div>
+                            </div>
+                            <!-- 图片3 -->
+                            <div class="swiper-slide">
+                                <div class="image-container">
+                                    <img src="static/images/scenes/critical-thinking3.jpg" alt="批判性思维训练方法" class="contained-image" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+                
+                <!-- 小结 -->
+                <div class="mt-12 bg-gradient-to-r from-zinc-900/70 to-zinc-800/70 p-6 rounded-xl backdrop-blur-sm">
+                    <h3 class="text-xl font-semibold text-white mb-4 flex items-center">
+                        <i class="fas fa-check-circle text-gray-400 mr-2"></i>
+                        场景小结
+                    </h3>
+                    
+                    <div class="text-gray-300 space-y-3">
+                        <p>
+                            批判性思维是AI时代的必备能力，它不仅帮助我们有效利用AI工具，也是防止被错误信息和AI幻觉误导的关键防线。通过持续的练习和反思，我们可以：
+                        </p>
+                        
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li>更有效地评估信息的可靠性和价值</li>
+                            <li>识别媒体报道和社交内容中的偏见和误导</li>
+                            <li>明智地使用AI工具，既能发挥其优势，又能规避其局限</li>
+                            <li>减轻信息焦虑，建立对复杂世界的理性认知</li>
+                            <li>发展终身学习的能力，不断调整和更新自己的认知框架</li>
+                        </ul>
+                        
+                        <p class="mt-4">
+                            最重要的是，批判性思维不是孤立的智力活动，而是一种生活态度——保持好奇、开放和谦逊，愿意质疑自己的假设，并在证据面前调整观点。在AI加速发展的时代，这种思维习惯将成为我们最可靠的导航工具。
+                        </p>
+                        
+                        <div class="mt-6 p-4 bg-zinc-700/40 rounded-lg">
+                            <p class="italic">
+                                "在信息的迷雾中，批判性思维是照亮前路的灯塔；在AI的浪潮里，它是确保我们不被淹没的救生衣。"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+           <!-- 周一任务区块 -->
+<section id="monday-task" class="task-section p-6 md:p-8 bg-gradient-to-br from-amber-100/10 to-amber-200/10 my-12 rounded-2xl border border-amber-200/20">
+    <!-- 任务标题 -->
+    <div class="mb-8 text-center">
+        <span class="inline-block px-3 py-1 text-xs font-semibold bg-amber-500 text-white rounded-full mb-4">周一任务</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-amber-500 mb-2 flex items-center justify-center">
+            <i class="fas fa-calendar-day mr-3"></i>
+            批判性思维与AI助手使用实战
+        </h2>
+        <p class="text-gray-300 max-w-3xl mx-auto">
+            通过实际操作多种AI工具，培养批判性思维和工具对比能力，提升AI应用效率
+        </p>
+    </div>
+    
+    <!-- 任务内容 -->
+    <div class="bg-zinc-800/50 p-6 rounded-xl backdrop-blur-sm max-w-4xl mx-auto">
+        <!-- 任务目标 -->
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                <i class="fas fa-bullseye text-amber-500 mr-3"></i>
+                任务目标
+            </h3>
+            <ul class="space-y-2 text-gray-300">
+                <li class="flex items-start">
+                    <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                        <i class="fas fa-check text-xs"></i>
+                    </span>
+                    <span>熟悉DeepSeek、豆包等AI工具的基本界面与功能</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                        <i class="fas fa-check text-xs"></i>
+                    </span>
+                    <span>通过实际使用，发现AI之间的差异，形成多工具对比思维</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                        <i class="fas fa-check text-xs"></i>
+                    </span>
+                    <span>训练AI任务拆解能力，观察AI在不同模式下的输出质量</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                        <i class="fas fa-check text-xs"></i>
+                    </span>
+                    <span>学习识别AI生成内容中可能存在的错误、偏见和"幻觉"</span>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- 具体任务 - 思维训练 -->
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                <i class="fas fa-brain text-amber-500 mr-3"></i>
+                思维训练任务（10min）
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- 任务项1 -->
+                <div class="task-item bg-zinc-700/40 p-5 rounded-xl hover:bg-zinc-700/60">
+                    <div class="flex items-center mb-3">
+                        <span class="flex-shrink-0 h-7 w-7 flex items-center justify-center rounded-full bg-amber-500 text-white mr-3">
+                            <span class="font-semibold">1</span>
+                        </span>
+                        <h4 class="text-lg font-medium text-white">AI内容交叉验证练习</h4>
+                    </div>
+                    <p class="text-gray-300 mb-3">
+                        向2-3种不同的AI工具（如ChatGPT、DeepSeek等）提出相同的问题，对比它们的回答，找出相同点和不同点。
+                    </p>
+                    <div class="text-sm text-gray-400">
+                        <p><i class="fas fa-lightbulb mr-1 text-amber-400"></i> 建议选择专业领域或争议性话题作为问题</p>
+                    </div>
+                </div>
+                
+                <!-- 任务项2 -->
+                <div class="task-item bg-zinc-700/40 p-5 rounded-xl hover:bg-zinc-700/60">
+                    <div class="flex items-center mb-3">
+                        <span class="flex-shrink-0 h-7 w-7 flex items-center justify-center rounded-full bg-amber-500 text-white mr-3">
+                            <span class="font-semibold">2</span>
+                        </span>
+                        <h4 class="text-lg font-medium text-white">新闻/社媒内容分析</h4>
+                    </div>
+                    <p class="text-gray-300 mb-3">
+                        选择一则当天的热门新闻或社交媒体内容，使用批判性思维模板对其进行分析，识别可能的偏见或误导。
+                    </p>
+                    <div class="text-sm text-gray-400">
+                        <p><i class="fas fa-lightbulb mr-1 text-amber-400"></i> 使用场景2中提供的分析提示词作为工具</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 日常任务内容 -->
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                <i class="fas fa-tasks text-amber-500 mr-3"></i>
+                日常任务内容（20min）
+            </h3>
+            
+            <div class="space-y-4">
+                <!-- 任务1 -->
+                <div class="bg-zinc-700/40 p-4 rounded-lg">
+                    <div class="flex items-start">
+                        <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/60 text-white mr-3 mt-1">
+                            <span class="font-semibold text-sm">1</span>
+                        </span>
+                        <div>
+                            <h4 class="text-white font-medium mb-2">熟悉DeepSeek界面功能</h4>
+                            <ul class="text-gray-300 space-y-1 text-sm ml-2">
+                                <li class="flex items-start">
+                                    <span class="text-amber-400 mr-2">•</span>
+                                    <span>逐个点击每个按钮，查看功能（例如：联网搜索、深度思考模式等）</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-amber-400 mr-2">•</span>
+                                    <span>记录自己觉得最有用/最难理解的功能点</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 任务2 -->
+                <div class="bg-zinc-700/40 p-4 rounded-lg">
+                    <div class="flex items-start">
+                        <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/60 text-white mr-3 mt-1">
+                            <span class="font-semibold text-sm">2</span>
+                        </span>
+                        <div>
+                            <h4 class="text-white font-medium mb-2">注册另一个AI工具（豆包）</h4>
+                            <ul class="text-gray-300 space-y-1 text-sm ml-2">
+                                <li class="flex items-start">
+                                    <span class="text-amber-400 mr-2">•</span>
+                                    <span>对比DeepSeek与豆包的界面，找出相似点和差异点</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 任务3 -->
+                <div class="bg-zinc-700/40 p-4 rounded-lg">
+                    <div class="flex items-start">
+                        <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/60 text-white mr-3 mt-1">
+                            <span class="font-semibold text-sm">3</span>
+                        </span>
+                        <div>
+                            <h4 class="text-white font-medium mb-2">同一个问题，用不同方式问DeepSeek</h4>
+                            <ul class="text-gray-300 space-y-1 text-sm ml-2">
+                                <li class="flex items-start">
+                                    <span class="text-amber-400 mr-2">•</span>
+                                    <span>问题示例："AI是什么？"</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-amber-400 mr-2">•</span>
+                                    <span>方式1：使用"深度思考"模式</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-amber-400 mr-2">•</span>
+                                    <span>方式2：使用"联网搜索"模式</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-amber-400 mr-2">•</span>
+                                    <span>方式3：都不用，直接提问</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-amber-400 mr-2">•</span>
+                                    <span>观察AI的回答有什么区别</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 任务4 -->
+                <div class="bg-zinc-700/40 p-4 rounded-lg">
+                    <div class="flex items-start">
+                        <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/60 text-white mr-3 mt-1">
+                            <span class="font-semibold text-sm">4</span>
+                        </span>
+                        <div>
+                            <h4 class="text-white font-medium mb-2">同时在DeepSeek和豆包上问同样的问题</h4>
+                            <ul class="text-gray-300 space-y-1 text-sm ml-2">
+                                <li class="flex items-start">
+                                    <span class="text-amber-400 mr-2">•</span>
+                                    <span>记录它们的回答，比较两者的优缺点</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 任务5 -->
+                <div class="bg-zinc-700/40 p-4 rounded-lg">
+                    <div class="flex items-start">
+                        <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/60 text-white mr-3 mt-1">
+                            <span class="font-semibold text-sm">5</span>
+                        </span>
+                        <div>
+                            <h4 class="text-white font-medium mb-2">测试AI生成的文字在不同文档工具中的兼容性</h4>
+                            <ul class="text-gray-300 space-y-1 text-sm ml-2">
+                                <li class="flex items-start">
+                                    <span class="text-amber-400 mr-2">•</span>
+                                    <span>复制AI回答，粘贴到飞书文档和Word文档</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-amber-400 mr-2">•</span>
+                                    <span>检查是否格式保持一致，有无丢失/错乱</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 交付物 -->
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                <i class="fas fa-file-export text-amber-500 mr-3"></i>
+                交付物
+            </h3>
+            <div class="bg-zinc-700/30 p-4 rounded-lg">
+                <ul class="space-y-3 text-gray-300">
+                    <li class="flex items-start">
+                        <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                            <i class="fas fa-file-alt text-xs"></i>
+                        </span>
+                        <div>
+                            <span>一份AI工具对比报告（可以用Word、Notion、飞书文档整理）</span>
+                            <ul class="ml-4 mt-2 space-y-1 text-sm">
+                                <li class="flex items-start">
+                                    <span class="text-amber-400 mr-2">•</span>
+                                    <span>记录自己对各个工具的初步感受</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-amber-400 mr-2">•</span>
+                                    <span>回答这些问题：哪些功能是你最喜欢的？哪些功能有待优化？哪个AI在回答问题上更精准？AI生成的文本格式是否保持一致？</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                            <i class="fas fa-file-alt text-xs"></i>
+                        </span>
+                        <span>一份新闻/社媒内容的批判性分析（400-600字），包括信息源评估、偏见识别和背景补充</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 注意事项 -->
+        <div>
+            <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                <i class="fas fa-exclamation-circle text-amber-500 mr-3"></i>
+                注意事项
+            </h3>
+            <div class="bg-amber-500/10 border border-amber-500/20 p-4 rounded-lg">
+                <ul class="space-y-2 text-gray-300">
+                    <li class="flex items-start">
+                        <span class="text-amber-400 mr-2">•</span>
+                        <span>所有问题都要开新的对话，避免AI受到历史聊天的影响</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-amber-400 mr-2">•</span>
+                        <span>以开放、客观的态度进行分析，避免自身确认偏误的影响</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-amber-400 mr-2">•</span>
+                        <span>记录分析过程中的思考和观察，而不仅仅是结论</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-amber-400 mr-2">•</span>
+                        <span>不要过分依赖AI的分析结果，练习自己独立思考的能力</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+            
+            <!-- 场景3：多工具并行使用 (原场景2) -->
             <section id="multi-tool" class="scene-card bg-gradient-to-br from-blue-900/90 to-indigo-900/90 p-6 md:p-8">
                 <!-- 场景标题 -->
                 <div class="mb-8">
-                    <span class="inline-block px-3 py-1 text-xs font-semibold bg-blue-800 text-blue-100 rounded-full mb-4">场景 02</span>
+                    <span class="inline-block px-3 py-1 text-xs font-semibold bg-blue-800 text-blue-100 rounded-full mb-4">场景 03</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white mb-2 flex items-center">
                         <i class="fas fa-tools mr-3 text-blue-400"></i>
                         快速获取知识：并行使用多AI工具高效对比
@@ -897,11 +1537,13 @@
                 </div>
             </section>
             
-            <!-- 场景3：复杂任务拆解 -->
+           
+            
+            <!-- 场景4：复杂任务拆解 (原场景3) -->
             <section id="task-breakdown" class="scene-card bg-gradient-to-br from-green-900/90 to-teal-900/90 p-6 md:p-8">
                 <!-- 场景标题 -->
                 <div class="mb-8">
-                    <span class="inline-block px-3 py-1 text-xs font-semibold bg-green-800 text-green-100 rounded-full mb-4">场景 03</span>
+                    <span class="inline-block px-3 py-1 text-xs font-semibold bg-green-800 text-green-100 rounded-full mb-4">场景 04</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white mb-2 flex items-center">
                         <i class="fas fa-project-diagram mr-3 text-green-400"></i>
                         复杂任务拆解：利用AI分解大型工作
@@ -1267,11 +1909,11 @@
                 </div>
             </section>
             
-            <!-- 场景4：PPT制作 -->
+            <!-- 场景5：PPT制作 (原场景4) -->
             <section id="ppt-creation" class="scene-card bg-gradient-to-br from-purple-900/90 to-pink-900/90 p-6 md:p-8">
                 <!-- 场景标题 -->
                 <div class="mb-8">
-                    <span class="inline-block px-3 py-1 text-xs font-semibold bg-purple-800 text-purple-100 rounded-full mb-4">场景 04</span>
+                    <span class="inline-block px-3 py-1 text-xs font-semibold bg-purple-800 text-purple-100 rounded-full mb-4">场景 05</span>
                     <h2 class="text-2xl md:text-3xl font-bold text-white mb-2 flex items-center">
                         <i class="fas fa-file-powerpoint mr-3 text-purple-400"></i>
                         AI辅助PPT制作：高效打造专业演示文稿
@@ -1744,15 +2386,165 @@
                     </div>
                 </div>
             </section>
+             <!-- 周三任务区块 -->
+            <!-- 周三任务区块 -->
+<section id="tuesday-task" class="task-section p-6 md:p-8 bg-gradient-to-br from-amber-100/10 to-amber-200/10 my-12 rounded-2xl border border-amber-200/20">
+    <!-- 任务标题 -->
+    <div class="mb-8 text-center">
+        <span class="inline-block px-3 py-1 text-xs font-semibold bg-amber-500 text-white rounded-full mb-4">周二任务</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-amber-500 mb-2 flex items-center justify-center">
+            <i class="fas fa-calendar-day mr-3"></i>
+            AI任务规划与PPT生成
+        </h2>
+        <p class="text-gray-300 max-w-3xl mx-auto">
+            探索AI在任务拆解、时间管理规划和演示文稿创建中的应用，提升工作效率
+        </p>
+    </div>
+    
+    <!-- 任务内容 -->
+    <div class="bg-zinc-800/50 p-6 rounded-xl backdrop-blur-sm max-w-4xl mx-auto">
+        <!-- 任务目标 -->
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                <i class="fas fa-bullseye text-amber-500 mr-3"></i>
+                任务目标
+            </h3>
+            <ul class="space-y-2 text-gray-300">
+                <li class="flex items-start">
+                    <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                        <i class="fas fa-check text-xs"></i>
+                    </span>
+                    <span>学会使用AI拆解任务与优化时间管理</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                        <i class="fas fa-check text-xs"></i>
+                    </span>
+                    <span>通过不同AI规划任务，找到最优安排方式</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                        <i class="fas fa-check text-xs"></i>
+                    </span>
+                    <span>初步探索AI在PPT生成上的能力</span>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- 具体任务 -->
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                <i class="fas fa-tasks text-amber-500 mr-3"></i>
+                任务内容
+            </h3>
             
-            <!-- 场景5：AI辅助阅读 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- 任务项1 -->
+                <div class="task-item bg-zinc-700/40 p-5 rounded-xl hover:bg-zinc-700/60">
+                    <div class="flex items-center mb-3">
+                        <span class="flex-shrink-0 h-7 w-7 flex items-center justify-center rounded-full bg-amber-500 text-white mr-3">
+                            <span class="font-semibold">1</span>
+                        </span>
+                        <h4 class="text-lg font-medium text-white">AI辅助工作规划</h4>
+                    </div>
+                    <p class="text-gray-300 mb-3">
+                        把明天的任务列出来，发给DeepSeek、豆包，让它们给出计划安排。观察它们的拆解思路与任务优先级建议，整合多个AI版本的结果，输出最适合自己的计划。
+                    </p>
+                    <div class="text-sm text-gray-400">
+                        <p><i class="fas fa-lightbulb mr-1 text-amber-400"></i> 比较不同AI的规划风格和侧重点，找出最符合自己工作习惯的方案</p>
+                    </div>
+                </div>
+                
+                <!-- 任务项2 -->
+                <div class="task-item bg-zinc-700/40 p-5 rounded-xl hover:bg-zinc-700/60">
+                    <div class="flex items-center mb-3">
+                        <span class="flex-shrink-0 h-7 w-7 flex items-center justify-center rounded-full bg-amber-500 text-white mr-3">
+                            <span class="font-semibold">2</span>
+                        </span>
+                        <h4 class="text-lg font-medium text-white">多平台PPT生成对比</h4>
+                    </div>
+                    <p class="text-gray-300 mb-3">
+                        让Kimi给你的工作安排做一个OKR结构的PPT，使用通义千问的PPT功能，对比Kimi生成的PPT。观察两者的差异，记录各自的优劣势。
+                    </p>
+                    <div class="text-sm text-gray-400">
+                        <p><i class="fas fa-lightbulb mr-1 text-amber-400"></i> 关注内容架构、设计风格、数据可视化等方面的差异</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 交付物 -->
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                <i class="fas fa-file-export text-amber-500 mr-3"></i>
+                交付物
+            </h3>
+            <div class="bg-zinc-700/30 p-4 rounded-lg">
+                <ul class="space-y-3 text-gray-300">
+                    <li class="flex items-start">
+                        <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                            <i class="fas fa-calendar-check text-xs"></i>
+                        </span>
+                        <span>最终版工作计划（用AI输出的最佳版本）</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                            <i class="fas fa-file-powerpoint text-xs"></i>
+                        </span>
+                        <div>
+                            <span>OKR PPT（两版对比），并回答：</span>
+                            <ul class="ml-4 mt-2 space-y-1 text-sm">
+                                <li class="flex items-start">
+                                    <span class="text-amber-400 mr-2">•</span>
+                                    <span>哪个AI生成的PPT更符合需求？</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-amber-400 mr-2">•</span>
+                                    <span>你自己会如何调整优化？</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 注意事项 -->
+        <div>
+            <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                <i class="fas fa-exclamation-circle text-amber-500 mr-3"></i>
+                注意事项
+            </h3>
+            <div class="bg-amber-500/10 border border-amber-500/20 p-4 rounded-lg">
+                <ul class="space-y-2 text-gray-300">
+                    <li class="flex items-start">
+                        <span class="text-amber-400 mr-2">•</span>
+                        <span>任务列表尽量详细，让AI能够进行合理拆解</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-amber-400 mr-2">•</span>
+                        <span>尝试修改AI生成的PPT，让它更符合自己的风格</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-amber-400 mr-2">•</span>
+                        <span>不同AI工具可能有特定的优势领域，注意综合评估</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+            <!-- 场景6：AI辅助阅读 (原场景5) -->
             <section id="ai-reading" class="scene-card bg-gradient-to-br from-indigo-900/90 to-blue-900/90 p-6 md:p-8">
                 <!-- 场景标题 -->
-                <div class="mb-8 text-center">
-                    <span class="inline-block px-3 py-1 bg-indigo-700/60 rounded-full text-xs font-medium text-white mb-4">场景 5</span>
-                    <h2 class="text-3xl font-bold text-white mb-4">AI辅助阅读：让阅读更高效</h2>
-                    <p class="text-lg text-indigo-200 max-w-3xl mx-auto">
-                        如何利用AI快速筛选和深入理解书籍内容，从信息爆炸中精准获取所需知识
+                <div class="mb-8">
+                    <span class="inline-block px-3 py-1 text-xs font-semibold bg-indigo-800 text-indigo-100 rounded-full mb-4">场景 06</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-2 flex items-center">
+                        <i class="fas fa-book-reader mr-3 text-indigo-400"></i>
+                        AI辅助阅读：深度理解复杂内容
+                    </h2>
+                    <p class="text-indigo-200 max-w-3xl">
+                        探索如何使用AI工具辅助阅读和分析复杂文章、书籍和研究论文，提高阅读效率和理解深度
                     </p>
                 </div>
                 
@@ -2045,568 +2837,160 @@
                 </div>
             </section>
             
-            <!-- 场景6：批判性思维练习 -->
-            <section id="critical-thinking" class="scene-card bg-gradient-to-br from-gray-900/90 to-zinc-900/90 p-6 md:p-8">
-                <!-- 场景标题 -->
-                <div class="mb-8 text-center">
-                    <span class="inline-block px-3 py-1 bg-gray-700/60 rounded-full text-xs font-medium text-white mb-4">场景 6</span>
-                    <h2 class="text-3xl font-bold text-white mb-4">批判性思维练习：AI时代的免疫系统</h2>
-                    <p class="text-lg text-gray-300 max-w-3xl mx-auto">
-                        在信息爆炸与AI生成内容泛滥的时代，批判性思维是我们抵御错误信息的盔甲，也是摆脱焦虑的良药
-                    </p>
-                </div>
-                
-                <!-- 内容部分 -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- 左侧：批判性思维的重要性和AI幻觉原理 -->
-                    <div>
-                        <div class="bg-zinc-800/50 p-6 rounded-xl backdrop-blur-sm">
-                            <h3 class="text-xl font-semibold text-white mb-5 flex items-center">
-                                <i class="fas fa-brain text-gray-400 mr-3"></i>
-                                为什么批判性思维在AI时代尤为关键
-                            </h3>
-                            
-                            <div class="space-y-6">
-                                <p class="text-gray-300">
-                                    在充斥着各种信息和观点的数字时代，批判性思维是我们区分事实与虚构、理性与煽动的核心能力。随着生成式AI的普及，这种能力变得更加重要。
-                                </p>
-                                
-                                <div class="bg-zinc-700/40 p-4 rounded-lg">
-                                    <h4 class="text-white font-medium mb-3">批判性思维的价值</h4>
-                                    <ul class="text-gray-300 space-y-3">
-                                        <li class="flex items-start">
-                                            <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-gray-600 text-gray-200 mr-3 mt-0.5">
-                                                <i class="fas fa-shield-alt text-xs"></i>
-                                            </span>
-                                            <span>在信息泛滥中筛选出真实可靠的内容，避免被错误信息或偏见所误导</span>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-gray-600 text-gray-200 mr-3 mt-0.5">
-                                                <i class="fas fa-balance-scale text-xs"></i>
-                                            </span>
-                                            <span>全面评估AI生成内容的可靠性和价值，成为AI的主人而非仆人</span>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-gray-600 text-gray-200 mr-3 mt-0.5">
-                                                <i class="fas fa-heart-pulse text-xs"></i>
-                                            </span>
-                                            <span>减轻信息焦虑，知道大部分危言耸听的预测和宣传都经不起推敲</span>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-gray-600 text-gray-200 mr-3 mt-0.5">
-                                                <i class="fas fa-lightbulb text-xs"></i>
-                                            </span>
-                                            <span>提高解决问题的能力，对复杂问题形成更全面深入的理解</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- AI幻觉原理 -->
-                                <div class="bg-zinc-700/40 p-4 rounded-lg">
-                                    <h4 class="text-white font-medium mb-3">AI幻觉的原理与表现</h4>
-                                    <p class="text-gray-300 mb-4">
-                                        AI幻觉是指AI模型生成看似可信但实际上不准确或完全虚构的内容。了解这一现象的原理，有助于我们更好地识别和应对它。
-                                    </p>
-                                    
-                                    <div class="bg-zinc-600/40 p-3 rounded-lg mb-3">
-                                        <h5 class="text-white font-medium mb-2">产生原因</h5>
-                                        <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
-                                            <li>模型基于概率生成内容，而非检索确定的事实</li>
-                                            <li>训练数据中可能包含错误或矛盾的信息</li>
-                                            <li>模型倾向于生成流畅连贯的文本，即使需要"编造"细节</li>
-                                            <li>复杂问题可能超出模型的知识范围或上下文理解能力</li>
-                                        </ul>
-                                    </div>
-                                    
-                                    <div class="bg-zinc-600/40 p-3 rounded-lg">
-                                        <h5 class="text-white font-medium mb-2">常见表现</h5>
-                                        <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
-                                            <li>编造不存在的参考文献、数据或事件</li>
-                                            <li>错误引用真实人物的言论或观点</li>
-                                            <li>自信地提供看似精确但实际不正确的细节</li>
-                                            <li>在不确定的问题上给出过度确定的回答</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- 批判性思维练习方法 -->
-                        <div class="mt-6 bg-gradient-to-r from-zinc-800/70 to-zinc-700/70 p-5 rounded-xl backdrop-blur-sm">
-                            <h3 class="text-xl font-semibold text-white mb-4 flex items-center">
-                                <i class="fas fa-dumbbell text-gray-400 mr-2"></i>
-                                培养批判性思维的日常练习
-                            </h3>
-                            
-                            <div class="space-y-4">
-                                <p class="text-gray-300">
-                                    批判性思维不是天生的，而是需要通过持续练习培养的能力。以下是一些可以融入日常生活的批判性思维训练方法：
-                                </p>
-                                
-                                <!-- 练习方法卡片 -->
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <div class="bg-zinc-700/40 p-4 rounded-lg">
-                                        <div class="flex items-center mb-2">
-                                            <i class="fas fa-question-circle text-gray-400 mr-2"></i>
-                                            <span class="text-white font-medium">质疑资讯源</span>
-                                        </div>
-                                        <p class="text-gray-300 text-sm">
-                                            每天选择1-2条社交媒体热门信息，追查其原始来源和证据链，评估可信度。
-                                        </p>
-                                    </div>
-                                    <div class="bg-zinc-700/40 p-4 rounded-lg">
-                                        <div class="flex items-center mb-2">
-                                            <i class="fas fa-balance-scale-right text-gray-400 mr-2"></i>
-                                            <span class="text-white font-medium">寻找反方论述</span>
-                                        </div>
-                                        <p class="text-gray-300 text-sm">
-                                            对你认同的观点，主动寻找理性的反对意见，尝试理解不同立场的合理性。
-                                        </p>
-                                    </div>
-                                    <div class="bg-zinc-700/40 p-4 rounded-lg">
-                                        <div class="flex items-center mb-2">
-                                            <i class="fas fa-robot text-gray-400 mr-2"></i>
-                                            <span class="text-white font-medium">AI内容评估</span>
-                                        </div>
-                                        <p class="text-gray-300 text-sm">
-                                            要求AI分析可能存在偏见或错误的内容，然后评估AI的分析质量和盲点。
-                                        </p>
-                                    </div>
-                                    <div class="bg-zinc-700/40 p-4 rounded-lg">
-                                        <div class="flex items-center mb-2">
-                                            <i class="fas fa-pen-to-square text-gray-400 mr-2"></i>
-                                            <span class="text-white font-medium">反思日记</span>
-                                        </div>
-                                        <p class="text-gray-300 text-sm">
-                                            每周记录一次你改变主意或发现自己错误的经历，分析思维过程和学习点。
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 右侧：批判性思维练习实践与提示词 -->
-                    <div>
-                        <div class="bg-zinc-800/50 p-6 rounded-xl backdrop-blur-sm">
-                            <h3 class="text-xl font-semibold text-white mb-5 flex items-center">
-                                <i class="fas fa-chess text-gray-400 mr-3"></i>
-                                AI辅助批判性思维实践
-                            </h3>
-                            
-                            <div class="space-y-5">
-                                <p class="text-gray-300">
-                                    AI既是我们需要用批判性思维评估的对象，也可以成为培养批判性思维的助手。以下是几种结合AI进行批判性思维训练的方法：
-                                </p>
-                                
-                                <!-- 新闻分析练习 -->
-                                <div class="bg-zinc-700/40 p-4 rounded-lg">
-                                    <h4 class="text-white font-medium mb-3">新闻/社媒内容分析练习</h4>
-                                    <p class="text-gray-300 mb-3">
-                                        每天选择一则新闻或社交媒体内容，与AI一起分析可能存在的偏见、不准确或误导性表述。这种练习帮助培养媒体素养，同时也锻炼你对AI回答的评估能力。
-                                    </p>
-                                    
-                                    <div class="bg-zinc-600/40 p-3 rounded-lg mb-3">
-                                        <h5 class="text-white font-medium mb-2">练习步骤</h5>
-                                        <ol class="list-decimal list-inside text-gray-300 space-y-1 text-sm">
-                                            <li>选择当天的一则新闻或社交媒体热门内容</li>
-                                            <li>请AI分析其中可能存在的偏见、误导或逻辑问题</li>
-                                            <li>评估AI的分析是否合理，是否遗漏了重要角度</li>
-                                            <li>思考如何验证文章中的关键事实声明</li>
-                                            <li>记录你的思考过程和从这次分析中学到的洞见</li>
-                                        </ol>
-                                    </div>
-                                    
-                                    <div class="bg-zinc-600/40 p-3 rounded-lg">
-                                        <h5 class="text-white font-medium mb-2">分析要点</h5>
-                                        <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
-                                            <li>信息源的可靠性和可能的利益关系</li>
-                                            <li>论据与结论之间的逻辑关系</li>
-                                            <li>情感化语言和框架选择的影响</li>
-                                            <li>重要背景信息的省略或不当强调</li>
-                                            <li>统计数据的正确使用与解释</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                
-                                <!-- 交叉验证练习 -->
-                                <div class="bg-zinc-700/40 p-4 rounded-lg">
-                                    <h4 class="text-white font-medium mb-3">AI交叉验证练习</h4>
-                                    <p class="text-gray-300 mb-3">
-                                        向多个AI工具提出同一问题，对比它们的回答，寻找共识点和分歧点。这种方法有助于识别AI幻觉，培养对AI回答的健康怀疑态度。
-                                    </p>
-                                    
-                                    <div class="bg-zinc-600/40 p-3 rounded-lg">
-                                        <h5 class="text-white font-medium mb-2">有效问题类型</h5>
-                                        <ul class="space-y-2 text-sm">
-                                            <li class="bg-zinc-700/70 p-2 rounded">
-                                                <span class="text-gray-200">关于争议性话题的多角度分析</span>
-                                            </li>
-                                            <li class="bg-zinc-700/70 p-2 rounded">
-                                                <span class="text-gray-200">特定学术概念或理论的解释</span>
-                                            </li>
-                                            <li class="bg-zinc-700/70 p-2 rounded">
-                                                <span class="text-gray-200">历史事件的影响评估</span>
-                                            </li>
-                                            <li class="bg-zinc-700/70 p-2 rounded">
-                                                <span class="text-gray-200">技术或产品的优缺点比较</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- 提示词模板 -->
-                        <div class="mt-6 bg-gradient-to-r from-zinc-800/70 to-zinc-700/70 p-5 rounded-xl backdrop-blur-sm">
-                            <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
-                                <i class="fas fa-file-alt text-gray-400 mr-2"></i>
-                                批判性思维训练提示词
-                            </h3>
-                            
-                            <!-- 模板1：新闻分析 -->
-                            <div class="bg-zinc-700/40 p-4 rounded-lg mb-4">
-                                <h4 class="text-white font-medium mb-2">新闻/社媒内容分析</h4>
-                                <div class="prompt-card p-4">
-                                    <button class="copy-button" data-prompt="请帮我分析以下新闻/社交媒体内容可能存在的偏见、误导或逻辑问题。我希望你能从多个角度进行客观分析，包括：\n\n1. 信息源的可靠性和潜在利益关系\n2. 表述中的情感化语言或框架选择\n3. 论据与结论之间的逻辑关系\n4. 重要背景信息的省略\n5. 统计数据的使用是否恰当\n6. 可能存在的确认偏误或其他认知偏见\n\n内容如下：\n\"[粘贴新闻或社交媒体内容]\"\n\n在你的分析后，请提供2-3个问题，这些问题可以帮助我进一步验证或探索这则信息的真实性和全面性。">
-                                        <i class="fas fa-copy"></i> 复制
-                                    </button>
-                                    <p class="text-sm leading-relaxed whitespace-pre-wrap">请帮我分析以下新闻/社交媒体内容可能存在的偏见、误导或逻辑问题。我希望你能从多个角度进行客观分析，包括：
-
-1. 信息源的可靠性和潜在利益关系
-2. 表述中的情感化语言或框架选择
-3. 论据与结论之间的逻辑关系
-4. 重要背景信息的省略
-5. 统计数据的使用是否恰当
-6. 可能存在的确认偏误或其他认知偏见
-
-内容如下：
-"[粘贴新闻或社交媒体内容]"
-
-在你的分析后，请提供2-3个问题，这些问题可以帮助我进一步验证或探索这则信息的真实性和全面性。</p>
-                                </div>
-                            </div>
-                            
-                            <!-- 模板2：幻觉测试 -->
-                            <div class="bg-zinc-700/40 p-4 rounded-lg">
-                                <h4 class="text-white font-medium mb-2">AI幻觉测试与评估</h4>
-                                <div class="prompt-card p-4">
-                                    <button class="copy-button" data-prompt="我想测试你对[特定主题]的知识准确性，并练习我的批判性思维能力。请回答以下问题：\n\n[关于该主题的具体问题]\n\n在你回答的同时，请：\n\n1. 标明哪些信息你非常确定（90%以上的把握）\n2. 哪些信息你中等确定（60-90%的把握）\n3. 哪些信息你不太确定（低于60%的把握）\n4. 明确指出任何你不知道或无法确定的部分\n\n此外，请提供2-3个方法，说明我如何可以验证你提供的关键信息的准确性。">
-                                        <i class="fas fa-copy"></i> 复制
-                                    </button>
-                                    <p class="text-sm leading-relaxed whitespace-pre-wrap">我想测试你对[特定主题]的知识准确性，并练习我的批判性思维能力。请回答以下问题：
-
-[关于该主题的具体问题]
-
-在你回答的同时，请：
-
-1. 标明哪些信息你非常确定（90%以上的把握）
-2. 哪些信息你中等确定（60-90%的把握）
-3. 哪些信息你不太确定（低于60%的把握）
-4. 明确指出任何你不知道或无法确定的部分
-
-此外，请提供2-3个方法，说明我如何可以验证你提供的关键信息的准确性。</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 图片展示区 -->
-                <div class="mt-10">
-                    <h3 class="text-xl font-semibold text-white mb-6">
-                        <i class="fas fa-image text-gray-400 mr-2"></i>
-                        批判性思维实践案例
-                    </h3>
-                    
-                    <!-- 修改所有轮播框，使用两层div结构并统一样式 -->
-                    <!-- 第一个轮播框 -->
-                    <div class="image-gallery swiper rounded-xl overflow-hidden">
-                        <div class="swiper-wrapper">
-                            <!-- 图片1 -->
-                            <div class="swiper-slide">
-                                <div class="image-container">
-                                    <img src="static/images/scenes/critical-thinking1.jpg" alt="批判性思维分析案例" class="contained-image" />
-                                </div>
-                            </div>
-                            <!-- 图片2 -->
-                            <div class="swiper-slide">
-                                <div class="image-container">
-                                    <img src="static/images/scenes/critical-thinking2.jpg" alt="AI幻觉示例" class="contained-image" />
-                                </div>
-                            </div>
-                            <!-- 图片3 -->
-                            <div class="swiper-slide">
-                                <div class="image-container">
-                                    <img src="static/images/scenes/critical-thinking3.jpg" alt="批判性思维训练方法" class="contained-image" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-pagination"></div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                    </div>
-                </div>
-                
-                <!-- 小结 -->
-                <div class="mt-12 bg-gradient-to-r from-zinc-900/70 to-zinc-800/70 p-6 rounded-xl backdrop-blur-sm">
-                    <h3 class="text-xl font-semibold text-white mb-4 flex items-center">
-                        <i class="fas fa-check-circle text-gray-400 mr-2"></i>
-                        场景小结
-                    </h3>
-                    
-                    <div class="text-gray-300 space-y-3">
-                        <p>
-                            批判性思维是AI时代的必备能力，它不仅帮助我们有效利用AI工具，也是防止被错误信息和AI幻觉误导的关键防线。通过持续的练习和反思，我们可以：
-                        </p>
-                        
-                        <ul class="list-disc list-inside space-y-2 ml-4">
-                            <li>更有效地评估信息的可靠性和价值</li>
-                            <li>识别媒体报道和社交内容中的偏见和误导</li>
-                            <li>明智地使用AI工具，既能发挥其优势，又能规避其局限</li>
-                            <li>减轻信息焦虑，建立对复杂世界的理性认知</li>
-                            <li>发展终身学习的能力，不断调整和更新自己的认知框架</li>
-                        </ul>
-                        
-                        <p class="mt-4">
-                            最重要的是，批判性思维不是孤立的智力活动，而是一种生活态度——保持好奇、开放和谦逊，愿意质疑自己的假设，并在证据面前调整观点。在AI加速发展的时代，这种思维习惯将成为我们最可靠的导航工具。
-                        </p>
-                        
-                        <div class="mt-6 p-4 bg-zinc-700/40 rounded-lg">
-                            <p class="italic">
-                                "在信息的迷雾中，批判性思维是照亮前路的灯塔；在AI的浪潮里，它是确保我们不被淹没的救生衣。"
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            <!-- 场景练习部分 -->
-            <section id="practice-tasks" class="bg-gradient-to-b from-purple-900 to-indigo-900 py-12 px-4 md:px-8 rounded-2xl my-12">
-                <div class="max-w-5xl mx-auto">
-                    <div class="mb-10 text-center">
-                        <span class="inline-block px-4 py-2 bg-indigo-700/60 rounded-full text-sm font-medium text-white mb-3">本周实践</span>
-                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-5">AI辅助阅读与PPT创作挑战</h2>
-                        <p class="text-xl text-indigo-200 max-w-3xl mx-auto">
-                            通过AI辅助阅读一本书，并制作令人印象深刻的PPT分享推荐这本书
-                        </p>
-                    </div>
-                    
-                    <!-- 任务卡片 -->
-                    <div class="bg-gradient-to-r from-indigo-800/60 to-purple-800/60 p-6 md:p-8 rounded-xl backdrop-blur-sm shadow-xl mb-10">
-                        <h3 class="text-2xl font-bold text-white mb-6 flex items-center">
-                            <i class="fas fa-tasks text-indigo-400 mr-3"></i>
-                            任务清单
-                        </h3>
-                        
-                        <div class="space-y-4">
-                            <!-- 任务1 -->
-                            <div class="task-item bg-indigo-700/30 rounded-lg overflow-hidden">
-                                <div class="p-4 flex items-center">
-                                    <div class="checkbox-container mr-4">
-                                        <input type="checkbox" id="task1" class="hidden peer">
-                                        <label for="task1" class="checkbox-custom flex items-center justify-center w-6 h-6 rounded border-2 border-indigo-400 cursor-pointer transition-all duration-300 peer-checked:bg-indigo-500 peer-checked:border-indigo-500">
-                                            <i class="fas fa-check text-white opacity-0 peer-checked:opacity-100 transition-opacity"></i>
-                                        </label>
-                                    </div>
-                                    <div class="flex-1">
-                                        <h4 class="text-lg font-medium text-white">选择一本你感兴趣的书籍</h4>
-                                        <p class="text-indigo-200 text-sm mt-1">可以是你已经读过的书，或者是想要了解的新书</p>
-                                    </div>
-                                    <span class="badge px-2 py-1 bg-indigo-600/50 text-xs rounded-full text-white">难度: 简单</span>
-                                </div>
-                                <div class="task-detail bg-indigo-800/40 p-3 border-t border-indigo-600/30">
-                                    <p class="text-sm text-indigo-200">
-                                        <i class="fas fa-lightbulb text-yellow-400 mr-1"></i>
-                                        建议选择非虚构类书籍，如科普、商业、自我提升等领域的作品，这些书更适合结构化分析和提取关键信息。
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <!-- 任务2 -->
-                            <div class="task-item bg-indigo-700/30 rounded-lg overflow-hidden">
-                                <div class="p-4 flex items-center">
-                                    <div class="checkbox-container mr-4">
-                                        <input type="checkbox" id="task2" class="hidden peer">
-                                        <label for="task2" class="checkbox-custom flex items-center justify-center w-6 h-6 rounded border-2 border-indigo-400 cursor-pointer transition-all duration-300 peer-checked:bg-indigo-500 peer-checked:border-indigo-500">
-                                            <i class="fas fa-check text-white opacity-0 peer-checked:opacity-100 transition-opacity"></i>
-                                        </label>
-                                    </div>
-                                    <div class="flex-1">
-                                        <h4 class="text-lg font-medium text-white">使用豆包AI进行内容分析</h4>
-                                        <p class="text-indigo-200 text-sm mt-1">上传书籍内容或提供相关链接，获取AI生成的概述和结构分析</p>
-                                    </div>
-                                    <span class="badge px-2 py-1 bg-indigo-600/50 text-xs rounded-full text-white">难度: 中等</span>
-                                </div>
-                                <div class="task-detail bg-indigo-800/40 p-3 border-t border-indigo-600/30">
-                                    <p class="text-sm text-indigo-200">
-                                        <i class="fas fa-lightbulb text-yellow-400 mr-1"></i>
-                                        确保保存豆包AI生成的思维导图、章节分析和关键概念列表，这些将成为你制作PPT的基础素材。
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <!-- 任务3 -->
-                            <div class="task-item bg-indigo-700/30 rounded-lg overflow-hidden">
-                                <div class="p-4 flex items-center">
-                                    <div class="checkbox-container mr-4">
-                                        <input type="checkbox" id="task3" class="hidden peer">
-                                        <label for="task3" class="checkbox-custom flex items-center justify-center w-6 h-6 rounded border-2 border-indigo-400 cursor-pointer transition-all duration-300 peer-checked:bg-indigo-500 peer-checked:border-indigo-500">
-                                            <i class="fas fa-check text-white opacity-0 peer-checked:opacity-100 transition-opacity"></i>
-                                        </label>
-                                    </div>
-                                    <div class="flex-1">
-                                        <h4 class="text-lg font-medium text-white">与AI深入对话，挖掘核心价值</h4>
-                                        <p class="text-indigo-200 text-sm mt-1">针对书籍的主要观点、背景和应用提出深度问题</p>
-                                    </div>
-                                    <span class="badge px-2 py-1 bg-purple-600/50 text-xs rounded-full text-white">难度: 较高</span>
-                                </div>
-                                <div class="task-detail bg-indigo-800/40 p-3 border-t border-indigo-600/30">
-                                    <p class="text-sm text-indigo-200">
-                                        <i class="fas fa-lightbulb text-yellow-400 mr-1"></i>
-                                        使用场景5中的"内容深度解析"提示词模板，确保你的问题具体而有深度，让AI提供更有价值的洞见。
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <!-- 任务4 -->
-                            <div class="task-item bg-indigo-700/30 rounded-lg overflow-hidden">
-                                <div class="p-4 flex items-center">
-                                    <div class="checkbox-container mr-4">
-                                        <input type="checkbox" id="task4" class="hidden peer">
-                                        <label for="task4" class="checkbox-custom flex items-center justify-center w-6 h-6 rounded border-2 border-indigo-400 cursor-pointer transition-all duration-300 peer-checked:bg-indigo-500 peer-checked:border-indigo-500">
-                                            <i class="fas fa-check text-white opacity-0 peer-checked:opacity-100 transition-opacity"></i>
-                                        </label>
-                                    </div>
-                                    <div class="flex-1">
-                                        <h4 class="text-lg font-medium text-white">使用AI创建PPT大纲</h4>
-                                        <p class="text-indigo-200 text-sm mt-1">向AI提供书籍分析结果，请求生成推荐这本书的PPT大纲</p>
-                                    </div>
-                                    <span class="badge px-2 py-1 bg-indigo-600/50 text-xs rounded-full text-white">难度: 中等</span>
-                                </div>
-                                <div class="task-detail bg-indigo-800/40 p-3 border-t border-indigo-600/30">
-                                    <p class="text-sm text-indigo-200">
-                                        <i class="fas fa-lightbulb text-yellow-400 mr-1"></i>
-                                        使用场景4的"PPT大纲生成"提示词模板，告诉AI你的目标受众和演讲时长（建议设定为5-8分钟）。
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <!-- 任务5 -->
-                            <div class="task-item bg-indigo-700/30 rounded-lg overflow-hidden">
-                                <div class="p-4 flex items-center">
-                                    <div class="checkbox-container mr-4">
-                                        <input type="checkbox" id="task5" class="hidden peer">
-                                        <label for="task5" class="checkbox-custom flex items-center justify-center w-6 h-6 rounded border-2 border-indigo-400 cursor-pointer transition-all duration-300 peer-checked:bg-indigo-500 peer-checked:border-indigo-500">
-                                            <i class="fas fa-check text-white opacity-0 peer-checked:opacity-100 transition-opacity"></i>
-                                        </label>
-                                    </div>
-                                    <div class="flex-1">
-                                        <h4 class="text-lg font-medium text-white">逐页完善PPT内容</h4>
-                                        <p class="text-indigo-200 text-sm mt-1">为PPT中的每个重要页面生成详细内容和视觉元素建议</p>
-                                    </div>
-                                    <span class="badge px-2 py-1 bg-purple-600/50 text-xs rounded-full text-white">难度: 较高</span>
-                                </div>
-                                <div class="task-detail bg-indigo-800/40 p-3 border-t border-indigo-600/30">
-                                    <p class="text-sm text-indigo-200">
-                                        <i class="fas fa-lightbulb text-yellow-400 mr-1"></i>
-                                        使用"单页内容详细生成"提示词模板，重点关注开场、核心概念页和结论页，确保内容紧凑而有吸引力。
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <!-- 任务6 -->
-                            <div class="task-item bg-indigo-700/30 rounded-lg overflow-hidden">
-                                <div class="p-4 flex items-center">
-                                    <div class="checkbox-container mr-4">
-                                        <input type="checkbox" id="task6" class="hidden peer">
-                                        <label for="task6" class="checkbox-custom flex items-center justify-center w-6 h-6 rounded border-2 border-indigo-400 cursor-pointer transition-all duration-300 peer-checked:bg-indigo-500 peer-checked:border-indigo-500">
-                                            <i class="fas fa-check text-white opacity-0 peer-checked:opacity-100 transition-opacity"></i>
-                                        </label>
-                                    </div>
-                                    <div class="flex-1">
-                                        <h4 class="text-lg font-medium text-white">设计优化PPT视觉效果</h4>
-                                        <p class="text-indigo-200 text-sm mt-1">请求AI提供配色方案、布局和设计建议，打造专业外观</p>
-                                    </div>
-                                    <span class="badge px-2 py-1 bg-indigo-600/50 text-xs rounded-full text-white">难度: 中等</span>
-                                </div>
-                                <div class="task-detail bg-indigo-800/40 p-3 border-t border-indigo-600/30">
-                                    <p class="text-sm text-indigo-200">
-                                        <i class="fas fa-lightbulb text-yellow-400 mr-1"></i>
-                                        使用"PPT设计美化指导"提示词，确保视觉风格与书籍主题一致，并注意字体和颜色的搭配。
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <!-- 任务7 -->
-                            <div class="task-item bg-indigo-700/30 rounded-lg overflow-hidden">
-                                <div class="p-4 flex items-center">
-                                    <div class="checkbox-container mr-4">
-                                        <input type="checkbox" id="task7" class="hidden peer">
-                                        <label for="task7" class="checkbox-custom flex items-center justify-center w-6 h-6 rounded border-2 border-indigo-400 cursor-pointer transition-all duration-300 peer-checked:bg-indigo-500 peer-checked:border-indigo-500">
-                                            <i class="fas fa-check text-white opacity-0 peer-checked:opacity-100 transition-opacity"></i>
-                                        </label>
-                                    </div>
-                                    <div class="flex-1">
-                                        <h4 class="text-lg font-medium text-white">完成并分享你的成果</h4>
-                                        <p class="text-indigo-200 text-sm mt-1">上传你的完成作品，与社区成员分享和交流心得</p>
-                                    </div>
-                                    <span class="badge px-2 py-1 bg-green-600/50 text-xs rounded-full text-white">完成挑战</span>
-                                </div>
-                                <div class="task-detail bg-indigo-800/40 p-3 border-t border-indigo-600/30">
-                                    <p class="text-sm text-indigo-200">
-                                        <i class="fas fa-trophy text-yellow-400 mr-1"></i>
-                                        恭喜你完成了本周的实践挑战！请在社区分享区上传你的PPT作品，并简要说明AI如何帮助你完成这个任务，以及你学到的新技巧。
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 激励卡片 -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="bg-gradient-to-br from-purple-800/60 to-purple-700/60 p-5 rounded-xl backdrop-blur-sm">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-purple-600/50 flex items-center justify-center text-white text-xl">
-                                    <i class="fas fa-star"></i>
-                                </div>
-                                <h4 class="ml-3 text-lg font-semibold text-white">获得成就徽章</h4>
-                            </div>
-                            <p class="text-purple-200 text-sm">
-                                完成本周挑战将解锁"AI阅读专家"和"演示大师"双重成就徽章，展示你的学习进度。
-                            </p>
-                        </div>
-                        
-                        <div class="bg-gradient-to-br from-blue-800/60 to-blue-700/60 p-5 rounded-xl backdrop-blur-sm">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-blue-600/50 flex items-center justify-center text-white text-xl">
-                                    <i class="fas fa-users"></i>
-                                </div>
-                                <h4 class="ml-3 text-lg font-semibold text-white">参与社区投票</h4>
-                            </div>
-                            <p class="text-blue-200 text-sm">
-                                你的作品将有机会参与"最佳书籍推荐PPT"社区投票，获得更多反馈和认可。
-                            </p>
-                        </div>
-                        
-                        <div class="bg-gradient-to-br from-pink-800/60 to-pink-700/60 p-5 rounded-xl backdrop-blur-sm">
-                            <div class="flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-pink-600/50 flex items-center justify-center text-white text-xl">
-                                    <i class="fas fa-magic"></i>
-                                </div>
-                                <h4 class="ml-3 text-lg font-semibold text-white">提升双重技能</h4>
-                            </div>
-                            <p class="text-pink-200 text-sm">
-                                这个挑战将同时锻炼你的AI提示工程和演示设计能力，为未来学习和职场发展奠定基础。
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+           <!-- 周三任务区块 -->
+<section id="wednesday-task" class="task-section p-6 md:p-8 bg-gradient-to-br from-amber-100/10 to-amber-200/10 my-12 rounded-2xl border border-amber-200/20">
+    <!-- 任务标题 -->
+    <div class="mb-8 text-center">
+        <span class="inline-block px-3 py-1 text-xs font-semibold bg-amber-500 text-white rounded-full mb-4">周三任务</span>
+        <h2 class="text-2xl md:text-3xl font-bold text-amber-500 mb-2 flex items-center justify-center">
+            <i class="fas fa-book-reader mr-3"></i>
+            Day 3: AI 辅助阅读 - 让 AI 帮你高效读书 & 看新闻
+        </h2>
+        <p class="text-gray-300 max-w-3xl mx-auto">
+            学习利用AI快速理解长篇内容，培养批判性思维，提升阅读效率与信息消化能力
+        </p>
+    </div>
+    
+    <!-- 任务内容 -->
+    <div class="bg-zinc-800/50 p-6 rounded-xl backdrop-blur-sm max-w-4xl mx-auto">
+        <!-- 任务目标 -->
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                <i class="fas fa-bullseye text-amber-500 mr-3"></i>
+                任务目标
+            </h3>
+            <ul class="space-y-2 text-gray-300">
+                <li class="flex items-start">
+                    <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                        <i class="fas fa-check text-xs"></i>
+                    </span>
+                    <span>学会使用 AI 快速阅读长篇内容 & 提取关键信息</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                        <i class="fas fa-check text-xs"></i>
+                    </span>
+                    <span>训练自己对 AI 总结的批判性思维</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                        <i class="fas fa-check text-xs"></i>
+                    </span>
+                    <span>让 AI 帮助你形成"阅读后感"</span>
+                </li>
+            </ul>
         </div>
-    </main>
-
-    <!-- 添加场景训练任务模块，放在footer前面 -->
+        
+        <!-- 具体任务 -->
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                <i class="fas fa-tasks text-amber-500 mr-3"></i>
+                具体任务
+            </h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
+                <!-- 任务项1 -->
+                <div class="task-item bg-zinc-700/40 p-5 rounded-xl hover:bg-zinc-700/60">
+                    <div class="flex items-center mb-3">
+                        <span class="flex-shrink-0 h-7 w-7 flex items-center justify-center rounded-full bg-amber-500 text-white mr-3">
+                            <span class="font-semibold">1</span>
+                        </span>
+                        <h4 class="text-lg font-medium text-white">选择一个长文（书籍、报告、新闻）</h4>
+                    </div>
+                    <p class="text-gray-300 mb-3">
+                        选择自己已经读过的内容，丢给"通义千问"的长文阅读功能，看看它如何总结。
+                    </p>
+                    <div class="text-sm text-gray-400">
+                        <p><i class="fas fa-lightbulb mr-1 text-amber-400"></i> 选择熟悉的内容可以更好地评估AI总结的质量和准确性</p>
+                    </div>
+                </div>
+                
+                <!-- 任务项2 -->
+                <div class="task-item bg-zinc-700/40 p-5 rounded-xl hover:bg-zinc-700/60 mt-4">
+                    <div class="flex items-center mb-3">
+                        <span class="flex-shrink-0 h-7 w-7 flex items-center justify-center rounded-full bg-amber-500 text-white mr-3">
+                            <span class="font-semibold">2</span>
+                        </span>
+                        <h4 class="text-lg font-medium text-white">对比 AI 总结 & 自己的理解</h4>
+                    </div>
+                    <p class="text-gray-300 mb-3">
+                        分析比对AI总结与你自己的理解，考虑以下几点：AI是否遗漏了重要信息？AI是否有错误总结？AI是否捕捉到了文章的核心观点？
+                    </p>
+                    <div class="text-sm text-gray-400">
+                        <p><i class="fas fa-lightbulb mr-1 text-amber-400"></i> 批判性分析AI输出是培养人机协作能力的关键步骤</p>
+                    </div>
+                </div>
+                
+                <!-- 任务项3 -->
+                <div class="task-item bg-zinc-700/40 p-5 rounded-xl hover:bg-zinc-700/60 mt-4">
+                    <div class="flex items-center mb-3">
+                        <span class="flex-shrink-0 h-7 w-7 flex items-center justify-center rounded-full bg-amber-500 text-white mr-3">
+                            <span class="font-semibold">3</span>
+                        </span>
+                        <h4 class="text-lg font-medium text-white">让 AI 生成一个阅读后感</h4>
+                    </div>
+                    <p class="text-gray-300 mb-3">
+                        观察 AI 生成的内容，看看是否和你自己的阅读体验一致，分析差异产生的原因。
+                    </p>
+                    <div class="text-sm text-gray-400">
+                        <p><i class="fas fa-lightbulb mr-1 text-amber-400"></i> 比较AI与人类的主观感受差异，了解AI理解文本的局限性</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 交付物 -->
+        <div class="mb-6">
+            <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                <i class="fas fa-file-export text-amber-500 mr-3"></i>
+                交付物
+            </h3>
+            <div class="bg-zinc-700/30 p-4 rounded-lg">
+                <ul class="space-y-3 text-gray-300">
+                    <li class="flex items-start">
+                        <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                            <i class="fas fa-file-alt text-xs"></i>
+                        </span>
+                        <span>对比报告（列出 AI vs. 你自己的总结，找出异同点）</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                            <i class="fas fa-comment-alt text-xs"></i>
+                        </span>
+                        <span>AI 生成的阅读后感（可选择修改优化）</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 注意事项 -->
+        <div>
+            <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                <i class="fas fa-exclamation-circle text-amber-500 mr-3"></i>
+                注意事项
+            </h3>
+            <div class="bg-amber-500/10 border border-amber-500/20 p-4 rounded-lg">
+                <ul class="space-y-2 text-gray-300">
+                    <li class="flex items-start">
+                        <span class="text-amber-400 mr-2">•</span>
+                        <span>选择自己读过的文章，避免完全依赖 AI</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-amber-400 mr-2">•</span>
+                        <span>用批判性思维分析 AI 的总结，看看它有没有误导信息</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-amber-400 mr-2">•</span>
+                        <span>尝试使用不同的AI工具进行比较，观察总结质量的差异</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+            
+            <!-- 周五任务区块 -->
+             <!-- 添加场景训练任务模块，放在footer前面 -->
     <section id="scene-practice" class="py-16 my-16 bg-gradient-to-r from-yellow-600/80 to-amber-600/80 relative">
         <div class="absolute top-0 left-0 w-full h-8 bg-gradient-to-r from-yellow-500 to-amber-500" style="clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);"></div>
         
@@ -2759,42 +3143,8 @@
         
         <div class="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-r from-yellow-500 to-amber-500" style="clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);"></div>
     </section>
-    
-    <script>
-        // 添加开始任务按钮的功能
-        document.addEventListener('DOMContentLoaded', function() {
-            const startTaskBtn = document.getElementById('start-task-btn');
-            if (startTaskBtn) {
-                startTaskBtn.addEventListener('click', function() {
-                    // 检查是否有未完成的任务
-                    const tasks = document.querySelectorAll('#scene-practice input[type="checkbox"]');
-                    let allCompleted = true;
-                    tasks.forEach(task => {
-                        if (!task.checked) {
-                            allCompleted = false;
-                        }
-                    });
-                    
-                    if (allCompleted) {
-                        alert('恭喜你已完成所有任务！继续保持！');
-                    } else {
-                        // 提示并高亮第一个未完成的任务
-                        const firstIncomplete = Array.from(tasks).find(task => !task.checked);
-                        if (firstIncomplete) {
-                            const taskItem = firstIncomplete.closest('.task-item');
-                            taskItem.classList.add('ring-4', 'ring-yellow-300', 'ring-opacity-70');
-                            setTimeout(() => {
-                                taskItem.classList.remove('ring-4', 'ring-yellow-300', 'ring-opacity-70');
-                            }, 2000);
-                            
-                            // 平滑滚动到该任务
-                            taskItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }
-                    }
-                });
-            }
-        });
-    </script>
+        </div>
+    </main>
 
     <!-- 页脚 -->
     <footer class="bg-gray-800 text-white py-12">
