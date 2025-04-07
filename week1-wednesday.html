@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>周三任务 - AI实战场景第1周 | AI知识库</title>
+    <meta name="description" content="AI场景实战指南 - 学习如何在实际场景中应用AI工具">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Preline UI -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline/dist/preline.min.css"/>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    
+    <!-- 在head部分添加引用 -->
+    <link rel="stylesheet" href="static/css/ai-scenarios.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // 场景页面使用紫色系
+                        primary: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                        },
+                        secondary: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        },
+                        neutral: {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
+            },
+            darkMode: 'class',
+        }
+    </script>
+    
+    <style>
+        @layer base {
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+        }
+        
+        .prompt-card {
+            position: relative;
+            background-color: #2a2139;
+            border-radius: 0.5rem;
+            border-left: 4px solid #8b5cf6;
+            color: #e9d5ff;
+            font-family: 'Consolas', 'Monaco', monospace;
+            transition: all 0.3s ease;
+        }
+        
+        .prompt-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.4);
+        }
+        
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(124, 58, 237, 0.3);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .copy-button:hover {
+            background-color: rgba(124, 58, 237, 0.6);
+        }
+        
+        /* Swiper自定义样式 */
+        .swiper-pagination-bullet {
+            background: #c4b5fd !important;
+            opacity: 0.6;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: #8b5cf6 !important;
+            opacity: 1;
+        }
+        
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #8b5cf6 !important;
+        }
+        
+        .image-gallery .swiper-slide {
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #2d2140;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .image-gallery img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .scene-card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            max-width: 100%;
+            padding: 2rem !important;
+        }
+        
+        .scene-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(124, 58, 237, 0.2);
+        }
+        
+        .scene-card > div {
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .tool-link {
+            color: #a78bfa;
+            font-weight: 500;
+            text-decoration: underline;
+            text-decoration-color: rgba(167, 139, 250, 0.4);
+            text-underline-offset: 2px;
+            transition: all 0.2s ease;
+        }
+        
+        .tool-link:hover {
+            color: #7c3aed;
+            text-decoration-color: rgba(124, 58, 237, 0.8);
+        }
+        
+        /* 图片查看器样式 */
+        .lightbox {
+            display: none;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+        }
+        
+        /* 任务清单样式 */
+        .checkbox-custom {
+            position: relative;
+        }
+        
+        .checkbox-custom i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.75rem;
+        }
+        
+        /* 任务完成动画效果 */
+        .peer:checked + .checkbox-custom {
+            border-color: transparent;
+            animation: checkmark 0.3s ease-in-out;
+        }
+        
+        @keyframes checkmark {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        /* 任务项悬停效果 */
+        .task-item {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .task-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(67, 56, 202, 0.15);
+        }
+        
+        /* 图片查看器修改轮播图样式，使缩略图更明显 */
+        .image-gallery .swiper-slide {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .image-gallery .swiper-slide:hover {
+            transform: scale(1.03);
+        }
+        
+        .image-gallery .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-gallery .swiper-slide::after {
+            content: '点击查看大图';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 5px;
+            font-size: 12px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .image-gallery .swiper-slide:hover::after {
+            opacity: 1;
+        }
+        
+        /* 修复box-sizing导致的宽度问题 */
+        html, body {
+            width: 100% !important;
+            box-sizing: border-box !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            overflow-x: hidden !important;
+        }
+        
+        .container {
+            width: 100% !important;
+            max-width: 1600px !important;
+            padding-left: 15px !important;
+            padding-right: 15px !important;
+            box-sizing: border-box !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        
+        section {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        
+        /* 添加响应式宽度设置 */
+        @media (max-width: 100%) {
+            body, main, section {
+                width: 100%;
+                max-width: 100%;
+                padding-left: 10px;
+                padding-right: 10px;
+                box-sizing: border-box;
+            }
+            
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen w-full">
+    <!-- 主内容区 -->
+    <main class="container w-full mx-auto px-4 py-8">
+        <!-- 场景6：AI辅助阅读场景 -->
+        <section id="ai-reading" class="scene-card bg-gradient-to-br from-indigo-900/90 to-blue-900/90 p-6 md:p-8">
+            <!-- 场景标题 -->
+            <div class="mb-8">
+                <span class="inline-block px-3 py-1 text-xs font-semibold bg-indigo-800 text-indigo-100 rounded-full mb-4">场景 06</span>
+                <h2 class="text-2xl md:text-3xl font-bold text-white mb-2 flex items-center">
+                    <i class="fas fa-book-reader mr-3 text-indigo-400"></i>
+                    AI辅助阅读场景：利用AI提高阅读效率和理解深度
+                </h2>
+                <p class="text-indigo-200 max-w-3xl">
+                    探索使用AI工具辅助理解复杂文本，提取关键信息，生成摘要，以及进行深度分析
+                </p>
+            </div>
+            
+            <!-- 内容部分 从原文件复制 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 左侧：AI辅助阅读方法论 -->
+                <div>
+                    <div class="bg-indigo-800/50 p-6 rounded-xl backdrop-blur-sm">
+                        <h3 class="text-xl font-semibold text-white mb-5 flex items-center">
+                            <i class="fas fa-book-reader text-indigo-400 mr-3"></i>
+                            AI辅助阅读的流程与方法
+                        </h3>
+                        
+                        <div class="space-y-6">
+                            <!-- 步骤1 -->
+                            <div class="bg-indigo-700/40 p-4 rounded-lg">
+                                <div class="flex items-center mb-3">
+                                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-indigo-600 text-white font-bold mr-3">1</span>
+                                    <h4 class="text-lg font-medium text-white">选择合适的阅读材料</h4>
+                                </div>
+                                <p class="text-indigo-200 ml-11">
+                                    在开始深入阅读前，先使用AI快速扫描书籍/文章的核心内容、结构和价值点，判断是否值得投入更多时间。
+                                </p>
+                            </div>
+                            
+                            <!-- 步骤2 -->
+                            <div class="bg-indigo-700/40 p-4 rounded-lg">
+                                <div class="flex items-center mb-3">
+                                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-indigo-600 text-white font-bold mr-3">2</span>
+                                    <h4 class="text-lg font-medium text-white">上传内容至AI工具</h4>
+                                </div>
+                                <p class="text-indigo-200 ml-11">
+                                    将书籍文本或链接上传到具有阅读辅助功能的AI工具（如豆包AI），获取自动生成的概览、总结和结构分析。
+                                </p>
+                            </div>
+                            
+                            <!-- 步骤3 -->
+                            <div class="bg-indigo-700/40 p-4 rounded-lg">
+                                <div class="flex items-center mb-3">
+                                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-indigo-600 text-white font-bold mr-3">3</span>
+                                    <h4 class="text-lg font-medium text-white">主动提问与深入探索</h4>
+                                </div>
+                                <p class="text-indigo-200 ml-11">
+                                    基于AI生成的概览，有针对性地提出深度问题，引导AI帮助解析复杂概念、背景信息和关键论点。
+                                </p>
+                            </div>
+                            
+                            <!-- 步骤4 -->
+                            <div class="bg-indigo-700/40 p-4 rounded-lg">
+                                <div class="flex items-center mb-3">
+                                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-indigo-600 text-white font-bold mr-3">4</span>
+                                    <h4 class="text-lg font-medium text-white">验证与批判性思考</h4>
+                                </div>
+                                <p class="text-indigo-200 ml-11">
+                                    对AI的解读保持批判态度，通过已知内容验证其准确性，识别可能的"幻觉"，培养对AI辅助内容的判断能力。
+                                </p>
+                            </div>
+                            
+                            <!-- 步骤5 -->
+                            <div class="bg-indigo-700/40 p-4 rounded-lg">
+                                <div class="flex items-center mb-3">
+                                    <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-indigo-600 text-white font-bold mr-3">5</span>
+                                    <h4 class="text-lg font-medium text-white">整合与应用</h4>
+                                </div>
+                                <p class="text-indigo-200 ml-11">
+                                    基于AI辅助获得的理解，结合自己的思考创建个性化笔记、思维导图或实践计划，将知识转化为能力。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI幻觉问题提醒 -->
+                    <div class="mt-6 bg-yellow-700/40 p-5 rounded-xl backdrop-blur-sm border-l-4 border-yellow-500">
+                        <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
+                            <i class="fas fa-exclamation-triangle text-yellow-400 mr-2"></i>
+                            AI幻觉问题警示
+                        </h3>
+                        <p class="text-yellow-100 mb-3">
+                            AI可能会生成看似合理但实际并不存在于原文的内容，我们称之为"幻觉"。这在处理长文本时尤为常见。
+                        </p>
+                        <div class="bg-yellow-800/50 p-4 rounded-lg">
+                            <h4 class="text-white font-medium mb-2">如何应对AI幻觉</h4>
+                            <ul class="list-disc list-inside text-yellow-100 space-y-2">
+                                <li>使用已熟悉的内容（如西游记）进行练习，便于识别错误</li>
+                                <li>多方交叉验证重要信息</li>
+                                <li>有意识地设计"陷阱问题"测试AI</li>
+                                <li>询问AI"这个信息出自哪个章节/页码？"</li>
+                                <li>对AI提供的引用和数据保持警惕</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右侧：豆包AI阅读功能介绍和案例 -->
+                <div>
+                    <div class="bg-blue-800/50 p-6 rounded-xl backdrop-blur-sm">
+                        <h3 class="text-xl font-semibold text-white mb-5 flex items-center">
+                            <i class="fas fa-robot text-blue-400 mr-3"></i>
+                            豆包AI阅读功能详解
+                        </h3>
+                        
+                        <div class="space-y-5">
+                            <p class="text-blue-200">
+                                豆包AI提供强大的阅读辅助功能，可帮助你快速理解和分析各类文本内容。你可以通过上传文件或提供链接，获取AI生成的多维度解读。
+                            </p>
+                            
+                            <div class="bg-blue-700/40 p-4 rounded-lg">
+                                <h4 class="text-white font-medium mb-3">功能亮点</h4>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <div class="bg-blue-600/30 p-3 rounded-lg">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-file-alt text-blue-300 mr-2"></i>
+                                            <span class="text-white font-medium">内容概览</span>
+                                        </div>
+                                        <p class="text-blue-200 text-sm">快速了解文本的主要内容和价值点</p>
+                                    </div>
+                                    <div class="bg-blue-600/30 p-3 rounded-lg">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-list text-blue-300 mr-2"></i>
+                                            <span class="text-white font-medium">章节分析</span>
+                                        </div>
+                                        <p class="text-blue-200 text-sm">分解每个章节的关键内容和亮点</p>
+                                    </div>
+                                    <div class="bg-blue-600/30 p-3 rounded-lg">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-sitemap text-blue-300 mr-2"></i>
+                                            <span class="text-white font-medium">思维导图</span>
+                                        </div>
+                                        <p class="text-blue-200 text-sm">视觉化展示内容结构和关键概念</p>
+                                    </div>
+                                    <div class="bg-blue-600/30 p-3 rounded-lg">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-comments text-blue-300 mr-2"></i>
+                                            <span class="text-white font-medium">交互式问答</span>
+                                        </div>
+                                        <p class="text-blue-200 text-sm">针对内容提问，获取深度解读</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 西游记案例 -->
+                            <div class="bg-blue-700/40 p-4 rounded-lg">
+                                <h4 class="text-white font-medium mb-3">实践案例：《西游记》解读</h4>
+                                <p class="text-blue-200 mb-3">
+                                    以《西游记》为例，展示如何通过AI辅助深入理解这部经典名著。选择熟悉的内容作为练习，有助于识别AI解读中的准确性和可能的幻觉。
+                                </p>
+                                <div class="bg-blue-600/30 p-3 rounded-lg mb-3">
+                                    <h5 class="text-white font-medium mb-2">上传流程</h5>
+                                    <ol class="list-decimal list-inside text-blue-200 space-y-1 text-sm">
+                                        <li>打开豆包AI，选择"阅读助手"功能</li>
+                                        <li>上传《西游记》文本或提供可访问链接</li>
+                                        <li>等待AI处理并生成初步分析</li>
+                                        <li>查看生成的概览、章节分析和思维导图</li>
+                                    </ol>
+                                </div>
+                                <div class="bg-blue-600/30 p-3 rounded-lg">
+                                    <h5 class="text-white font-medium mb-2">有效提问示例</h5>
+                                    <ul class="space-y-2 text-sm">
+                                        <li class="bg-blue-700/40 p-2 rounded">
+                                            <span class="text-blue-100">分析孙悟空性格的多面性及其在不同章节的体现</span>
+                                        </li>
+                                        <li class="bg-blue-700/40 p-2 rounded">
+                                            <span class="text-blue-100">《西游记》中的佛道之争体现在哪些情节中？</span>
+                                        </li>
+                                        <li class="bg-blue-700/40 p-2 rounded">
+                                            <span class="text-blue-100">第七十七回中，唐僧为何会被误解为妖怪？原文有何描述？</span>
+                                        </li>
+                                        <li class="bg-blue-700/40 p-2 rounded">
+                                            <span class="text-blue-100">比较《西游记》前后章节中孙悟空处理问题的方式变化</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 提示词模板 -->
+                    <div class="mt-6 bg-indigo-800/50 p-5 rounded-xl backdrop-blur-sm">
+                        <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
+                            <i class="fas fa-file-alt text-indigo-400 mr-2"></i>
+                            阅读辅助提示词模板
+                        </h3>
+                        
+                        <!-- 模板1 -->
+                        <div class="bg-indigo-700/40 p-4 rounded-lg mb-4">
+                            <h4 class="text-white font-medium mb-2">内容深度解析</h4>
+                            <div class="prompt-card p-4">
+                                <button class="copy-button" data-prompt="我正在阅读[书名/文章名]，已经了解了基本概述，现在希望你能帮我深入分析以下方面：\n\n1. 作者在[特定章节/段落]中想要表达的核心论点是什么？\n2. 这些观点与[相关领域/背景]有什么联系？\n3. 文中的[特定概念/理论]如何应用到实际情境中？\n4. 作者使用了哪些论证方法来支持自己的观点？\n5. 这些内容与[当前话题/个人兴趣点]有什么关联？\n\n请结合原文内容进行分析，如果引用原文，请注明具体章节或页码。如果某些问题无法从原文中找到答案，请明确指出。">
+                                    <i class="fas fa-copy"></i> 复制
+                                </button>
+                                <p class="text-sm leading-relaxed whitespace-pre-wrap">我正在阅读[书名/文章名]，已经了解了基本概述，现在希望你能帮我深入分析以下方面：
+
+1. 作者在[特定章节/段落]中想要表达的核心论点是什么？
+2. 这些观点与[相关领域/背景]有什么联系？
+3. 文中的[特定概念/理论]如何应用到实际情境中？
+4. 作者使用了哪些论证方法来支持自己的观点？
+5. 这些内容与[当前话题/个人兴趣点]有什么关联？
+
+请结合原文内容进行分析，如果引用原文，请注明具体章节或页码。如果某些问题无法从原文中找到答案，请明确指出。</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 模板2 -->
+                        <div class="bg-indigo-700/40 p-4 rounded-lg">
+                            <h4 class="text-white font-medium mb-2">验证内容准确性</h4>
+                            <div class="prompt-card p-4">
+                                <button class="copy-button" data-prompt="关于[书名/文章名]中的[特定内容/观点/事件]，你之前提到[AI之前的回答]。我想确认这个信息的准确性：\n\n1. 这个内容具体出现在哪个章节或页码？\n2. 能否提供原文的确切描述或引用？\n3. 如果有多处提及，请列出所有相关段落。\n4. 这个解释是直接来自原文，还是你的推断或分析？\n\n我想确保我理解的内容与原著一致，谢谢你的帮助。">
+                                    <i class="fas fa-copy"></i> 复制
+                                </button>
+                                <p class="text-sm leading-relaxed whitespace-pre-wrap">关于[书名/文章名]中的[特定内容/观点/事件]，你之前提到[AI之前的回答]。我想确认这个信息的准确性：
+
+1. 这个内容具体出现在哪个章节或页码？
+2. 能否提供原文的确切描述或引用？
+3. 如果有多处提及，请列出所有相关段落。
+4. 这个解释是直接来自原文，还是你的推断或分析？
+
+我想确保我理解的内容与原著一致，谢谢你的帮助。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 图片展示区 -->
+            <div class="mt-10">
+                <h3 class="text-xl font-semibold text-white mb-6">
+                    <i class="fas fa-image text-indigo-400 mr-2"></i>
+                    豆包AI阅读功能展示
+                </h3>
+                
+                <!-- 修改所有轮播框，使用两层div结构并统一样式 -->
+                <!-- 第一个轮播框 -->
+                <div class="image-gallery swiper rounded-xl overflow-hidden">
+                    <div class="swiper-wrapper">
+                        <!-- 图片1 -->
+                        <div class="swiper-slide">
+                            <div class="image-container">
+                                <img src="static/images/scenes/doubao-reading1.jpg" alt="豆包AI阅读功能界面" class="contained-image" />
+                            </div>
+                        </div>
+                        <!-- 图片2 -->
+                        <div class="swiper-slide">
+                            <div class="image-container">
+                                <img src="static/images/scenes/doubao-reading2.jpg" alt="豆包AI内容概览示例" class="contained-image" />
+                            </div>
+                        </div>
+                        <!-- 图片3 -->
+                        <div class="swiper-slide">
+                            <div class="image-container">
+                                <img src="static/images/scenes/doubao-reading3.jpg" alt="豆包AI思维导图功能" class="contained-image" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+            
+            <!-- 小结 -->
+            <div class="mt-12 bg-gradient-to-r from-indigo-900/70 to-blue-900/70 p-6 rounded-xl backdrop-blur-sm">
+                <h3 class="text-xl font-semibold text-white mb-4 flex items-center">
+                    <i class="fas fa-check-circle text-indigo-400 mr-2"></i>
+                    场景小结
+                </h3>
+                
+                <div class="text-indigo-100 space-y-3">
+                    <p>
+                        AI辅助阅读不是为了完全替代传统阅读，而是帮助我们在信息爆炸的时代更高效地筛选、理解和吸收知识。通过AI工具，我们可以：
+                    </p>
+                    
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>快速评估书籍价值，避免时间浪费</li>
+                        <li>获取结构化的内容概览，建立整体认知框架</li>
+                        <li>深入挖掘特定主题，实现针对性学习</li>
+                        <li>通过对话形式与文本内容互动，提升理解深度</li>
+                        <li>练习批判性思维，辨别AI生成内容的准确性</li>
+                    </ul>
+                    
+                    <p class="mt-4">
+                        掌握AI辅助阅读技能，不仅能提升学习效率，还能培养与AI工具共同成长的能力，真正实现人机协作的智能阅读新模式。
+                    </p>
+                    
+                    <div class="mt-6 p-4 bg-blue-800/40 rounded-lg">
+                        <p class="italic">
+                            "在知识的海洋中，AI就像一艘帮我们导航的船——它不能替我们体验海洋，但能帮我们找到最值得探索的海域。"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 周三任务 -->
+        <section id="wednesday-task" class="task-section p-6 md:p-8 bg-gradient-to-br from-amber-100/10 to-amber-200/10 my-12 rounded-2xl border border-amber-200/20">
+            <!-- 任务标题 -->
+            <div class="mb-8 text-center w-full">
+                <div class="flex justify-center">
+                    <span class="inline-block px-3 py-1 text-xs font-semibold bg-amber-100 text-amber-800 rounded-full mb-4">周三任务</span>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold text-amber-600 dark:text-amber-500 mb-2 flex items-center justify-center">
+                    <i class="fas fa-calendar-day mr-3 text-amber-500"></i>
+                    AI辅助阅读与学习实战
+                </h2>
+                <p class="text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    掌握使用AI工具理解复杂文本、提取关键信息和生成摘要的技能
+                </p>
+            </div>
+            
+            <!-- 内容部分 从原文件复制 -->
+            <div class="bg-zinc-800/50 p-6 rounded-xl backdrop-blur-sm max-w-4xl mx-auto">
+                <!-- 任务目标 -->
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                        <i class="fas fa-bullseye text-amber-500 mr-3"></i>
+                        任务目标
+                    </h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                                <i class="fas fa-check text-xs"></i>
+                            </span>
+                            <span>学会使用 AI 快速阅读长篇内容 & 提取关键信息</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                                <i class="fas fa-check text-xs"></i>
+                            </span>
+                            <span>训练自己对 AI 总结的批判性思维</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                                <i class="fas fa-check text-xs"></i>
+                            </span>
+                            <span>让 AI 帮助你形成"阅读后感"</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 具体任务 -->
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                        <i class="fas fa-tasks text-amber-500 mr-3"></i>
+                        具体任务
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
+                        <!-- 任务项1 -->
+                        <div class="task-item bg-zinc-700/40 p-5 rounded-xl hover:bg-zinc-700/60">
+                            <div class="flex items-center mb-3">
+                                <span class="flex-shrink-0 h-7 w-7 flex items-center justify-center rounded-full bg-amber-500 text-white mr-3">
+                                    <span class="font-semibold">1</span>
+                                </span>
+                                <h4 class="text-lg font-medium text-white">选择一个长文（书籍、报告、新闻）</h4>
+                            </div>
+                            <p class="text-gray-300 mb-3">
+                                选择自己已经读过的内容，丢给"通义千问"的长文阅读功能，看看它如何总结。
+                            </p>
+                            <div class="text-sm text-gray-400">
+                                <p><i class="fas fa-lightbulb mr-1 text-amber-400"></i> 选择熟悉的内容可以更好地评估AI总结的质量和准确性</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 任务项2 -->
+                        <div class="task-item bg-zinc-700/40 p-5 rounded-xl hover:bg-zinc-700/60 mt-4">
+                            <div class="flex items-center mb-3">
+                                <span class="flex-shrink-0 h-7 w-7 flex items-center justify-center rounded-full bg-amber-500 text-white mr-3">
+                                    <span class="font-semibold">2</span>
+                                </span>
+                                <h4 class="text-lg font-medium text-white">对比 AI 总结 & 自己的理解</h4>
+                            </div>
+                            <p class="text-gray-300 mb-3">
+                                分析比对AI总结与你自己的理解，考虑以下几点：AI是否遗漏了重要信息？AI是否有错误总结？AI是否捕捉到了文章的核心观点？
+                            </p>
+                            <div class="text-sm text-gray-400">
+                                <p><i class="fas fa-lightbulb mr-1 text-amber-400"></i> 批判性分析AI输出是培养人机协作能力的关键步骤</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 任务项3 -->
+                        <div class="task-item bg-zinc-700/40 p-5 rounded-xl hover:bg-zinc-700/60 mt-4">
+                            <div class="flex items-center mb-3">
+                                <span class="flex-shrink-0 h-7 w-7 flex items-center justify-center rounded-full bg-amber-500 text-white mr-3">
+                                    <span class="font-semibold">3</span>
+                                </span>
+                                <h4 class="text-lg font-medium text-white">让 AI 生成一个阅读后感</h4>
+                            </div>
+                            <p class="text-gray-300 mb-3">
+                                观察 AI 生成的内容，看看是否和你自己的阅读体验一致，分析差异产生的原因。
+                            </p>
+                            <div class="text-sm text-gray-400">
+                                <p><i class="fas fa-lightbulb mr-1 text-amber-400"></i> 比较AI与人类的主观感受差异，了解AI理解文本的局限性</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 交付物 -->
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                        <i class="fas fa-file-export text-amber-500 mr-3"></i>
+                        交付物
+                    </h3>
+                    <div class="bg-zinc-700/30 p-4 rounded-lg">
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start">
+                                <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                                    <i class="fas fa-file-alt text-xs"></i>
+                                </span>
+                                <span>对比报告（列出 AI vs. 你自己的总结，找出异同点）</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                                    <i class="fas fa-comment-alt text-xs"></i>
+                                </span>
+                                <span>AI 生成的阅读后感（可选择修改优化）</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- 注意事项 -->
+                <div>
+                    <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                        <i class="fas fa-exclamation-circle text-amber-500 mr-3"></i>
+                        注意事项
+                    </h3>
+                    <div class="bg-amber-500/10 border border-amber-500/20 p-4 rounded-lg">
+                        <ul class="space-y-2 text-gray-300">
+                            <li class="flex items-start">
+                                <span class="text-amber-400 mr-2">•</span>
+                                <span>选择自己读过的文章，避免完全依赖 AI</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-amber-400 mr-2">•</span>
+                                <span>用批判性思维分析 AI 的总结，看看它有没有误导信息</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-amber-400 mr-2">•</span>
+                                <span>尝试使用不同的AI工具进行比较，观察总结质量的差异</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 添加图片查看器HTML结构 -->
+    <div id="image-lightbox" class="lightbox">
+        <div class="lightbox-close"><i class="fas fa-times"></i></div>
+        <img id="lightbox-img" src="" alt="大图预览">
+    </div>
+
+    <!-- Swiper.js 和 自定义脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="static/js/ai-scenarios.js"></script>
+    <script>
+        // 图片查看器功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.getElementById('image-lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            
+            // 点击图片打开查看器
+            document.querySelectorAll('.image-gallery .swiper-slide img').forEach(img => {
+                img.addEventListener('click', function() {
+                    lightboxImg.src = this.src;
+                    lightbox.style.display = 'flex';
+                    document.body.style.overflow = 'hidden'; // 防止背景滚动
+                });
+            });
+            
+            // 点击关闭按钮
+            lightboxClose.addEventListener('click', closeLightbox);
+            
+            // 点击背景关闭
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+            
+            function closeLightbox() {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = ''; // 恢复滚动
+            }
+            
+            // ESC键关闭图片查看器
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                    closeLightbox();
+                }
+            });
+            
+            // 向父页面发送高度信息
+            setTimeout(() => {
+                // 向父页面发送高度信息
+                window.parent.postMessage({
+                    frameHeight: document.body.scrollHeight,
+                    frameId: 'wednesday-frame'
+                }, '*');
+            }, 500);
+        });
+        
+        // 监听来自父页面的消息
+        window.addEventListener('message', function(event) {
+            // 处理滚动请求
+            if (event.data.action === 'scrollToElement' && event.data.targetId) {
+                const targetElement = document.getElementById(event.data.targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // 处理高度请求
+            if (event.data.action === 'requestHeight') {
+                window.parent.postMessage({
+                    frameHeight: document.body.scrollHeight,
+                    frameId: 'wednesday-frame'
+                }, '*');
+            }
+        });
+    </script>
+</body>
+</html> 

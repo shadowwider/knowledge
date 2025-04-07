@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>场景挑战任务 - AI实战场景第1周 | AI知识库</title>
+    <meta name="description" content="AI场景实战指南 - 学习如何在实际场景中应用AI工具">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Preline UI -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/preline/dist/preline.min.css"/>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+    
+    <!-- 在head部分添加引用 -->
+    <link rel="stylesheet" href="static/css/ai-scenarios.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // 场景页面使用紫色系
+                        primary: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                        },
+                        secondary: {
+                            50: '#faf5ff',
+                            100: '#f3e8ff',
+                            200: '#e9d5ff',
+                            300: '#d8b4fe',
+                            400: '#c084fc',
+                            500: '#a855f7',
+                            600: '#9333ea',
+                            700: '#7e22ce',
+                            800: '#6b21a8',
+                            900: '#581c87',
+                        },
+                        neutral: {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
+            },
+            darkMode: 'class',
+        }
+    </script>
+    
+    <style>
+        @layer base {
+            body {
+                font-family: 'Inter', sans-serif;
+            }
+        }
+        
+        .prompt-card {
+            position: relative;
+            background-color: #2a2139;
+            border-radius: 0.5rem;
+            border-left: 4px solid #8b5cf6;
+            color: #e9d5ff;
+            font-family: 'Consolas', 'Monaco', monospace;
+            transition: all 0.3s ease;
+        }
+        
+        .prompt-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.4);
+        }
+        
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(124, 58, 237, 0.3);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .copy-button:hover {
+            background-color: rgba(124, 58, 237, 0.6);
+        }
+        
+        /* Swiper自定义样式 */
+        .swiper-pagination-bullet {
+            background: #c4b5fd !important;
+            opacity: 0.6;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: #8b5cf6 !important;
+            opacity: 1;
+        }
+        
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #8b5cf6 !important;
+        }
+        
+        .image-gallery .swiper-slide {
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #2d2140;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .image-gallery img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .scene-card, 
+        section#scene-practice {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+            max-width: 100%;
+            padding: 2rem !important;
+        }
+        
+        .scene-card > div,
+        section#scene-practice > div {
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .scene-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(124, 58, 237, 0.2);
+        }
+        
+        .tool-link {
+            color: #a78bfa;
+            font-weight: 500;
+            text-decoration: underline;
+            text-decoration-color: rgba(167, 139, 250, 0.4);
+            text-underline-offset: 2px;
+            transition: all 0.2s ease;
+        }
+        
+        .tool-link:hover {
+            color: #7c3aed;
+            text-decoration-color: rgba(124, 58, 237, 0.8);
+        }
+        
+        /* 图片查看器样式 */
+        .lightbox {
+            display: none;
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+        }
+        
+        /* 任务清单样式 */
+        .checkbox-custom {
+            position: relative;
+        }
+        
+        .checkbox-custom i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.75rem;
+        }
+        
+        /* 任务完成动画效果 */
+        .peer:checked + .checkbox-custom {
+            border-color: transparent;
+            animation: checkmark 0.3s ease-in-out;
+        }
+        
+        @keyframes checkmark {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        
+        /* 任务项悬停效果 */
+        .task-item {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .task-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(67, 56, 202, 0.15);
+        }
+        
+        /* 图片查看器修改轮播图样式，使缩略图更明显 */
+        .image-gallery .swiper-slide {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .image-gallery .swiper-slide:hover {
+            transform: scale(1.03);
+        }
+        
+        .image-gallery .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-gallery .swiper-slide::after {
+            content: '点击查看大图';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 5px;
+            font-size: 12px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .image-gallery .swiper-slide:hover::after {
+            opacity: 1;
+        }
+        
+        /* 修复box-sizing导致的宽度问题 */
+        html, body {
+            width: 100% !important;
+            box-sizing: border-box !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            overflow-x: hidden !important;
+        }
+        
+        .container {
+            width: 100% !important;
+            max-width: 1600px !important;
+            padding-left: 15px !important;
+            padding-right: 15px !important;
+            box-sizing: border-box !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        
+        section {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        
+        /* 添加响应式宽度设置 */
+        @media (max-width: 100%) {
+            body, main, section {
+                width: 100%;
+                max-width: 100%;
+                padding-left: 10px;
+                padding-right: 10px;
+                box-sizing: border-box;
+            }
+            
+            .container {
+                width: 100%;
+                max-width: 100%;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen w-full">
+    <!-- 主内容区 -->
+    <main class="container w-full mx-auto px-4 py-8">
+        <!-- 场景任务挑战 -->
+        <section id="scene-practice" class="py-16 my-16 bg-gradient-to-r from-yellow-600/80 to-amber-600/80 relative">
+            <div class="absolute top-0 left-0 w-full h-8 bg-gradient-to-r from-yellow-500 to-amber-500" style="clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);"></div>
+        
+            <div class="container mx-auto px-4 pt-6">
+                <div class="text-center mb-12">
+                    <span class="inline-block py-1 px-4 rounded-full bg-white/20 text-white text-sm font-semibold mb-3">
+                        <i class="fas fa-star mr-1"></i>本周挑战
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">场景训练任务</h2>
+                    <p class="max-w-2xl mx-auto text-yellow-100 text-lg">
+                        通过完成本周实践任务，巩固所学知识并获得实战体验
+                    </p>
+                </div>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 md:p-8 max-w-4xl mx-auto">
+                    <div class="flex items-center gap-4 mb-6 pb-4 border-b border-white/20">
+                        <div class="w-16 h-16 rounded-full bg-yellow-500 flex items-center justify-center text-white text-2xl">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">AI辅助阅读与PPT分享</h3>
+                            <p class="text-yellow-100">使用AI工具阅读一本书并创建推荐PPT</p>
+                        </div>
+                        <div class="ml-auto">
+                            <span class="px-3 py-1 rounded-full bg-white/20 text-white text-sm">
+                                <i class="far fa-clock mr-1"></i>
+                                预计耗时: 2-3小时
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- 任务描述 -->
+                    <div class="mb-8">
+                        <h4 class="text-white text-lg font-semibold mb-3">任务描述</h4>
+                        <p class="text-yellow-100 mb-4">
+                            选择一本你感兴趣的书籍，利用AI辅助阅读工具（如豆包AI）快速理解其核心内容，然后创建一份PPT向他人推荐这本书。整个过程中，你将运用本周学习的AI对话技巧、批判性思维和PPT制作方法。
+                        </p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                            <div class="bg-white/10 rounded-lg p-4">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-8 h-8 rounded-full bg-yellow-500/50 flex items-center justify-center text-white">1</div>
+                                    <h5 class="ml-2 text-white font-medium">选择&上传</h5>
+                                </div>
+                                <p class="text-yellow-100 text-sm">选择一本书并将内容上传到AI工具（如豆包），或使用书名让AI调取信息</p>
+                            </div>
+                            
+                            <div class="bg-white/10 rounded-lg p-4">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-8 h-8 rounded-full bg-yellow-500/50 flex items-center justify-center text-white">2</div>
+                                    <h5 class="ml-2 text-white font-medium">AI辅助阅读</h5>
+                                </div>
+                                <p class="text-yellow-100 text-sm">使用本周学到的提问技巧提取核心内容，验证并批判性思考AI提供的信息</p>
+                            </div>
+                            
+                            <div class="bg-white/10 rounded-lg p-4">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-8 h-8 rounded-full bg-yellow-500/50 flex items-center justify-center text-white">3</div>
+                                    <h5 class="ml-2 text-white font-medium">制作PPT</h5>
+                                </div>
+                                <p class="text-yellow-100 text-sm">使用AI辅助创建一份10-15页的PPT，分享这本书的价值和你的阅读体验</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 任务清单 -->
+                    <div class="mb-8">
+                        <h4 class="text-white text-lg font-semibold mb-3">完成清单</h4>
+                        <div class="space-y-3">
+                            <!-- 任务1 -->
+                            <div class="task-item bg-white/10 rounded-lg p-4 flex items-center">
+                                <div class="mr-4">
+                                    <input type="checkbox" id="scene-task1" class="hidden peer">
+                                    <label for="scene-task1" class="checkbox-custom flex items-center justify-center w-6 h-6 rounded border-2 border-yellow-400 cursor-pointer transition-all duration-300 peer-checked:bg-yellow-500 peer-checked:border-yellow-500">
+                                        <i class="fas fa-check text-white opacity-0 peer-checked:opacity-100 transition-opacity"></i>
+                                    </label>
+                                </div>
+                                <div>
+                                    <h5 class="text-white font-medium">选择一本你感兴趣的书籍</h5>
+                                    <p class="text-yellow-100 text-sm mt-1">可以是你想读但还没读过的，或者是读过想再深入理解的</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 任务2 -->
+                            <div class="task-item bg-white/10 rounded-lg p-4 flex items-center">
+                                <div class="mr-4">
+                                    <input type="checkbox" id="scene-task2" class="hidden peer">
+                                    <label for="scene-task2" class="checkbox-custom flex items-center justify-center w-6 h-6 rounded border-2 border-yellow-400 cursor-pointer transition-all duration-300 peer-checked:bg-yellow-500 peer-checked:border-yellow-500">
+                                        <i class="fas fa-check text-white opacity-0 peer-checked:opacity-100 transition-opacity"></i>
+                                    </label>
+                                </div>
+                                <div>
+                                    <h5 class="text-white font-medium">使用AI辅助工具获取书籍内容概览</h5>
+                                    <p class="text-yellow-100 text-sm mt-1">使用至少3个深度问题挖掘书籍的核心观点和价值</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 任务3 -->
+                            <div class="task-item bg-white/10 rounded-lg p-4 flex items-center">
+                                <div class="mr-4">
+                                    <input type="checkbox" id="scene-task3" class="hidden peer">
+                                    <label for="scene-task3" class="checkbox-custom flex items-center justify-center w-6 h-6 rounded border-2 border-yellow-400 cursor-pointer transition-all duration-300 peer-checked:bg-yellow-500 peer-checked:border-yellow-500">
+                                        <i class="fas fa-check text-white opacity-0 peer-checked:opacity-100 transition-opacity"></i>
+                                    </label>
+                                </div>
+                                <div>
+                                    <h5 class="text-white font-medium">使用批判性思维验证AI提供的信息</h5>
+                                    <p class="text-yellow-100 text-sm mt-1">找出至少一个AI可能产生的错误或幻觉，并加以修正</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 任务4 -->
+                            <div class="task-item bg-white/10 rounded-lg p-4 flex items-center">
+                                <div class="mr-4">
+                                    <input type="checkbox" id="scene-task4" class="hidden peer">
+                                    <label for="scene-task4" class="checkbox-custom flex items-center justify-center w-6 h-6 rounded border-2 border-yellow-400 cursor-pointer transition-all duration-300 peer-checked:bg-yellow-500 peer-checked:border-yellow-500">
+                                        <i class="fas fa-check text-white opacity-0 peer-checked:opacity-100 transition-opacity"></i>
+                                    </label>
+                                </div>
+                                <div>
+                                    <h5 class="text-white font-medium">使用AI生成PPT大纲和内容</h5>
+                                    <p class="text-yellow-100 text-sm mt-1">应用本周学习的PPT制作技巧，生成具体内容</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 任务5 -->
+                            <div class="task-item bg-white/10 rounded-lg p-4 flex items-center">
+                                <div class="mr-4">
+                                    <input type="checkbox" id="scene-task5" class="hidden peer">
+                                    <label for="scene-task5" class="checkbox-custom flex items-center justify-center w-6 h-6 rounded border-2 border-yellow-400 cursor-pointer transition-all duration-300 peer-checked:bg-yellow-500 peer-checked:border-yellow-500">
+                                        <i class="fas fa-check text-white opacity-0 peer-checked:opacity-100 transition-opacity"></i>
+                                    </label>
+                                </div>
+                                <div>
+                                    <h5 class="text-white font-medium">优化PPT设计与视觉效果</h5>
+                                    <p class="text-yellow-100 text-sm mt-1">让AI为PPT提供设计建议并实施</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 flex justify-center">
+                        <button id="start-task-btn" class="px-8 py-3 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg font-medium transition-colors flex items-center">
+                            <i class="fas fa-play-circle mr-2"></i>
+                            开始任务
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-r from-yellow-500 to-amber-500" style="clip-path: polygon(5% 0, 95% 0, 100% 100%, 0 100%);"></div>
+        
+        </section>
+    </main>
+
+    <!-- 添加图片查看器HTML结构 -->
+    <div id="image-lightbox" class="lightbox">
+        <div class="lightbox-close"><i class="fas fa-times"></i></div>
+        <img id="lightbox-img" src="" alt="大图预览">
+    </div>
+
+    <!-- Swiper.js 和 自定义脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="static/js/ai-scenarios.js"></script>
+    <script>
+        // 图片查看器功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.getElementById('image-lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxClose = document.querySelector('.lightbox-close');
+            
+            // 点击图片打开查看器
+            document.querySelectorAll('.image-gallery .swiper-slide img').forEach(img => {
+                img.addEventListener('click', function() {
+                    lightboxImg.src = this.src;
+                    lightbox.style.display = 'flex';
+                    document.body.style.overflow = 'hidden'; // 防止背景滚动
+                });
+            });
+            
+            // 点击关闭按钮
+            lightboxClose.addEventListener('click', closeLightbox);
+            
+            // 点击背景关闭
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+            
+            function closeLightbox() {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = ''; // 恢复滚动
+            }
+            
+            // ESC键关闭图片查看器
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+                    closeLightbox();
+                }
+            });
+            
+            // 向父页面发送高度信息
+            setTimeout(() => {
+                // 计算文档高度的多种方法，取最大值
+                const height = Math.max(
+                    document.body.scrollHeight,
+                    document.body.offsetHeight,
+                    document.documentElement.clientHeight,
+                    document.documentElement.scrollHeight,
+                    document.documentElement.offsetHeight
+                );
+                
+                // 向父页面发送高度信息
+                window.parent.postMessage({
+                    frameHeight: height,
+                    frameId: 'scene-practice-frame'
+                }, '*');
+                
+                console.log('发送高度信息:', height);
+            }, 500);
+        });
+        
+        // 监听来自父页面的消息
+        window.addEventListener('message', function(event) {
+            // 处理滚动请求
+            if (event.data.action === 'scrollToElement' && event.data.targetId) {
+                const targetElement = document.getElementById(event.data.targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // 处理高度请求
+            if (event.data.action === 'requestHeight') {
+                // 计算文档高度的多种方法，取最大值
+                const height = Math.max(
+                    document.body.scrollHeight,
+                    document.body.offsetHeight,
+                    document.documentElement.clientHeight,
+                    document.documentElement.scrollHeight,
+                    document.documentElement.offsetHeight
+                );
+                
+                window.parent.postMessage({
+                    frameHeight: height,
+                    frameId: 'scene-practice-frame'
+                }, '*');
+                
+                console.log('响应高度请求:', height);
+            }
+        });
+    </script>
+</body>
+</html> 

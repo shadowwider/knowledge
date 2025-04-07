@@ -1,0 +1,334 @@
+            <section id="critical-thinking" class="scene-card bg-gradient-to-br from-gray-900/90 to-zinc-900/90 p-6 md:p-8">
+                <!-- 场景标题 -->
+                <div class="mb-8 text-center">
+                    <span class="inline-block px-3 py-1 bg-gray-700/60 rounded-full text-xs font-medium text-white mb-4">场景 6</span>
+                    <h2 class="text-3xl font-bold text-white mb-4">批判性思维练习：AI时代的免疫系统</h2>
+                    <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                        在信息爆炸与AI生成内容泛滥的时代，批判性思维是我们抵御错误信息的盔甲，也是摆脱焦虑的良药
+                    </p>
+                </div>
+                
+                <!-- 内容部分 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 左侧：批判性思维的重要性和AI幻觉原理 -->
+                    <div>
+                        <div class="bg-zinc-800/50 p-6 rounded-xl backdrop-blur-sm">
+                            <h3 class="text-xl font-semibold text-white mb-5 flex items-center">
+                                <i class="fas fa-brain text-gray-400 mr-3"></i>
+                                为什么批判性思维在AI时代尤为关键
+                            </h3>
+                            
+                            <div class="space-y-6">
+                                <p class="text-gray-300">
+                                    在充斥着各种信息和观点的数字时代，批判性思维是我们区分事实与虚构、理性与煽动的核心能力。随着生成式AI的普及，这种能力变得更加重要。
+                                </p>
+                                
+                                <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                    <h4 class="text-white font-medium mb-3">批判性思维的价值</h4>
+                                    <ul class="text-gray-300 space-y-3">
+                                        <li class="flex items-start">
+                                            <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-gray-600 text-gray-200 mr-3 mt-0.5">
+                                                <i class="fas fa-shield-alt text-xs"></i>
+                                            </span>
+                                            <span>在信息泛滥中筛选出真实可靠的内容，避免被错误信息或偏见所误导</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-gray-600 text-gray-200 mr-3 mt-0.5">
+                                                <i class="fas fa-balance-scale text-xs"></i>
+                                            </span>
+                                            <span>全面评估AI生成内容的可靠性和价值，成为AI的主人而非仆人</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-gray-600 text-gray-200 mr-3 mt-0.5">
+                                                <i class="fas fa-heart-pulse text-xs"></i>
+                                            </span>
+                                            <span>减轻信息焦虑，知道大部分危言耸听的预测和宣传都经不起推敲</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-gray-600 text-gray-200 mr-3 mt-0.5">
+                                                <i class="fas fa-lightbulb text-xs"></i>
+                                            </span>
+                                            <span>提高解决问题的能力，对复杂问题形成更全面深入的理解</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- AI幻觉原理 -->
+                                <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                    <h4 class="text-white font-medium mb-3">AI幻觉的原理与表现</h4>
+                                    <p class="text-gray-300 mb-4">
+                                        AI幻觉是指AI模型生成看似可信但实际上不准确或完全虚构的内容。了解这一现象的原理，有助于我们更好地识别和应对它。
+                                    </p>
+                                    
+                                    <div class="bg-zinc-600/40 p-3 rounded-lg mb-3">
+                                        <h5 class="text-white font-medium mb-2">产生原因</h5>
+                                        <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                            <li>模型基于概率生成内容，而非检索确定的事实</li>
+                                            <li>训练数据中可能包含错误或矛盾的信息</li>
+                                            <li>模型倾向于生成流畅连贯的文本，即使需要"编造"细节</li>
+                                            <li>复杂问题可能超出模型的知识范围或上下文理解能力</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="bg-zinc-600/40 p-3 rounded-lg">
+                                        <h5 class="text-white font-medium mb-2">常见表现</h5>
+                                        <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                            <li>编造不存在的参考文献、数据或事件</li>
+                                            <li>错误引用真实人物的言论或观点</li>
+                                            <li>自信地提供看似精确但实际不正确的细节</li>
+                                            <li>在不确定的问题上给出过度确定的回答</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 批判性思维练习方法 -->
+                        <div class="mt-6 bg-gradient-to-r from-zinc-800/70 to-zinc-700/70 p-5 rounded-xl backdrop-blur-sm">
+                            <h3 class="text-xl font-semibold text-white mb-4 flex items-center">
+                                <i class="fas fa-dumbbell text-gray-400 mr-2"></i>
+                                培养批判性思维的日常练习
+                            </h3>
+                            
+                            <div class="space-y-4">
+                                <p class="text-gray-300">
+                                    批判性思维不是天生的，而是需要通过持续练习培养的能力。以下是一些可以融入日常生活的批判性思维训练方法：
+                                </p>
+                                
+                                <!-- 练习方法卡片 -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-question-circle text-gray-400 mr-2"></i>
+                                            <span class="text-white font-medium">质疑资讯源</span>
+                                        </div>
+                                        <p class="text-gray-300 text-sm">
+                                            每天选择1-2条社交媒体热门信息，追查其原始来源和证据链，评估可信度。
+                                        </p>
+                                    </div>
+                                    <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-balance-scale-right text-gray-400 mr-2"></i>
+                                            <span class="text-white font-medium">寻找反方论述</span>
+                                        </div>
+                                        <p class="text-gray-300 text-sm">
+                                            对你认同的观点，主动寻找理性的反对意见，尝试理解不同立场的合理性。
+                                        </p>
+                                    </div>
+                                    <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-robot text-gray-400 mr-2"></i>
+                                            <span class="text-white font-medium">AI内容评估</span>
+                                        </div>
+                                        <p class="text-gray-300 text-sm">
+                                            要求AI分析可能存在偏见或错误的内容，然后评估AI的分析质量和盲点。
+                                        </p>
+                                    </div>
+                                    <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-pen-to-square text-gray-400 mr-2"></i>
+                                            <span class="text-white font-medium">反思日记</span>
+                                        </div>
+                                        <p class="text-gray-300 text-sm">
+                                            每周记录一次你改变主意或发现自己错误的经历，分析思维过程和学习点。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 右侧：批判性思维练习实践与提示词 -->
+                    <div>
+                        <div class="bg-zinc-800/50 p-6 rounded-xl backdrop-blur-sm">
+                            <h3 class="text-xl font-semibold text-white mb-5 flex items-center">
+                                <i class="fas fa-chess text-gray-400 mr-3"></i>
+                                AI辅助批判性思维实践
+                            </h3>
+                            
+                            <div class="space-y-5">
+                                <p class="text-gray-300">
+                                    AI既是我们需要用批判性思维评估的对象，也可以成为培养批判性思维的助手。以下是几种结合AI进行批判性思维训练的方法：
+                                </p>
+                                
+                                <!-- 新闻分析练习 -->
+                                <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                    <h4 class="text-white font-medium mb-3">新闻/社媒内容分析练习</h4>
+                                    <p class="text-gray-300 mb-3">
+                                        每天选择一则新闻或社交媒体内容，与AI一起分析可能存在的偏见、不准确或误导性表述。这种练习帮助培养媒体素养，同时也锻炼你对AI回答的评估能力。
+                                    </p>
+                                    
+                                    <div class="bg-zinc-600/40 p-3 rounded-lg mb-3">
+                                        <h5 class="text-white font-medium mb-2">练习步骤</h5>
+                                        <ol class="list-decimal list-inside text-gray-300 space-y-1 text-sm">
+                                            <li>选择当天的一则新闻或社交媒体热门内容</li>
+                                            <li>请AI分析其中可能存在的偏见、误导或逻辑问题</li>
+                                            <li>评估AI的分析是否合理，是否遗漏了重要角度</li>
+                                            <li>思考如何验证文章中的关键事实声明</li>
+                                            <li>记录你的思考过程和从这次分析中学到的洞见</li>
+                                        </ol>
+                                    </div>
+                                    
+                                    <div class="bg-zinc-600/40 p-3 rounded-lg">
+                                        <h5 class="text-white font-medium mb-2">分析要点</h5>
+                                        <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                            <li>信息源的可靠性和可能的利益关系</li>
+                                            <li>论据与结论之间的逻辑关系</li>
+                                            <li>情感化语言和框架选择的影响</li>
+                                            <li>重要背景信息的省略或不当强调</li>
+                                            <li>统计数据的正确使用与解释</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <!-- 交叉验证练习 -->
+                                <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                    <h4 class="text-white font-medium mb-3">AI交叉验证练习</h4>
+                                    <p class="text-gray-300 mb-3">
+                                        向多个AI工具提出同一问题，对比它们的回答，寻找共识点和分歧点。这种方法有助于识别AI幻觉，培养对AI回答的健康怀疑态度。
+                                    </p>
+                                    
+                                    <div class="bg-zinc-600/40 p-3 rounded-lg">
+                                        <h5 class="text-white font-medium mb-2">有效问题类型</h5>
+                                        <ul class="space-y-2 text-sm">
+                                            <li class="bg-zinc-700/70 p-2 rounded">
+                                                <span class="text-gray-200">关于争议性话题的多角度分析</span>
+                                            </li>
+                                            <li class="bg-zinc-700/70 p-2 rounded">
+                                                <span class="text-gray-200">特定学术概念或理论的解释</span>
+                                            </li>
+                                            <li class="bg-zinc-700/70 p-2 rounded">
+                                                <span class="text-gray-200">历史事件的影响评估</span>
+                                            </li>
+                                            <li class="bg-zinc-700/70 p-2 rounded">
+                                                <span class="text-gray-200">技术或产品的优缺点比较</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 提示词模板 -->
+                        <div class="mt-6 bg-gradient-to-r from-zinc-800/70 to-zinc-700/70 p-5 rounded-xl backdrop-blur-sm">
+                            <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
+                                <i class="fas fa-file-alt text-gray-400 mr-2"></i>
+                                批判性思维训练提示词
+                            </h3>
+                            
+                            <!-- 模板1：新闻分析 -->
+                            <div class="bg-zinc-700/40 p-4 rounded-lg mb-4">
+                                <h4 class="text-white font-medium mb-2">新闻/社媒内容分析</h4>
+                                <div class="prompt-card p-4">
+                                    <button class="copy-button" data-prompt="请帮我分析以下新闻/社交媒体内容可能存在的偏见、误导或逻辑问题。我希望你能从多个角度进行客观分析，包括：\n\n1. 信息源的可靠性和潜在利益关系\n2. 表述中的情感化语言或框架选择\n3. 论据与结论之间的逻辑关系\n4. 重要背景信息的省略\n5. 统计数据的使用是否恰当\n6. 可能存在的确认偏误或其他认知偏见\n\n内容如下：\n\"[粘贴新闻或社交媒体内容]\"\n\n在你的分析后，请提供2-3个问题，这些问题可以帮助我进一步验证或探索这则信息的真实性和全面性。">
+                                        <i class="fas fa-copy"></i> 复制
+                                    </button>
+                                    <p class="text-sm leading-relaxed whitespace-pre-wrap">请帮我分析以下新闻/社交媒体内容可能存在的偏见、误导或逻辑问题。我希望你能从多个角度进行客观分析，包括：
+
+1. 信息源的可靠性和潜在利益关系
+2. 表述中的情感化语言或框架选择
+3. 论据与结论之间的逻辑关系
+4. 重要背景信息的省略
+5. 统计数据的使用是否恰当
+6. 可能存在的确认偏误或其他认知偏见
+
+内容如下：
+"[粘贴新闻或社交媒体内容]"
+
+在你的分析后，请提供2-3个问题，这些问题可以帮助我进一步验证或探索这则信息的真实性和全面性。</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 模板2：幻觉测试 -->
+                            <div class="bg-zinc-700/40 p-4 rounded-lg">
+                                <h4 class="text-white font-medium mb-2">AI幻觉测试与评估</h4>
+                                <div class="prompt-card p-4">
+                                    <button class="copy-button" data-prompt="我想测试你对[特定主题]的知识准确性，并练习我的批判性思维能力。请回答以下问题：\n\n[关于该主题的具体问题]\n\n在你回答的同时，请：\n\n1. 标明哪些信息你非常确定（90%以上的把握）\n2. 哪些信息你中等确定（60-90%的把握）\n3. 哪些信息你不太确定（低于60%的把握）\n4. 明确指出任何你不知道或无法确定的部分\n\n此外，请提供2-3个方法，说明我如何可以验证你提供的关键信息的准确性。">
+                                        <i class="fas fa-copy"></i> 复制
+                                    </button>
+                                    <p class="text-sm leading-relaxed whitespace-pre-wrap">我想测试你对[特定主题]的知识准确性，并练习我的批判性思维能力。请回答以下问题：
+
+[关于该主题的具体问题]
+
+在你回答的同时，请：
+
+1. 标明哪些信息你非常确定（90%以上的把握）
+2. 哪些信息你中等确定（60-90%的把握）
+3. 哪些信息你不太确定（低于60%的把握）
+4. 明确指出任何你不知道或无法确定的部分
+
+此外，请提供2-3个方法，说明我如何可以验证你提供的关键信息的准确性。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 图片展示区 -->
+                <div class="mt-10">
+                    <h3 class="text-xl font-semibold text-white mb-6">
+                        <i class="fas fa-image text-gray-400 mr-2"></i>
+                        批判性思维实践案例
+                    </h3>
+                    
+                    <!-- 修改所有轮播框，使用两层div结构并统一样式 -->
+                    <!-- 第一个轮播框 -->
+                    <div class="image-gallery swiper rounded-xl overflow-hidden">
+                        <div class="swiper-wrapper">
+                            <!-- 图片1 -->
+                            <div class="swiper-slide">
+                                <div class="image-container">
+                                    <img src="static/images/scenes/critical-thinking1.jpg" alt="批判性思维分析案例" class="contained-image" />
+                                </div>
+                            </div>
+                            <!-- 图片2 -->
+                            <div class="swiper-slide">
+                                <div class="image-container">
+                                    <img src="static/images/scenes/critical-thinking2.jpg" alt="AI幻觉示例" class="contained-image" />
+                                </div>
+                            </div>
+                            <!-- 图片3 -->
+                            <div class="swiper-slide">
+                                <div class="image-container">
+                                    <img src="static/images/scenes/critical-thinking3.jpg" alt="批判性思维训练方法" class="contained-image" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+                
+                <!-- 小结 -->
+                <div class="mt-12 bg-gradient-to-r from-zinc-900/70 to-zinc-800/70 p-6 rounded-xl backdrop-blur-sm">
+                    <h3 class="text-xl font-semibold text-white mb-4 flex items-center">
+                        <i class="fas fa-check-circle text-gray-400 mr-2"></i>
+                        场景小结
+                    </h3>
+                    
+                    <div class="text-gray-300 space-y-3">
+                        <p>
+                            批判性思维是AI时代的必备能力，它不仅帮助我们有效利用AI工具，也是防止被错误信息和AI幻觉误导的关键防线。通过持续的练习和反思，我们可以：
+                        </p>
+                        
+                        <ul class="list-disc list-inside space-y-2 ml-4">
+                            <li>更有效地评估信息的可靠性和价值</li>
+                            <li>识别媒体报道和社交内容中的偏见和误导</li>
+                            <li>明智地使用AI工具，既能发挥其优势，又能规避其局限</li>
+                            <li>减轻信息焦虑，建立对复杂世界的理性认知</li>
+                            <li>发展终身学习的能力，不断调整和更新自己的认知框架</li>
+                        </ul>
+                        
+                        <p class="mt-4">
+                            最重要的是，批判性思维不是孤立的智力活动，而是一种生活态度——保持好奇、开放和谦逊，愿意质疑自己的假设，并在证据面前调整观点。在AI加速发展的时代，这种思维习惯将成为我们最可靠的导航工具。
+                        </p>
+                        
+                        <div class="mt-6 p-4 bg-zinc-700/40 rounded-lg">
+                            <p class="italic">
+                                "在信息的迷雾中，批判性思维是照亮前路的灯塔；在AI的浪潮里，它是确保我们不被淹没的救生衣。"
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>

@@ -1,0 +1,287 @@
+            <section id="ai-dialogue" class="scene-card bg-gradient-to-br from-primary-900/90 to-secondary-900/90 p-6 md:p-8">
+                <!-- 场景标题 -->
+                <div class="mb-8">
+                    <span class="inline-block px-3 py-1 text-xs font-semibold bg-primary-800 text-primary-100 rounded-full mb-4">场景 01</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-2 flex items-center">
+                        <i class="fas fa-comments mr-3 text-primary-400"></i>
+                        AI对话场景：了解ChatGPT类工具的原理与使用方法
+                    </h2>
+                    <p class="text-primary-200 max-w-3xl">
+                        探索像DeepSeek、ChatGPT等大语言模型的工作原理，学习如何有效使用它们来提高工作效率和获取知识
+                    </p>
+                </div>
+                
+                <!-- 内容部分 -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 左侧：原理解释 -->
+                    <div class="md:col-span-1 bg-primary-800/50 rounded-xl p-6 backdrop-blur-sm">
+                        <h3 class="text-xl font-semibold text-white mb-4">
+                            <i class="fas fa-brain text-primary-400 mr-2"></i>
+                            工作原理
+                        </h3>
+                        <div class="space-y-4 text-primary-100">
+                            <p>
+                                像DeepSeek、ChatGPT这样的大语言模型，本质上是通过<span class="text-white font-medium">预测下一个单词</span>来生成文本的系统，它们的工作流程如下：
+                            </p>
+                            <ol class="list-decimal list-inside space-y-3 ml-2">
+                                <li>
+                                    <span class="text-white font-medium">训练阶段</span>：模型通过阅读互联网上的海量文本学习语言规律
+                                </li>
+                                <li>
+                                    <span class="text-white font-medium">理解输入</span>：将用户提问转化为模型能理解的数字表示（向量）
+                                </li>
+                                <li>
+                                    <span class="text-white font-medium">生成响应</span>：基于已学习的模式，推理和生成最可能的文本内容
+                                </li>
+                                <li>
+                                    <span class="text-white font-medium">上下文记忆</span>：保留对话历史，使后续回答更加连贯和相关
+                                </li>
+                            </ol>
+                            <div class="mt-4 bg-primary-700/50 p-4 rounded-lg">
+                                <h4 class="text-white font-medium mb-2">
+                                    <i class="fas fa-lightbulb text-yellow-400 mr-2"></i>
+                                    关键概念
+                                </h4>
+                                <ul class="list-disc list-inside space-y-1 ml-2 text-sm">
+                                    <li><span class="text-white">Token</span>：模型处理的基本单位，可能是单词或词的一部分</li>
+                                    <li><span class="text-white">Context Window</span>：模型能记住的对话上下文长度</li>
+                                    <li><span class="text-white">Prompt Engineering</span>：优化提示以获得更好的模型回应</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 中间：使用指南 -->
+                    <div class="md:col-span-1 bg-gradient-to-b from-secondary-800/50 to-secondary-900/50 rounded-xl p-6 backdrop-blur-sm">
+                        <h3 class="text-xl font-semibold text-white mb-4">
+                            <i class="fas fa-map text-secondary-400 mr-2"></i>
+                            使用指南
+                        </h3>
+                        <div class="space-y-4 text-secondary-100">
+                            <h4 class="font-medium text-white">1. 制定明确的提示词</h4>
+                            <ul class="list-disc list-inside space-y-1 ml-2">
+                                <li>明确说明你的目标和任务</li>
+                                <li>提供必要的背景信息</li>
+                                <li>指定期望的输出格式</li>
+                            </ul>
+                            
+                            <h4 class="font-medium text-white mt-2">2. 迭代对话技巧</h4>
+                            <ul class="list-disc list-inside space-y-1 ml-2">
+                                <li>从简单问题开始，逐步深入</li>
+                                <li>对模型的回答进行评估和修正</li>
+                                <li>使用"让我们一步步思考"等提示引导深入思考</li>
+                            </ul>
+                            
+                            <h4 class="font-medium text-white mt-2">3. 高级使用策略</h4>
+                            <ul class="list-disc list-inside space-y-1 ml-2">
+                                <li>角色扮演：让AI扮演特定专家</li>
+                                <li>思维链提示：要求显示思考过程</li>
+                                <li>多轮反馈：不断调整和改进输出</li>
+                            </ul>
+                            
+                            <div class="mt-4 p-3 bg-yellow-500/20 rounded-lg border border-yellow-500/30">
+                                <p class="text-yellow-200 text-sm">
+                                    <i class="fas fa-exclamation-triangle mr-1"></i>
+                                    <strong>注意</strong>：模型有时会生成看似可信但实际不准确的内容（幻觉），重要信息需要进行验证。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 右侧：实际示例 -->
+                    <div class="md:col-span-1 space-y-6">
+                        <!-- 示例1：基本提问 -->
+                        <div class="bg-primary-700/40 rounded-xl p-5 backdrop-blur-sm">
+                            <h3 class="text-lg font-semibold text-white mb-3">
+                                <i class="fas fa-flask text-primary-300 mr-2"></i>
+                                提示词示例
+                            </h3>
+                            
+                            <!-- 提示词卡片 -->
+                            <div class="prompt-card p-4 mb-4">
+                                <button class="copy-button" data-prompt="你能解释一下量子计算的基本原理吗？请用通俗易懂的语言，假设我是一个高中生。">
+                                    <i class="fas fa-copy"></i> 复制
+                                </button>
+                                <p class="text-sm leading-relaxed whitespace-pre-wrap">你能解释一下量子计算的基本原理吗？请用通俗易懂的语言，假设我是一个高中生。</p>
+                            </div>
+                            
+                            <p class="text-primary-200 text-sm">
+                                <i class="fas fa-arrow-right text-primary-400 mr-2"></i>
+                                这个提示词明确指定了目标受众（高中生）和语言风格（通俗易懂），帮助AI调整解释的复杂度
+                            </p>
+                        </div>
+                        
+                        <!-- 示例2：角色扮演 -->
+                        <div class="bg-secondary-700/40 rounded-xl p-5 backdrop-blur-sm">
+                            <h3 class="text-lg font-semibold text-white mb-3">
+                                <i class="fas fa-theater-masks text-secondary-300 mr-2"></i>
+                                角色扮演示例
+                            </h3>
+                            
+                            <!-- 提示词卡片 -->
+                            <div class="prompt-card p-4 mb-4">
+                                <button class="copy-button" data-prompt="我想让你扮演一位经验丰富的投资顾问。我正在考虑开始投资股票市场，但完全没有经验。请为我设计一个适合初学者的入门投资计划，包括风险管理策略和首批可考虑的投资类型。假设我有10万元资金，风险承受能力中等。">
+                                    <i class="fas fa-copy"></i> 复制
+                                </button>
+                                <p class="text-sm leading-relaxed whitespace-pre-wrap">我想让你扮演一位经验丰富的投资顾问。我正在考虑开始投资股票市场，但完全没有经验。请为我设计一个适合初学者的入门投资计划，包括风险管理策略和首批可考虑的投资类型。假设我有10万元资金，风险承受能力中等。</p>
+                            </div>
+                            
+                            <p class="text-secondary-200 text-sm">
+                                <i class="fas fa-arrow-right text-secondary-400 mr-2"></i>
+                                通过让AI扮演专家角色，并提供具体条件（资金、风险偏好），可以获得更有针对性的专业建议
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 图片展示区 -->
+                <div class="mt-10">
+                    <h3 class="text-xl font-semibold text-white mb-6">
+                        <i class="fas fa-images text-primary-400 mr-2"></i>
+                        DeepSeek界面与交互演示
+                    </h3>
+                    
+                    <!-- 修改所有轮播框，使用两层div结构并统一样式 -->
+                    <!-- 第一个轮播框 -->
+                    <div class="image-gallery swiper rounded-xl overflow-hidden">
+                        <div class="swiper-wrapper">
+                            <!-- 图片1 -->
+                            <div class="swiper-slide">
+                                <div class="image-container">
+                                    <img src="static/images/scenes/sence-1-1-1.png" alt="DeepSeek界面示例" class="contained-image" />
+                                </div>
+                            </div>
+                            <!-- 图片2 -->
+                            <div class="swiper-slide">
+                                <div class="image-container">
+                                    <img src="static/images/scenes/sence-1-1-2.png" alt="DeepSeek对话示例" class="contained-image" />
+                                </div>
+                            </div>
+                            <!-- 图片3 -->
+                            <div class="swiper-slide">
+                                <div class="image-container">
+                                    <img src="static/images/scenes/deepseek-advanced.jpg" alt="DeepSeek高级功能" class="contained-image" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+                
+                <!-- 高级提示部分 -->
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 左侧：复杂提示词示例 -->
+                    <div class="bg-gradient-to-r from-primary-800/60 to-secondary-800/60 p-6 rounded-xl backdrop-blur-sm">
+                        <h3 class="text-xl font-semibold text-white mb-4">
+                            <i class="fas fa-star text-yellow-400 mr-2"></i>
+                            高级提示词技巧
+                        </h3>
+                        
+                        <!-- 思维链提示示例 -->
+                        <div class="mb-6">
+                            <h4 class="text-white font-medium mb-3">思维链（Chain of Thought）提示</h4>
+                            <div class="prompt-card p-4 mb-3">
+                                <button class="copy-button" data-prompt="我需要解决一个复杂的商业问题。我们的电子商务网站的购物车放弃率最近增加了15%。请一步步思考可能的原因，并为每个可能的原因提供具体的解决方案。分析时请考虑技术因素、用户体验和商业流程三个维度。">
+                                    <i class="fas fa-copy"></i> 复制
+                                </button>
+                                <p class="text-sm leading-relaxed whitespace-pre-wrap">我需要解决一个复杂的商业问题。我们的电子商务网站的购物车放弃率最近增加了15%。请一步步思考可能的原因，并为每个可能的原因提供具体的解决方案。分析时请考虑技术因素、用户体验和商业流程三个维度。</p>
+                            </div>
+                            <p class="text-primary-200 text-sm">
+                                通过要求AI"一步步思考"，可以获得更深入、结构化的分析，而不仅仅是表面的答案
+                            </p>
+                        </div>
+                        
+                        <!-- 多轮迭代示例 -->
+                        <div>
+                            <h4 class="text-white font-medium mb-3">多轮迭代改进</h4>
+                            <div class="space-y-3">
+                                <div class="prompt-card p-4">
+                                    <button class="copy-button" data-prompt="第一轮：帮我起草一封面试后的感谢邮件模板，我申请的是市场营销经理职位。\n\n第二轮：这封邮件看起来有点通用，能否增加一些更个性化的内容？请加入一些可以突出我对公司产品了解的部分，以及面试中讨论的三年营销战略计划。\n\n第三轮：很好，但语气还是有点正式。能否调整为更加自信但不失专业的语气？同时，在结尾加入一个关于期待下一步的具体时间表的询问。">
+                                        <i class="fas fa-copy"></i> 复制
+                                    </button>
+                                    <p class="text-sm leading-relaxed whitespace-pre-wrap">第一轮：帮我起草一封面试后的感谢邮件模板，我申请的是市场营销经理职位。
+
+第二轮：这封邮件看起来有点通用，能否增加一些更个性化的内容？请加入一些可以突出我对公司产品了解的部分，以及面试中讨论的三年营销战略计划。
+
+第三轮：很好，但语气还是有点正式。能否调整为更加自信但不失专业的语气？同时，在结尾加入一个关于期待下一步的具体时间表的询问。</p>
+                                </div>
+                                <p class="text-primary-200 text-sm">
+                                    通过多轮迭代，您可以逐步完善AI的输出，从基础版本逐步调整到符合您特定需求的最终版本
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 右侧：工具比较 -->
+                    <div class="bg-gradient-to-r from-blue-800/60 to-purple-800/60 p-6 rounded-xl backdrop-blur-sm">
+                        <h3 class="text-xl font-semibold text-white mb-4">
+                            <i class="fas fa-balance-scale text-blue-300 mr-2"></i>
+                            常见AI对话工具比较
+                        </h3>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-transparent text-white">
+                                <thead>
+                                    <tr class="border-b border-blue-700/50">
+                                        <th class="py-3 px-2 text-left text-sm font-medium text-blue-200">工具</th>
+                                        <th class="py-3 px-2 text-left text-sm font-medium text-blue-200">特点</th>
+                                        <th class="py-3 px-2 text-left text-sm font-medium text-blue-200">使用场景</th>
+                                        <th class="py-3 px-2 text-left text-sm font-medium text-blue-200">是否需要科学上网</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-blue-700/30">
+                                        <td class="py-3 px-2 text-sm font-medium">DeepSeek</td>
+                                        <td class="py-3 px-2 text-sm">中文理解能力强，免费版功能丰富</td>
+                                        <td class="py-3 px-2 text-sm">通用对话，中文文档分析</td>
+                                        <td class="py-3 px-2 text-sm">否</td>
+                                    </tr>
+                                    <tr class="border-b border-blue-700/30">
+                                        <td class="py-3 px-2 text-sm font-medium">ChatGPT</td>
+                                        <td class="py-3 px-2 text-sm">功能全面，有强大插件生态</td>
+                                        <td class="py-3 px-2 text-sm">创意写作，编程辅助</td>
+                                        <td class="py-3 px-2 text-sm">是</td>
+                                    </tr>
+                                    <tr class="border-b border-blue-700/30">
+                                        <td class="py-3 px-2 text-sm font-medium">Claude</td>
+                                        <td class="py-3 px-2 text-sm">长文本处理能力强，思考更深入</td>
+                                        <td class="py-3 px-2 text-sm">长篇内容分析，学术研究</td>
+                                        <td class="py-3 px-2 text-sm">是</td>
+                                    </tr>
+                                    <tr class="border-b border-blue-700/30">
+                                        <td class="py-3 px-2 text-sm font-medium">通义千问</td>
+                                        <td class="py-3 px-2 text-sm">阿里出品，中文语境理解优秀</td>
+                                        <td class="py-3 px-2 text-sm">日常对话，中文内容创作</td>
+                                        <td class="py-3 px-2 text-sm">否</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-2 text-sm font-medium">文心一言</td>
+                                        <td class="py-3 px-2 text-sm">百度出品，内容审核严格</td>
+                                        <td class="py-3 px-2 text-sm">知识问答，办公场景</td>
+                                        <td class="py-3 px-2 text-sm">否</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- 上手建议 -->
+                        <div class="mt-6 bg-blue-900/50 p-4 rounded-lg">
+                            <h4 class="text-white font-medium mb-2">
+                                <i class="fas fa-hand-point-right text-blue-300 mr-2"></i>
+                                新手上手建议
+                            </h4>
+                            <ul class="list-disc list-inside space-y-1 ml-2 text-blue-200 text-sm">
+                                <li>国内用户首选 <a href="ai-tools.html#deepseek" class="tool-link">DeepSeek</a> 或 <a href="ai-tools.html#qianwen" class="tool-link">通义千问</a>，无需科学上网</li>
+                                <li>需要长文档分析时，可以使用 <a href="ai-tools.html#claude" class="tool-link">Claude</a>（需科学上网）</li>
+                                <li>编程相关任务，推荐 <a href="ai-tools.html#github-copilot" class="tool-link">GitHub Copilot</a> 或 ChatGPT</li>
+                                <li>多尝试不同工具，找到适合自己需求的最佳选择</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- 场景2：多工具并行使用 -->
+            <section id="multi-tool" class="scene-card bg-gradient-to-br from-blue-900/90 to-indigo-900/90 p-6 md:p-8">
