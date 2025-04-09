@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI能力水平测试 | AI通识训练营</title>
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            200: '#c7d2fe',
+                            300: '#a5b4fc',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                        },
+                        secondary: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        },
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
+            },
+            darkMode: 'class',
+        }
+    </script>
+
+    <style>
+        /* 主要排版 */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* 选项样式 */
+        .option-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-width: 2px;
+        }
+
+        .option-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .option-card.selected {
+            border-color: #6366f1;
+            background-color: #eef2ff;
+        }
+
+        .dark .option-card.selected {
+            border-color: #6366f1;
+            background-color: #312e81;
+        }
+
+        /* 进度条样式 */
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e2e8f0;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #4f46e5, #6366f1);
+            transition: width 0.3s ease;
+        }
+
+        /* 结果卡片样式 */
+        .result-card {
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .result-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 级别标志样式 */
+        .level-badge {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        /* 淡入效果 */
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* L1-L5 级别颜色 */
+        .level-1 {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+        }
+
+        .level-2 {
+            background: linear-gradient(135deg, #10b981, #059669);
+            box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.3);
+        }
+
+        .level-3 {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.3);
+        }
+
+        .level-4 {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            box-shadow: 0 10px 15px -3px rgba(245, 158, 11, 0.3);
+        }
+
+        .level-5 {
+            background: linear-gradient(135deg, #ef4444, #b91c1c);
+            box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3);
+        }
+
+        /* 滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #475569;
+        }
+
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #6366f1;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-secondary-900 text-secondary-800 dark:text-gray-100 min-h-screen">
+    <!-- 导航栏 -->
+    <nav
+        class="fixed w-full bg-white/90 dark:bg-secondary-800/90 backdrop-blur-md z-50 border-b border-gray-200 dark:border-secondary-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="ai-knowledge-hub.html" class="text-xl font-bold text-primary-600 dark:text-primary-400">AI通识训练营</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="darkModeToggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-secondary-700">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="container mx-auto px-4 pt-24 pb-16 max-w-4xl">
+        <!-- 标题区域 -->
+        <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-primary-600 dark:text-primary-400 mb-4">AI能力水平测试</h1>
+            <p class="text-xl text-secondary-600 dark:text-secondary-300">
+                通过回答10个问题，测试并了解你的AI使用能力处于哪个水平
+            </p>
+        </div>
+
+        <!-- 进度显示 -->
+        <div class="mb-8">
+            <div class="flex justify-between mb-2">
+                <span class="text-sm font-medium text-secondary-600 dark:text-secondary-300">测试进度</span>
+                <span class="text-sm font-medium text-primary-600 dark:text-primary-400" id="progress-text">1/10</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-bar-fill" style="width: 10%;"></div>
+            </div>
+        </div>
+
+        <!-- 问题卡片容器 -->
+        <div id="question-container">
+            <!-- 问题将通过JavaScript动态生成 -->
+        </div>
+
+        <!-- 测试结果 (初始隐藏) -->
+        <div id="result-container" class="result-card mt-8 p-8 bg-white dark:bg-secondary-800 rounded-xl shadow-lg mx-auto text-center hidden">
+            <div class="mb-6">
+                <div id="level-badge" class="level-badge mx-auto"></div>
+                <h2 class="text-2xl font-bold mb-2" id="result-title"></h2>
+                <p class="text-secondary-600 dark:text-secondary-300 mb-6" id="result-score"></p>
+                <div class="bg-gray-100 dark:bg-secondary-700 p-6 rounded-lg mb-6">
+                    <p class="text-lg mb-4" id="result-description"></p>
+                    <ul class="text-left space-y-2 mb-4" id="result-traits">
+                        <!-- 特征列表将通过JavaScript填充 -->
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 space-y-4">
+                <a href="ai-knowledge-hub.html" class="inline-flex items-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all shadow-md hover:shadow-lg">
+                    <i class="fas fa-graduation-cap mr-2"></i>
+                    查看AI能力提升指南
+                </a>
+                <div>
+                    <button onclick="resetQuiz()" class="mt-4 px-6 py-3 bg-gray-200 hover:bg-gray-300 dark:bg-secondary-700 dark:hover:bg-secondary-600 text-secondary-800 dark:text-gray-100 rounded-lg transition-all">
+                        <i class="fas fa-redo mr-2"></i>
+                        重新测试
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部导航 -->
+        <div class="flex justify-between mt-8">
+            <button id="prev-button" class="px-6 py-3 bg-gray-200 hover:bg-gray-300 dark:bg-secondary-700 dark:hover:bg-secondary-600 text-secondary-800 dark:text-gray-100 rounded-lg transition-all hidden">
+                <i class="fas fa-arrow-left mr-2"></i>
+                上一题
+            </button>
+            <div class="flex-1"></div>
+            <button id="next-button" class="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all">
+                下一题
+                <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+    </main>
+
+    <!-- JavaScript -->
+    <script>
+        // 页面加载完成后初始化所有功能
+        document.addEventListener('DOMContentLoaded', function () {
+            // 初始化暗黑模式切换
+            initDarkMode();
+            
+            // 初始化测试问卷
+            initQuiz();
+        });
+
+        // 初始化暗黑模式切换
+        function initDarkMode() {
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const html = document.documentElement;
+
+            // 检查用户偏好
+            if (localStorage.getItem('darkMode') === 'true' ||
+                (window.matchMedia('(prefers-color-scheme: dark)').matches &&
+                    !localStorage.getItem('darkMode'))) {
+                html.classList.add('dark');
+            }
+
+            darkModeToggle.addEventListener('click', function () {
+                html.classList.toggle('dark');
+                localStorage.setItem('darkMode', html.classList.contains('dark'));
+            });
+        }
+
+        // 测试数据
+        const questions = [
+            {
+                id: 1,
+                question: "你了解多少种AI工具？",
+                options: [
+                    { text: "只知道deepseek一种", score: 1 },
+                    { text: "了解2-3种主流AI工具，如ChatGPT、文心一言等", score: 2 },
+                    { text: "了解5种以上AI工具，包括文本、图像和音频AI", score: 3 },
+                    { text: "熟悉10种以上不同类型和功能的AI工具", score: 4 },
+                    { text: "了解20种以上各类AI工具，并关注最新AI工具发布", score: 5 }
+                ]
+            },
+            {
+                id: 2,
+                question: "当你向AI提问时，通常会怎么做？",
+                options: [
+                    { text: "直接输入简短问题，不加思考", score: 1 },
+                    { text: "尽量详细描述我的需求", score: 2 },
+                    { text: "根据需要设计提示词，包含背景和具体要求", score: 3 },
+                    { text: "使用结构化提示词，包含角色、任务和格式要求", score: 4 },
+                    { text: "设计复杂多步骤提示词系统，包含逻辑判断和反馈机制", score: 5 }
+                ]
+            },
+            {
+                id: 3,
+                question: "AI给出的内容有误时，你通常如何处理？",
+                options: [
+                    { text: "直接接受结果，不做验证", score: 1 },
+                    { text: "简单检查明显错误，不确定时会查询", score: 2 },
+                    { text: "针对重要信息进行核实，并要求AI提供信息来源", score: 3 },
+                    { text: "批判性思考所有信息，多渠道验证，反馈错误给AI", score: 4 },
+                    { text: "系统性验证内容，理解AI可能出错的原因并改进提示策略", score: 5 }
+                ]
+            },
+            {
+                id: 4,
+                question: "你如何评价自己使用AI辅助日常工作的能力？",
+                options: [
+                    { text: "很少使用AI，不知道如何应用到工作中", score: 1 },
+                    { text: "偶尔使用AI解决简单问题", score: 2 },
+                    { text: "经常使用AI处理特定类型的工作任务", score: 3 },
+                    { text: "将AI融入多个工作流程，提高效率", score: 4 },
+                    { text: "设计了完整的AI辅助工作系统，大幅提升生产力", score: 5 }
+                ]
+            },
+            {
+                id: 5,
+                question: "当AI给出的答案不满意时，你会怎么做？",
+                options: [
+                    { text: "放弃使用，转向其他方法", score: 1 },
+                    { text: "简单重复或稍微修改问题再尝试", score: 2 },
+                    { text: "通过追问和指导AI改进答案", score: 3 },
+                    { text: "分析问题所在，重新设计更好的提示词", score: 4 },
+                    { text: "运用提示工程技巧，迭代多次直到得到满意结果", score: 5 }
+                ]
+            },
+            {
+                id: 6,
+                question: "你会组合不同的AI工具完成复杂任务吗？",
+                options: [
+                    { text: "从不，只使用单一AI工具", score: 1 },
+                    { text: "偶尔尝试使用两种AI工具协作", score: 2 },
+                    { text: "经常组合3-5种AI工具完成任务", score: 3 },
+                    { text: "熟练组合多种AI和非AI工具构建工作流", score: 4 },
+                    { text: "设计复杂的多工具AI系统，解决专业领域问题", score: 5 }
+                ]
+            },
+            {
+                id: 7,
+                question: "面对新发布的AI功能，你的态度是？",
+                options: [
+                    { text: "不关注AI新功能", score: 1 },
+                    { text: "被动了解主流AI的重大更新", score: 2 },
+                    { text: "主动关注AI发展并尝试新功能", score: 3 },
+                    { text: "积极尝试新功能并思考应用场景", score: 4 },
+                    { text: "深入研究新功能原理并创新性应用", score: 5 }
+                ]
+            },
+            {
+                id: 8,
+                question: "你如何看待AI可能产生的错误或幻觉？",
+                options: [
+                    { text: "不了解AI会产生错误", score: 1 },
+                    { text: "知道AI会出错但不确定如何识别", score: 2 },
+                    { text: "能识别明显错误并要求AI更正", score: 3 },
+                    { text: "理解AI幻觉产生原因，使用策略减少错误", score: 4 },
+                    { text: "深入了解模型局限性，设计系统性解决方案", score: 5 }
+                ]
+            },
+            {
+                id: 9,
+                question: "你有使用AI处理个人或专业领域特定任务的经验吗？",
+                options: [
+                    { text: "没有特定领域应用经验", score: 1 },
+                    { text: "在简单个人任务中应用过AI", score: 2 },
+                    { text: "在工作或专业领域有成功应用案例", score: 3 },
+                    { text: "针对专业领域需求定制AI解决方案", score: 4 },
+                    { text: "创造性地开发AI应用，解决前所未有的问题", score: 5 }
+                ]
+            },
+            {
+                id: 10,
+                question: "你如何评价自己接下来提升AI使用能力的计划？",
+                options: [
+                    { text: "没有提升计划，现有水平足够", score: 1 },
+                    { text: "打算了解更多AI工具的基本用法", score: 2 },
+                    { text: "计划系统学习提示工程和AI应用技巧", score: 3 },
+                    { text: "目标掌握AI工作流设计和高级应用方法", score: 4 },
+                    { text: "计划研究AI原理并探索创新应用模式", score: 5 }
+                ]
+            }
+        ];
+
+        // 用户回答
+        let userAnswers = Array(questions.length).fill(null);
+        let currentQuestion = 0;
+
+        // AI能力水平定义
+        const skillLevels = [
+            {
+                level: "L1",
+                title: "被动体验者",
+                subtitle: "入门阶段",
+                description: "你刚开始接触AI工具，对其功能和用途有初步了解，但尚未形成有效的使用习惯和方法。",
+                traits: [
+                    "只知道少数几个主流AI工具",
+                    "提问方式简单直接，缺乏提示词意识",
+                    "直接使用AI生成内容，不加修改",
+                    "将AI视为神奇的搜索引擎",
+                    "很少对AI回答进行验证和核实"
+                ],
+                minScore: 10,
+                maxScore: 19,
+                color: "level-1"
+            },
+            {
+                level: "L2",
+                title: "基础导航者",
+                subtitle: "基础应用",
+                description: "你已经熟悉了基本的AI工具操作，能够针对性地提出问题，并具备初步的验证意识。",
+                traits: [
+                    "熟悉多个AI平台的基本功能和界面",
+                    "知道提问需要具体、清晰",
+                    "会比较不同模型的回答质量",
+                    "能通过追问和修改提示进行迭代",
+                    "了解AI的基本能力边界和局限性"
+                ],
+                minScore: 20,
+                maxScore: 29,
+                color: "level-2"
+            },
+            {
+                level: "L3",
+                title: "多模态整合者",
+                subtitle: "进阶应用",
+                description: "你能够熟练使用多种AI工具，并将其融入日常工作流程，显著提高自己的效率。",
+                traits: [
+                    "熟练使用多种形式的AI工具",
+                    "将AI融入日常工作流程，提高效率",
+                    "有较成熟的提示词方法论",
+                    "关注AI新工具和技术发展",
+                    "能组合使用多种AI工具完成任务"
+                ],
+                minScore: 30,
+                maxScore: 39,
+                color: "level-3"
+            },
+            {
+                level: "L4",
+                title: "创新编排者",
+                subtitle: "专业应用",
+                description: "你已经掌握了AI工具的高级应用方法，能够创造性地组合多种工具解决复杂问题。",
+                traits: [
+                    "创造性组合多种AI工具解决复杂问题",
+                    "积极跟踪AI前沿工具和应用趋势",
+                    "使用无代码/低代码平台构建工作流",
+                    "能设计AI系统解决方案",
+                    "理解工作流逻辑和系统设计思维"
+                ],
+                minScore: 40,
+                maxScore: 44,
+                color: "level-4"
+            },
+            {
+                level: "L5",
+                title: "定制缔造者",
+                subtitle: "专家级应用",
+                description: "你已成为AI应用领域的专家，能够针对特定需求定制解决方案，并创造全新的应用模式。",
+                traits: [
+                    "针对特定需求定制AI解决方案",
+                    "深入理解AI应用原理和创新策略",
+                    "创造全新的AI应用模式",
+                    "评估和管理AI项目的技术风险",
+                    "将AI深度融入业务或创作生态"
+                ],
+                minScore: 45,
+                maxScore: 50,
+                color: "level-5"
+            }
+        ];
+
+        // 初始化测试问卷
+        function initQuiz() {
+            updateQuestion();
+            document.getElementById('next-button').addEventListener('click', nextQuestion);
+            document.getElementById('prev-button').addEventListener('click', prevQuestion);
+        }
+
+        // 更新当前问题显示
+        function updateQuestion() {
+            const q = questions[currentQuestion];
+            const container = document.getElementById('question-container');
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            
+            // 更新进度条
+            document.getElementById('progress-text').textContent = `${currentQuestion + 1}/${questions.length}`;
+            document.querySelector('.progress-bar-fill').style.width = `${progress}%`;
+            
+            // 创建问题HTML
+            const questionHTML = `
+                <div class="fade-in bg-white dark:bg-secondary-800 rounded-xl shadow-md p-6 md:p-8">
+                    <h2 class="text-xl md:text-2xl font-semibold mb-6">
+                        <span class="inline-block bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-full h-8 w-8 text-center leading-8 mr-2">${q.id}</span>
+                        ${q.question}
+                    </h2>
+                    <div class="space-y-3 mt-6">
+                        ${q.options.map((option, index) => `
+                            <div class="option-card rounded-lg border border-gray-200 dark:border-secondary-700 p-4 ${userAnswers[currentQuestion] === index ? 'selected' : ''}" 
+                                 data-index="${index}">
+                                <div class="flex items-center">
+                                    <div class="w-6 h-6 rounded-full border-2 border-gray-300 dark:border-secondary-600 flex items-center justify-center mr-3 ${userAnswers[currentQuestion] === index ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20' : ''}">
+                                        ${userAnswers[currentQuestion] === index ? '<div class="w-3 h-3 rounded-full bg-primary-500"></div>' : ''}
+                                    </div>
+                                    <span>${option.text}</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            // 填充问题容器
+            container.innerHTML = questionHTML;
+            
+            // 添加选项点击事件
+            document.querySelectorAll('.option-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const selectedIndex = parseInt(this.dataset.index);
+                    selectOption(selectedIndex);
+                });
+            });
+            
+            // 更新导航按钮状态
+            document.getElementById('prev-button').classList.toggle('hidden', currentQuestion === 0);
+            
+            const nextButton = document.getElementById('next-button');
+            if (currentQuestion === questions.length - 1) {
+                nextButton.textContent = '查看结果';
+                nextButton.innerHTML = '查看结果 <i class="fas fa-chart-bar ml-2"></i>';
+            } else {
+                nextButton.innerHTML = '下一题 <i class="fas fa-arrow-right ml-2"></i>';
+            }
+            
+            // 禁用下一步按钮，如果当前问题没有回答
+            nextButton.disabled = userAnswers[currentQuestion] === null;
+            nextButton.classList.toggle('opacity-50', userAnswers[currentQuestion] === null);
+            nextButton.classList.toggle('cursor-not-allowed', userAnswers[currentQuestion] === null);
+        }
+
+        // 选择选项
+        function selectOption(index) {
+            userAnswers[currentQuestion] = index;
+            
+            // 更新所有选项的视觉状态
+            document.querySelectorAll('.option-card').forEach((card, i) => {
+                card.classList.toggle('selected', i === index);
+                const radioIndicator = card.querySelector('.w-6');
+                
+                if (i === index) {
+                    radioIndicator.classList.add('border-primary-500', 'bg-primary-50', 'dark:bg-primary-900/20');
+                    radioIndicator.innerHTML = '<div class="w-3 h-3 rounded-full bg-primary-500"></div>';
+                } else {
+                    radioIndicator.classList.remove('border-primary-500', 'bg-primary-50', 'dark:bg-primary-900/20');
+                    radioIndicator.innerHTML = '';
+                }
+            });
+            
+            // 启用下一步按钮
+            const nextButton = document.getElementById('next-button');
+            nextButton.disabled = false;
+            nextButton.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+
+        // 下一题
+        function nextQuestion() {
+            if (userAnswers[currentQuestion] === null) {
+                return; // 如果当前问题未回答，不允许进入下一题
+            }
+            
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                updateQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // 上一题
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                updateQuestion();
+            }
+        }
+
+        // 显示测试结果
+        function showResults() {
+            // 计算总分
+            let totalScore = 0;
+            for (let i = 0; i < userAnswers.length; i++) {
+                if (userAnswers[i] !== null) {
+                    totalScore += questions[i].options[userAnswers[i]].score;
+                }
+            }
+            
+            // 确定能力水平
+            let userLevel = null;
+            for (const level of skillLevels) {
+                if (totalScore >= level.minScore && totalScore <= level.maxScore) {
+                    userLevel = level;
+                    break;
+                }
+            }
+            
+            if (!userLevel) {
+                if (totalScore < skillLevels[0].minScore) {
+                    userLevel = skillLevels[0];
+                } else {
+                    userLevel = skillLevels[skillLevels.length - 1];
+                }
+            }
+            
+            // 更新结果DOM
+            const resultContainer = document.getElementById('result-container');
+            const levelBadge = document.getElementById('level-badge');
+            const resultTitle = document.getElementById('result-title');
+            const resultScore = document.getElementById('result-score');
+            const resultDescription = document.getElementById('result-description');
+            const resultTraits = document.getElementById('result-traits');
+            
+            // 设置结果内容
+            levelBadge.textContent = userLevel.level;
+            levelBadge.className = `level-badge ${userLevel.color}`;
+            
+            resultTitle.textContent = `${userLevel.title}`;
+            resultScore.textContent = `你的得分：${totalScore}/50（${userLevel.subtitle}）`;
+            resultDescription.textContent = userLevel.description;
+            
+            // 填充特征列表
+            resultTraits.innerHTML = userLevel.traits.map(trait => 
+                `<li class="flex items-start">
+                    <i class="fas fa-check text-primary-500 mt-1 mr-2"></i>
+                    <span>${trait}</span>
+                </li>`
+            ).join('');
+            
+            // 隐藏问题容器和导航按钮，显示结果
+            document.getElementById('question-container').classList.add('hidden');
+            document.getElementById('prev-button').classList.add('hidden');
+            document.getElementById('next-button').classList.add('hidden');
+            
+            resultContainer.classList.remove('hidden');
+            
+            // 添加动画效果
+            setTimeout(() => {
+                resultContainer.classList.add('show');
+            }, 100);
+            
+            // 进度条更新为100%
+            document.getElementById('progress-text').textContent = `完成！`;
+            document.querySelector('.progress-bar-fill').style.width = '100%';
+        }
+
+        // 重置测试
+        function resetQuiz() {
+            // 重置用户答案和当前问题
+            userAnswers = Array(questions.length).fill(null);
+            currentQuestion = 0;
+            
+            // 隐藏结果，显示问题容器
+            document.getElementById('result-container').classList.remove('show');
+            document.getElementById('result-container').classList.add('hidden');
+            document.getElementById('question-container').classList.remove('hidden');
+            
+            // 显示下一步按钮
+            document.getElementById('next-button').classList.remove('hidden');
+            
+            // 重新加载第一个问题
+            updateQuestion();
+        }
+    </script>
+</body>
+
+</html>

@@ -58,126 +58,252 @@
     </script>
 
     <style>
-        @layer base {
-            body {
-                font-family: 'Inter', sans-serif;
-            }
+        /* 主要排版 */
+        body {
+            font-family: 'Inter', sans-serif;
         }
 
+        h2 {
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h3 {
+            margin-top: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* 目录样式 */
+        .toc {
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        /* AI能力分级卡片样式 */
+        #ai-skill-levels .grid {
+            min-width: 100%;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+        }
+        
+        #ai-skill-levels .flex-col {
+            min-width: 280px;
+        }
+        
+        #ai-skill-levels .flex-1 {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+        
+        #ai-skill-levels .flex-1:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* 淡入淡出效果 */
         .fade-in {
-            animation: fadeIn 0.5s ease-in;
+            opacity: 0;
+            animation: fadeIn 0.5s ease-in forwards;
         }
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
             }
-
             to {
                 opacity: 1;
-                transform: translateY(0);
             }
         }
 
-        .hover-scale {
-            transition: transform 0.2s ease;
-        }
-
-        .hover-scale:hover {
-            transform: scale(1.02);
-        }
-
-        /* 知识库特定样式 */
-        .knowledge-card {
-            transition: all 0.3s ease;
-            border-left: 4px solid transparent;
-        }
-
-        .knowledge-card:hover {
-            border-left-color: #6366f1;
-        }
-
-        .toc-link.active {
-            color: #6366f1;
-            font-weight: 600;
-        }
-
-        /* 平滑滚动 */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* 侧边栏目录样式 */
-        .sidebar-nav {
-            max-height: calc(100vh - 150px);
-            overflow-y: auto;
-            scrollbar-width: thin;
-        }
-
-        .sidebar-nav::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .sidebar-nav::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .sidebar-nav::-webkit-scrollbar-thumb {
-            background-color: rgba(99, 102, 241, 0.3);
-            border-radius: 20px;
-        }
-
-        .nav-group {
-            margin-bottom: 0.5rem;
-        }
-
-        .nav-group-toggle {
-            cursor: pointer;
-            user-select: none;
-        }
-
+        /* 导航相关样式 */
         .nav-group-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease;
+            transition: max-height 0.3s ease-out;
         }
 
         .nav-group.expanded .nav-group-content {
             max-height: 1000px;
+            transition: max-height 0.5s ease-in;
         }
-
-        .nav-group-icon {
-            transition: transform 0.3s ease;
-        }
-
-        .nav-group.expanded .nav-group-icon {
-            transform: rotate(90deg);
-        }
-
-        .toc-link-l1 {
-            font-weight: 600;
-            font-size: 1rem;
-        }
-
-        .toc-link-l2 {
-            font-size: 0.9rem;
+        
+        /* 子导航内边距 */
+        .nav-group-content {
             padding-left: 1rem;
         }
 
-        .toc-link-l3 {
-            font-size: 0.85rem;
-            padding-left: 2rem;
+        /* 激活状态的链接 */
+        .toc-link.active {
+            color: #6d28d9;
+            font-weight: 600;
         }
 
-        .toc-link-l4 {
-            font-size: 0.8rem;
-            padding-left: 3rem;
+        /* 滚动条样式 */
+        .toc::-webkit-scrollbar,
+        #ai-skill-levels .grid::-webkit-scrollbar {
+            width: 5px;
+            height: 8px;
+        }
+
+        .toc::-webkit-scrollbar-track,
+        #ai-skill-levels .grid::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .toc::-webkit-scrollbar-thumb,
+        #ai-skill-levels .grid::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 10px;
+        }
+
+        .toc::-webkit-scrollbar-thumb:hover,
+        #ai-skill-levels .grid::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+
+        /* 返回顶部按钮 */
+        .back-to-top {
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* 媒体查询适配移动设备 */
+        @media (max-width: 768px) {
+            #ai-skill-levels .grid {
+                padding-bottom: 12px; /* 为滚动条预留空间 */
+            }
+        }
+
+        /* 密码保护层样式 */
+        #passwordOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s ease;
+        }
+
+        #passwordOverlay.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .password-container {
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .dark .password-container {
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .password-input:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        }
+
+        .dark .password-input {
+            background: rgba(15, 23, 42, 0.6);
+            border-color: #334155;
+            color: #f8fafc;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #4338ca;
+            transform: translateY(-2px);
+        }
+
+        /* 密码错误提示 */
+        .password-error {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* 密码输入框抖动动画 */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
         }
     </style>
 </head>
 
 <body class="bg-gray-50 dark:bg-secondary-900 text-secondary-800 dark:text-gray-100">
+    <!-- 密码保护层 -->
+    <div id="passwordOverlay">
+        <div class="password-container">
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400 mb-4">
+                    <i class="fas fa-lock text-2xl"></i>
+                </div>
+                <h2 class="text-xl font-bold text-secondary-800 dark:text-white">AI通识训练营知识库</h2>
+                <p class="text-sm text-secondary-600 dark:text-secondary-300 mt-2">此内容受密码保护</p>
+            </div>
+            <form id="passwordForm" onsubmit="return checkPassword(event)">
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-1">请输入访问密码：</label>
+                    <input type="password" id="passwordInput" class="password-input" placeholder="输入密码" required>
+                    <div id="passwordError" class="password-error">密码错误，请重试</div>
+                </div>
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-unlock-alt mr-2"></i>解锁内容
+                </button>
+                <div class="text-center mt-4 text-xs text-secondary-500 dark:text-secondary-400">
+                    <p>如需获取访问密码，请联系管理员</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- 导航栏 -->
     <nav
         class="fixed w-full bg-white/90 dark:bg-secondary-800/90 backdrop-blur-md z-50 border-b border-gray-200 dark:border-secondary-700">
@@ -268,44 +394,9 @@
                                     <a href="ai-scenarios-week1.html" class="toc-link-l2 text-secondary-800 dark:text-gray-100">模块1 (Week1)</a>
                                     <i class="fas fa-chevron-right text-xs nav-group-icon text-primary-400"></i>
                                 </div>
-                                <div class="nav-group-content">
+                                <div class="nav-group-content pl-2">
                                     <ul class="space-y-1">
-                                        <li>
-                                            <a href="#week1-scene1"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week1-scene2"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景2
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week1-scene3"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景3
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week1-scene4"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景4
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week1-scene5"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景5
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week1-practice"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景练习
-                                            </a>
-                                        </li>
+                                       
                                     </ul>
                                 </div>
                             </div>
@@ -317,45 +408,8 @@
                                     <span class="toc-link-l2 text-secondary-800 dark:text-gray-100">模块2 (Week2)</span>
                                     <i class="fas fa-chevron-right text-xs nav-group-icon text-primary-400"></i>
                                 </div>
-                                <div class="nav-group-content">
-                                    <ul class="space-y-1">
-                                        <li>
-                                            <a href="#week2-scene1"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week2-scene2"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景2
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week2-scene3"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景3
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week2-scene4"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景4
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week2-scene5"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景5
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week2-practice"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景练习
-                                            </a>
-                                        </li>
-                                    </ul>
+                                <div class="nav-group-content pl-2">
+                                    
                                 </div>
                             </div>
 
@@ -366,45 +420,8 @@
                                     <span class="toc-link-l2 text-secondary-800 dark:text-gray-100">模块3 (Week3)</span>
                                     <i class="fas fa-chevron-right text-xs nav-group-icon text-primary-400"></i>
                                 </div>
-                                <div class="nav-group-content">
-                                    <ul class="space-y-1">
-                                        <li>
-                                            <a href="#week3-scene1"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week3-scene2"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景2
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week3-scene3"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景3
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week3-scene4"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景4
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week3-scene5"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景5
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week3-practice"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景练习
-                                            </a>
-                                        </li>
-                                    </ul>
+                                <div class="nav-group-content pl-2">
+                                    
                                 </div>
                             </div>
 
@@ -415,45 +432,8 @@
                                     <span class="toc-link-l2 text-secondary-800 dark:text-gray-100">模块4 (Week4)</span>
                                     <i class="fas fa-chevron-right text-xs nav-group-icon text-primary-400"></i>
                                 </div>
-                                <div class="nav-group-content">
-                                    <ul class="space-y-1">
-                                        <li>
-                                            <a href="#week4-scene1"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week4-scene2"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景2
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week4-scene3"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景3
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week4-scene4"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景4
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week4-scene5"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景5
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week4-practice"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景练习
-                                            </a>
-                                        </li>
-                                    </ul>
+                                <div class="nav-group-content pl-2">
+                                    
                                 </div>
                             </div>
 
@@ -464,44 +444,9 @@
                                     <span class="toc-link-l2 text-secondary-800 dark:text-gray-100">模块5 (Week5)</span>
                                     <i class="fas fa-chevron-right text-xs nav-group-icon text-primary-400"></i>
                                 </div>
-                                <div class="nav-group-content">
+                                <div class="nav-group-content pl-2">
                                     <ul class="space-y-1">
-                                        <li>
-                                            <a href="#week5-scene1"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week5-scene2"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景2
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week5-scene3"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景3
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week5-scene4"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景4
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week5-scene5"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景5
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#week5-practice"
-                                                class="toc-link toc-link-l3 block py-1 hover:text-primary-600 dark:hover:text-primary-400">
-                                                场景练习
-                                            </a>
-                                        </li>
+                                        
                                     </ul>
                                 </div>
                             </div>
@@ -509,14 +454,7 @@
                     </div>
                 </div>
 
-                <div class="mt-8 p-4 bg-primary-50 dark:bg-primary-900/30 rounded-lg">
-                    <h4 class="font-medium text-primary-600 dark:text-primary-400 mb-2">开始你的AI学习之旅</h4>
-                    <p class="text-sm mb-3">每天只需30分钟，踏实学习AI，消除焦虑</p>
-                    <button
-                        class="w-full py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-md text-sm transition">
-                        立即报名
-                    </button>
-                </div>
+                
             </div>
         </aside>
 
@@ -722,10 +660,10 @@
                                     </div>
 
                                     <div class="mt-8 flex justify-center">
-                                        <button
+                                        <a href="https://www.huodongxing.com/event/3802161984322" target="_blank" rel="noopener noreferrer"
                                             class="px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all shadow-md hover:shadow-lg transform hover:-translate-y-1">
                                             加入我们的AI通识训练营
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -769,7 +707,7 @@
                                                     </span>
                                                     <h5 class="font-medium">适应性</h5>
                                                 </div>
-                                                <p class="text-sm">根据环境和新信息调整行为和决策过程</p>
+                                                <p class="text-sm">AI能根据新数据反馈，通过再训练或调整参数来优化其后续表现。</p>
                                             </div>
                                             <div class="bg-white dark:bg-secondary-700 p-4 rounded-lg shadow-sm">
                                                 <div class="flex items-center mb-2">
@@ -777,9 +715,9 @@
                                                         class="flex-shrink-0 h-8 w-8 flex items-center justify-center rounded-full bg-primary-100 dark:bg-primary-800 text-primary-600 dark:text-primary-300 mr-2">
                                                         <i class="fas fa-lightbulb"></i>
                                                     </span>
-                                                    <h5 class="font-medium">推理能力</h5>
+                                                    <h5 class="font-medium">判断决策</h5>
                                                 </div>
-                                                <p class="text-sm">根据掌握的知识得出结论和做出决策</p>
+                                                <p class="text-sm">基于已学习的知识和模式，对当前情况进行分析并做出相应的判断和行动。</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1121,7 +1059,7 @@
                                                     <h4
                                                         class="text-lg font-medium text-primary-700 dark:text-primary-300">
                                                         AI越来越全面！</h4>
-                                                    <p>AI不仅能说话，还能识别图片、声音，开始拥有更多元的能力，像Gemini这样的AI模型，让我们看到更多可能性。</p>
+                                                    <p>AI不仅能说话，还能识别图片、声音，开始拥有更多元的能力，像这样的多模态AI模型，让我们看到更多可能性。</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -1136,7 +1074,7 @@
                                 </h3>
                                 <div class="prose dark:prose-invert max-w-none">
                                     <p class="mb-6">
-                                        现在的AI已经不只是个会聊天的小帮手，它开始能帮我们做各种各样的工作，比如自动编程、设计简单的网页、甚至帮助处理文档和数据分析。而且，AI正在从单纯完成某个任务，变成多个智能体合作完成复杂工作，比如帮你自动查资料、写报告甚至做PPT。
+                                        现在的AI已经不只是个会聊天的小帮手，它开始能帮我们做各种各样的工作，比如自动编程、设计简单的网页、甚至帮助处理文档和数据分析。而且，AI正在从单纯完成某个任务，变成多个智能体合作完成复杂工作，比如帮你自动查资料、做PPT甚至辅助写学术论文。
                                     </p>
 
                                     <div
@@ -1401,277 +1339,191 @@
                             <div class="prose dark:prose-invert max-w-none">
                                 <p class="text-lg text-center mb-8 text-secondary-600 dark:text-secondary-300">
                                     从入门到精通，测量并提升你的AI能力水平</p>
-
-                                <div class="relative py-4">
-                                    <!-- 连接线 -->
-                                    <div
-                                        class="absolute left-[40px] top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 via-purple-400 to-red-400 rounded-full">
-                                    </div>
-
+                                
+                                <!-- 横向排列的能力级别展示 -->
+                                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 py-4 overflow-x-auto">
                                     <!-- 级别1：被动体验者 -->
-                                    <div class="mb-12 relative">
-                                        <div class="flex items-start">
-                                            <div class="flex-shrink-0 z-10">
-                                                <div
-                                                    class="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-2xl shadow-lg">
-                                                    L1</div>
-                                            </div>
-                                            <div class="ml-8 flex-1">
-                                                <div
-                                                    class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
-                                                    <h3
-                                                        class="text-xl font-bold text-blue-600 dark:text-blue-300 mb-3 flex items-center">
-                                                        被动体验者
-                                                        <span
-                                                            class="ml-3 px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded">入门阶段</span>
-                                                    </h3>
-                                                    <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-blue-500"></i>
-                                                            <span>只知道少数几个主流AI工具</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-blue-500"></i>
-                                                            <span>提问方式简单直接，缺乏提示词意识</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-blue-500"></i>
-                                                            <span>直接使用AI生成内容，不加修改</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-blue-500"></i>
-                                                            <span>将AI视为"神奇的搜索引擎"</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-blue-500"></i>
-                                                            <span>很少对AI回答进行验证和核实</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex-shrink-0 mx-auto mb-4 z-10">
+                                            <div class="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold text-2xl shadow-lg">
+                                                L1
                                             </div>
                                         </div>
-                                        <div
-                                            class="absolute left-[38px] top-24 h-8 w-8 flex items-center justify-center">
-                                            <i class="fas fa-arrow-down text-primary-500 text-xl"></i>
+                                        <div class="flex-1 bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+                                            <h3 class="text-xl font-bold text-blue-600 dark:text-blue-300 mb-3 flex flex-wrap items-center justify-center text-center">
+                                                被动体验者
+                                                <span class="mx-auto mt-2 px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 rounded">入门阶段</span>
+                                            </h3>
+                                            <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-blue-500"></i>
+                                                    <span>只知道少数几个主流AI工具</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-blue-500"></i>
+                                                    <span>提问方式简单直接，缺乏提示词意识</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-blue-500"></i>
+                                                    <span>直接使用AI生成内容，不加修改</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-blue-500"></i>
+                                                    <span>将AI视为"神奇的搜索引擎"</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-blue-500"></i>
+                                                    <span>很少对AI回答进行验证和核实</span>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
 
                                     <!-- 级别2：基础导航者 -->
-                                    <div class="mb-12 relative">
-                                        <div class="flex items-start">
-                                            <div class="flex-shrink-0 z-10">
-                                                <div
-                                                    class="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold text-2xl shadow-lg">
-                                                    L2</div>
-                                            </div>
-                                            <div class="ml-8 flex-1">
-                                                <div
-                                                    class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
-                                                    <h3
-                                                        class="text-xl font-bold text-green-600 dark:text-green-300 mb-3 flex items-center">
-                                                        基础导航者
-                                                        <span
-                                                            class="ml-3 px-2 py-1 text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 rounded">基础应用</span>
-                                                    </h3>
-                                                    <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-green-500"></i>
-                                                            <span>熟悉多个AI平台的基本功能和界面</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-green-500"></i>
-                                                            <span>知道提问需要具体、清晰</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-green-500"></i>
-                                                            <span>会比较不同模型的回答质量</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-green-500"></i>
-                                                            <span>能通过追问和修改提示进行迭代</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-green-500"></i>
-                                                            <span>了解AI的基本能力边界和局限性</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex-shrink-0 mx-auto mb-4 z-10">
+                                            <div class="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white font-bold text-2xl shadow-lg">
+                                                L2
                                             </div>
                                         </div>
-                                        <div
-                                            class="absolute left-[38px] top-24 h-8 w-8 flex items-center justify-center">
-                                            <i class="fas fa-arrow-down text-primary-500 text-xl"></i>
+                                        <div class="flex-1 bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+                                            <h3 class="text-xl font-bold text-green-600 dark:text-green-300 mb-3 flex flex-wrap items-center justify-center text-center">
+                                                基础导航者
+                                                <span class="mx-auto mt-2 px-2 py-1 text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 rounded">基础应用</span>
+                                            </h3>
+                                            <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-green-500"></i>
+                                                    <span>熟悉多个AI平台的基本功能和界面</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-green-500"></i>
+                                                    <span>知道提问需要具体、清晰</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-green-500"></i>
+                                                    <span>会比较不同模型的回答质量</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-green-500"></i>
+                                                    <span>能通过追问和修改提示进行迭代</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-green-500"></i>
+                                                    <span>了解AI的基本能力边界和局限性</span>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
 
                                     <!-- 级别3：多模态整合者 -->
-                                    <div class="mb-12 relative">
-                                        <div class="flex items-start">
-                                            <div class="flex-shrink-0 z-10">
-                                                <div
-                                                    class="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 text-white font-bold text-2xl shadow-lg">
-                                                    L3</div>
-                                            </div>
-                                            <div class="ml-8 flex-1">
-                                                <div
-                                                    class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
-                                                    <h3
-                                                        class="text-xl font-bold text-purple-600 dark:text-purple-300 mb-3 flex items-center">
-                                                        多模态整合者
-                                                        <span
-                                                            class="ml-3 px-2 py-1 text-xs font-medium bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 rounded">进阶应用</span>
-                                                    </h3>
-                                                    <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-purple-500"></i>
-                                                            <span>熟练使用多种形式的AI工具</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-purple-500"></i>
-                                                            <span>将AI融入日常工作流程，提高效率</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-purple-500"></i>
-                                                            <span>有较成熟的提示词方法论</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-purple-500"></i>
-                                                            <span>关注AI新工具和技术发展</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-purple-500"></i>
-                                                            <span>能组合使用多种AI工具完成任务</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex-shrink-0 mx-auto mb-4 z-10">
+                                            <div class="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-purple-500 to-purple-600 text-white font-bold text-2xl shadow-lg">
+                                                L3
                                             </div>
                                         </div>
-                                        <div
-                                            class="absolute left-[38px] top-24 h-8 w-8 flex items-center justify-center">
-                                            <i class="fas fa-arrow-down text-primary-500 text-xl"></i>
+                                        <div class="flex-1 bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+                                            <h3 class="text-xl font-bold text-purple-600 dark:text-purple-300 mb-3 flex flex-wrap items-center justify-center text-center">
+                                                多模态整合者
+                                                <span class="mx-auto mt-2 px-2 py-1 text-xs font-medium bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-300 rounded">进阶应用</span>
+                                            </h3>
+                                            <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-purple-500"></i>
+                                                    <span>熟练使用多种形式的AI工具</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-purple-500"></i>
+                                                    <span>将AI融入日常工作流程，提高效率</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-purple-500"></i>
+                                                    <span>有较成熟的提示词方法论</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-purple-500"></i>
+                                                    <span>关注AI新工具和技术发展</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-purple-500"></i>
+                                                    <span>能组合使用多种AI工具完成任务</span>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
 
                                     <!-- 级别4：创新编排者 -->
-                                    <div class="mb-12 relative">
-                                        <div class="flex items-start">
-                                            <div class="flex-shrink-0 z-10">
-                                                <div
-                                                    class="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold text-2xl shadow-lg">
-                                                    L4</div>
-                                            </div>
-                                            <div class="ml-8 flex-1">
-                                                <div
-                                                    class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
-                                                    <h3
-                                                        class="text-xl font-bold text-orange-600 dark:text-orange-300 mb-3 flex items-center">
-                                                        创新编排者
-                                                        <span
-                                                            class="ml-3 px-2 py-1 text-xs font-medium bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-300 rounded">专业应用</span>
-                                                    </h3>
-                                                    <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-orange-500"></i>
-                                                            <span>创造性组合多种AI工具解决复杂问题</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-orange-500"></i>
-                                                            <span>积极跟踪AI前沿工具和应用趋势</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-orange-500"></i>
-                                                            <span>使用无代码/低代码平台构建工作流</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-orange-500"></i>
-                                                            <span>能设计AI系统解决方案</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-orange-500"></i>
-                                                            <span>理解工作流逻辑和系统设计思维</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex-shrink-0 mx-auto mb-4 z-10">
+                                            <div class="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold text-2xl shadow-lg">
+                                                L4
                                             </div>
                                         </div>
-                                        <div
-                                            class="absolute left-[38px] top-24 h-8 w-8 flex items-center justify-center">
-                                            <i class="fas fa-arrow-down text-primary-500 text-xl"></i>
+                                        <div class="flex-1 bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+                                            <h3 class="text-xl font-bold text-orange-600 dark:text-orange-300 mb-3 flex flex-wrap items-center justify-center text-center">
+                                                创新编排者
+                                                <span class="mx-auto mt-2 px-2 py-1 text-xs font-medium bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-300 rounded">专业应用</span>
+                                            </h3>
+                                            <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-orange-500"></i>
+                                                    <span>创造性组合多种AI工具解决复杂问题</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-orange-500"></i>
+                                                    <span>积极跟踪AI前沿工具和应用趋势</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-orange-500"></i>
+                                                    <span>使用无代码/低代码平台构建工作流</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-orange-500"></i>
+                                                    <span>能设计AI系统解决方案</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-orange-500"></i>
+                                                    <span>理解工作流逻辑和系统设计思维</span>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
 
                                     <!-- 级别5：定制缔造者 -->
-                                    <div class="relative">
-                                        <div class="flex items-start">
-                                            <div class="flex-shrink-0 z-10">
-                                                <div
-                                                    class="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-red-500 to-red-600 text-white font-bold text-2xl shadow-lg">
-                                                    L5</div>
-                                            </div>
-                                            <div class="ml-8 flex-1">
-                                                <div
-                                                    class="bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
-                                                    <h3
-                                                        class="text-xl font-bold text-red-600 dark:text-red-300 mb-3 flex items-center">
-                                                        定制缔造者
-                                                        <span
-                                                            class="ml-3 px-2 py-1 text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-300 rounded">专家级应用</span>
-                                                    </h3>
-                                                    <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-red-500"></i>
-                                                            <span>针对特定需求定制AI解决方案</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-red-500"></i>
-                                                            <span>深入理解AI应用原理和创新策略</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-red-500"></i>
-                                                            <span>创造全新的AI应用模式</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-red-500"></i>
-                                                            <span>评估和管理AI项目的技术风险</span>
-                                                        </li>
-                                                        <li class="flex items-start">
-                                                            <i
-                                                                class="fas fa-circle text-[6px] mt-2 mr-2 text-red-500"></i>
-                                                            <span>将AI深度融入业务或创作生态</span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                    <div class="flex flex-col">
+                                        <div class="flex-shrink-0 mx-auto mb-4 z-10">
+                                            <div class="flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r from-red-500 to-red-600 text-white font-bold text-2xl shadow-lg">
+                                                L5
                                             </div>
                                         </div>
-                                        <div class="absolute left-10 -bottom-3 transform -translate-x-1/2">
-                                            <div
-                                                class="flex items-center justify-center w-8 h-8 rounded-full bg-gradient-to-r from-primary-400 to-primary-600 text-white">
-                                                <i class="fas fa-flag-checkered"></i>
-                                            </div>
+                                        <div class="flex-1 bg-white dark:bg-secondary-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-all">
+                                            <h3 class="text-xl font-bold text-red-600 dark:text-red-300 mb-3 flex flex-wrap items-center justify-center text-center">
+                                                定制缔造者
+                                                <span class="mx-auto mt-2 px-2 py-1 text-xs font-medium bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-300 rounded">专家级应用</span>
+                                            </h3>
+                                            <ul class="space-y-2 text-secondary-700 dark:text-secondary-300">
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-red-500"></i>
+                                                    <span>针对特定需求定制AI解决方案</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-red-500"></i>
+                                                    <span>深入理解AI应用原理和创新策略</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-red-500"></i>
+                                                    <span>创造全新的AI应用模式</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-red-500"></i>
+                                                    <span>评估和管理AI项目的技术风险</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-circle text-[6px] mt-2 mr-2 text-red-500"></i>
+                                                    <span>将AI深度融入业务或创作生态</span>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -1679,7 +1531,7 @@
                                 <div
                                     class="mt-12 bg-gradient-to-r from-primary-50 to-blue-50 dark:from-primary-900/30 dark:to-blue-900/30 p-5 rounded-lg text-center">
                                     <p class="font-medium">您现在处于哪个级别？如何提升到下一级？</p>
-                                    <a href="#"
+                                    <a href="ai-skill-assessment.html"
                                         class="inline-flex items-center mt-3 px-5 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all">
                                         <i class="fas fa-chart-line mr-2"></i>测试我的AI能力水平
                                     </a>
@@ -1889,7 +1741,7 @@
                             <div
                                 class="text-center p-6 bg-gradient-to-r from-primary-50 to-blue-50 dark:from-primary-900/30 dark:to-blue-900/30 rounded-lg">
                                 <p class="text-lg mb-4 font-medium">别只是阅读，行动起来！从今天开始，每天用AI解决一个实际问题</p>
-                                <a href="#"
+                                <a href="ai-scenarios-week1.html"
                                     class="inline-flex items-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg shadow-md hover:shadow-lg transition-all transform hover:-translate-y-1">
                                     <i class="fas fa-play-circle mr-2"></i>
                                     开始我的AI应用之旅
@@ -1897,180 +1749,36 @@
                             </div>
                         </section>
 
-                        <!-- AI应用场景知识 部分 -->
-                        <section class="space-y-8">
-                            <h2
-                                class="text-2xl font-bold text-secondary-800 dark:text-white pb-2 border-b-2 border-primary-200 dark:border-primary-800">
-                                AI应用场景知识
-                            </h2>
-
-                            <!-- 模块1 Week1 -->
-                            <section class="space-y-6">
-                                <h3
-                                    class="text-xl font-semibold text-primary-600 dark:text-primary-400 pl-4 border-l-4 border-primary-400">
-                                    模块1 (Week1)
-                                </h3>
-
-                                <!-- 场景1 -->
-                                <section id="week1-scene1"
-                                    class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
-                                    <h4 class="text-lg font-medium mb-3 text-primary-600 dark:text-primary-400">
-                                        场景1
-                                    </h4>
-                                    <div class="prose dark:prose-invert">
-                                        <p class="text-secondary-500 dark:text-secondary-400 italic">
-                                            内容待添加...
-                                        </p>
-                                    </div>
-                                </section>
-
-                                <!-- 场景2 -->
-                                <section id="week1-scene2"
-                                    class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
-                                    <h4 class="text-lg font-medium mb-3 text-primary-600 dark:text-primary-400">
-                                        场景2
-                                    </h4>
-                                    <div class="prose dark:prose-invert">
-                                        <p class="text-secondary-500 dark:text-secondary-400 italic">
-                                            内容待添加...
-                                        </p>
-                                    </div>
-                                </section>
-
-                                <!-- 场景3 -->
-                                <section id="week1-scene3"
-                                    class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
-                                    <h4 class="text-lg font-medium mb-3 text-primary-600 dark:text-primary-400">
-                                        场景3
-                                    </h4>
-                                    <div class="prose dark:prose-invert">
-                                        <p class="text-secondary-500 dark:text-secondary-400 italic">
-                                            内容待添加...
-                                        </p>
-                                    </div>
-                                </section>
-
-                                <!-- 场景4 -->
-                                <section id="week1-scene4"
-                                    class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
-                                    <h4 class="text-lg font-medium mb-3 text-primary-600 dark:text-primary-400">
-                                        场景4
-                                    </h4>
-                                    <div class="prose dark:prose-invert">
-                                        <p class="text-secondary-500 dark:text-secondary-400 italic">
-                                            内容待添加...
-                                        </p>
-                                    </div>
-                                </section>
-
-                                <!-- 场景5 -->
-                                <section id="week1-scene5"
-                                    class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
-                                    <h4 class="text-lg font-medium mb-3 text-primary-600 dark:text-primary-400">
-                                        场景5
-                                    </h4>
-                                    <div class="prose dark:prose-invert">
-                                        <p class="text-secondary-500 dark:text-secondary-400 italic">
-                                            内容待添加...
-                                        </p>
-                                    </div>
-                                </section>
-
-                                <!-- 场景练习 -->
-                                <section id="week1-practice"
-                                    class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
-                                    <h4 class="text-lg font-medium mb-3 text-primary-600 dark:text-primary-400">
-                                        场景练习
-                                    </h4>
-                                    <div class="prose dark:prose-invert">
-                                        <p class="text-secondary-500 dark:text-secondary-400 italic">
-                                            内容待添加...
-                                        </p>
-                                    </div>
-                                </section>
-                            </section>
-
-                            <!-- 模块2 Week2 -->
-                            <section class="space-y-6">
-                                <h3
-                                    class="text-xl font-semibold text-primary-600 dark:text-primary-400 pl-4 border-l-4 border-primary-400">
-                                    模块2 (Week2)
-                                </h3>
-
-                                <!-- 场景1 -->
-                                <section id="week2-scene1"
-                                    class="knowledge-card p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm">
-                                    <h4 class="text-lg font-medium mb-3 text-primary-600 dark:text-primary-400">
-                                        场景1
-                                    </h4>
-                                    <div class="prose dark:prose-invert">
-                                        <p class="text-secondary-500 dark:text-secondary-400 italic">
-                                            内容待添加...
-                                        </p>
-                                    </div>
-                                </section>
-
-                                <!-- 更多的场景将按照类似的模式添加 -->
-                                <div class="p-6 bg-primary-50 dark:bg-primary-900/20 rounded-lg text-center">
-                                    <p class="text-secondary-600 dark:text-secondary-300">
-                                        更多场景内容将按需添加...
-                                    </p>
-                                </div>
-                            </section>
-
-                            <!-- 模块3-5 占位符 -->
-                            <div class="p-6 bg-primary-50 dark:bg-primary-900/20 rounded-lg text-center">
-                                <p class="text-secondary-600 dark:text-secondary-300">
-                                    模块3至模块5的内容将按照相同结构添加，每个模块包含5个场景和场景练习...
-                                </p>
-                            </div>
-                        </section>
+                      
 
                         <!-- 行动呼吁 -->
-                        <div
-                            class="p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-sm border border-primary-200 dark:border-primary-800">
-                            <div class="text-center">
-                                <h3 class="text-xl font-semibold mb-4 text-primary-600 dark:text-primary-400">
-                                    准备好踏上AI学习之旅了吗？
-                                </h3>
-                                <p class="mb-6 text-secondary-600 dark:text-secondary-300">
-                                    每天30分钟，培养AI思维，掌握实用技能
-                                </p>
-                                <button
-                                    class="px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-all shadow-md hover:shadow-lg">
-                                    立即加入训练营
-                                </button>
-                            </div>
-                        </div>
+                        
                 </div>
             </div>
         </main>
     </div>
 
     <!-- 返回顶部按钮 -->
-    <button id="backToTop"
-        class="fixed bottom-8 right-8 p-3 bg-primary-600 text-white rounded-full shadow-lg opacity-0 transition-opacity duration-300 hover:bg-primary-700">
+    <button id="back-to-top"
+        class="back-to-top fixed bottom-4 right-4 p-2 rounded-full bg-primary-600 text-white opacity-0 pointer-events-none shadow-lg z-50">
         <i class="fas fa-arrow-up"></i>
     </button>
 
     <!-- JavaScript -->
     <script>
-        // 页面加载完成后初始化所有功能
+        // 原有的网站功能脚本
         document.addEventListener('DOMContentLoaded', function () {
-            // 暗黑模式切换
+            // 初始化暗黑模式
             initDarkMode();
 
-            // 导航菜单折叠/展开
-            initNavMenuToggle();
-
-            // 目录高亮
-            initTocHighlight();
+            // 初始化侧边栏导航
+            initSidebarNav();
 
             // 返回顶部按钮
-            initBackToTopButton();
+            initBackToTop();
         });
 
-        // 初始化暗黑模式
+        // 初始化暗黑模式功能
         function initDarkMode() {
             const darkModeToggle = document.getElementById('darkModeToggle');
             const html = document.documentElement;
@@ -2088,137 +1796,186 @@
             });
         }
 
-        // 初始化导航菜单折叠/展开
-        function initNavMenuToggle() {
+        // 初始化侧边栏导航
+        function initSidebarNav() {
             const navGroups = document.querySelectorAll('.nav-group');
 
             navGroups.forEach(group => {
                 const toggle = group.querySelector('.nav-group-toggle');
-
-                // 设置初始展开状态
-                if (group.classList.contains('expanded')) {
-                    const content = group.querySelector('.nav-group-content');
-                    if (content) {
-                        content.style.maxHeight = 'none';
-                    }
-                }
-
                 if (toggle) {
                     toggle.addEventListener('click', () => {
                         group.classList.toggle('expanded');
-
-                        // 处理子导航组
-                        const subGroups = group.querySelectorAll('.nav-group');
-                        if (group.classList.contains('expanded')) {
-                            subGroups.forEach(subGroup => {
-                                if (subGroup.classList.contains('expanded')) {
-                                    const subContent = subGroup.querySelector('.nav-group-content');
-                                    if (subContent) subContent.style.maxHeight = 'none';
-                                }
-                            });
+                        const icon = toggle.querySelector('.nav-group-icon');
+                        if (icon) {
+                            icon.classList.toggle('rotate-90');
                         }
                     });
                 }
             });
-        }
 
-        // 初始化目录高亮
-        function initTocHighlight() {
-            const tocLinks = document.querySelectorAll('.toc-link');
-            const sections = document.querySelectorAll('section[id]');
+            // 默认展开第一组
+            if (navGroups.length > 0) {
+                navGroups[0].classList.add('expanded');
+            }
 
-            // 为所有目录链接添加平滑滚动
-            tocLinks.forEach(link => {
-                link.addEventListener('click', function (e) {
-                    e.preventDefault();
+            // 添加滚动激活状态
+            const links = document.querySelectorAll('.toc-link');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                links.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        const section = document.querySelector(href);
+                        if (section) {
+                            const sectionTop = section.offsetTop;
+                            const sectionHeight = section.clientHeight;
+                            if (pageYOffset >= sectionTop - 100 && pageYOffset < sectionTop + sectionHeight - 100) {
+                                current = href;
+                            }
+                        }
+                    }
+                });
 
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-
-                    if (targetElement) {
-                        // 计算位置，考虑固定导航栏
-                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                        const offsetPosition = targetPosition - 80; // 导航栏高度
-
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-
-                        // 更新URL
-                        history.pushState(null, null, targetId);
+                links.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === current) {
+                        link.classList.add('active');
                     }
                 });
             });
-
-            function highlightToc() {
-                let scrollY = window.pageYOffset;
-
-                sections.forEach(section => {
-                    const sectionHeight = section.offsetHeight;
-                    const sectionTop = section.offsetTop - 100;
-                    const sectionId = section.getAttribute('id');
-
-                    if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                        const link = document.querySelector(`.toc-link[href="#${sectionId}"]`);
-                        if (link) {
-                            link.classList.add('active');
-
-                            // 展开当前活动链接所在的导航组
-                            let parent = link.closest('.nav-group-content');
-                            while (parent) {
-                                const group = parent.closest('.nav-group');
-                                if (group) {
-                                    group.classList.add('expanded');
-                                    parent = group.parentElement.closest('.nav-group-content');
-                                } else {
-                                    break;
-                                }
-                            }
-                        }
-                    } else {
-                        const link = document.querySelector(`.toc-link[href="#${sectionId}"]`);
-                        if (link) link.classList.remove('active');
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', highlightToc);
-
-            // 初始执行一次以处理页面加载时的位置
-            highlightToc();
         }
 
         // 初始化返回顶部按钮
-        function initBackToTopButton() {
-            const backToTopButton = document.getElementById('backToTop');
+        function initBackToTop() {
+            const backToTopButton = document.getElementById('back-to-top');
 
             function toggleBackToTopButton() {
                 if (window.pageYOffset > 300) {
-                    backToTopButton.classList.remove('opacity-0');
                     backToTopButton.classList.add('opacity-100');
+                    backToTopButton.classList.remove('opacity-0', 'pointer-events-none');
                 } else {
                     backToTopButton.classList.remove('opacity-100');
-                    backToTopButton.classList.add('opacity-0');
+                    backToTopButton.classList.add('opacity-0', 'pointer-events-none');
                 }
             }
 
             window.addEventListener('scroll', toggleBackToTopButton);
 
-            backToTopButton.addEventListener('click', function () {
+            backToTopButton.addEventListener('click', () => {
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
                 });
             });
-
-            // 初始执行一次以处理页面加载时的位置
-            toggleBackToTopButton();
         }
     </script>
+    
+    <!-- Swiper.js 和 Preline UI JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.min.js"></script>
 
-    <!-- Preline UI JS -->
-    <script src="https://cdn.jsdelivr.net/npm/preline/dist/preline.js"></script>
+    <!-- 密码保护脚本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 密码配置 - 管理员可以修改这两项来更新密码
+            const CURRENT_PASSWORD = "ai202444"; // 当前密码
+            const PASSWORD_VERSION = "3"; // 密码版本号，更改此值将使所有已保存的密码失效
+            
+            const passwordOverlay = document.getElementById('passwordOverlay');
+            const passwordForm = document.getElementById('passwordForm');
+            const passwordInput = document.getElementById('passwordInput');
+            const passwordError = document.getElementById('passwordError');
+            
+            // 检查是否已经通过密码验证
+            function checkAuthentication() {
+                const savedAuth = localStorage.getItem('ai_auth');
+                const savedVersion = localStorage.getItem('ai_auth_version');
+                
+                // 如果有保存的认证，且版本号匹配当前密码版本
+                if (savedAuth === 'true' && savedVersion === PASSWORD_VERSION) {
+                    hidePasswordOverlay();
+                }
+            }
+            
+            // 隐藏密码保护层
+            function hidePasswordOverlay() {
+                passwordOverlay.classList.add('hide');
+                setTimeout(() => {
+                    passwordOverlay.style.display = 'none';
+                }, 500);
+            }
+            
+            // 显示密码保护层
+            function showPasswordOverlay() {
+                passwordOverlay.style.display = 'flex';
+                setTimeout(() => {
+                    passwordOverlay.classList.remove('hide');
+                }, 10);
+            }
+            
+            // 校验密码
+            window.checkPassword = function(event) {
+                event.preventDefault();
+                
+                const password = passwordInput.value.trim();
+                
+                if (password === CURRENT_PASSWORD) {
+                    // 密码正确，保存认证状态和当前密码版本
+                    localStorage.setItem('ai_auth', 'true');
+                    localStorage.setItem('ai_auth_version', PASSWORD_VERSION);
+                    hidePasswordOverlay();
+                } else {
+                    // 密码错误，显示错误信息
+                    passwordError.style.display = 'block';
+                    passwordInput.classList.add('shake');
+                    
+                    // 移除抖动动画
+                    setTimeout(() => {
+                        passwordInput.classList.remove('shake');
+                    }, 500);
+                    
+                    // 清空输入框
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+                
+                return false;
+            };
+            
+            // 添加管理员重置功能
+            window.resetAuthentication = function() {
+                localStorage.removeItem('ai_auth');
+                localStorage.removeItem('ai_auth_version');
+                showPasswordOverlay();
+            };
+            
+            // 初始化密码检查
+            checkAuthentication();
+            
+            // 支持按下回车键提交
+            passwordInput.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    passwordForm.dispatchEvent(new Event('submit'));
+                }
+            });
+            
+            // 监听暗黑模式切换，确保密码框样式正确
+            const html = document.documentElement;
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            
+            darkModeToggle.addEventListener('click', function() {
+                if (passwordOverlay.style.display !== 'none') {
+                    // 如果密码框可见，同步更新样式
+                    if (html.classList.contains('dark')) {
+                        passwordOverlay.classList.add('dark');
+                    } else {
+                        passwordOverlay.classList.remove('dark');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

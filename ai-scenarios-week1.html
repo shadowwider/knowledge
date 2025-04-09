@@ -257,9 +257,139 @@
             text-align: center;
         }
     </style>
+    
+    <!-- 密码保护层样式 -->
+    <style>
+        #passwordOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.5s ease;
+        }
+        
+        #passwordOverlay.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .password-container {
+            width: 90%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .dark .password-container {
+            background: rgba(30, 41, 59, 0.9);
+            color: white;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #ddd6fe;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .password-input:focus {
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+        }
+        
+        .dark .password-input {
+            background: rgba(30, 27, 41, 0.8);
+            border-color: #4c1d95;
+            color: white;
+        }
+        
+        .submit-button {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: #7c3aed;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-button:hover {
+            background: #6d28d9;
+            transform: translateY(-2px);
+        }
+        
+        /* 密码错误提示 */
+        .password-error {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+        
+        /* 密码输入框抖动动画 */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen">
+    <!-- 密码保护层 -->
+    <div id="passwordOverlay">
+        <div class="password-container">
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-100 dark:bg-primary-900 text-primary-600 dark:text-primary-400 mb-4">
+                    <i class="fas fa-lock text-2xl"></i>
+                </div>
+                <h2 class="text-xl font-bold text-secondary-800 dark:text-white">AI实战场景 - 第1周</h2>
+                <p class="text-sm text-secondary-600 dark:text-secondary-300 mt-2">此内容受密码保护</p>
+            </div>
+            <form id="passwordForm" onsubmit="return checkPassword(event)">
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">请输入访问密码：</label>
+                    <input type="password" id="passwordInput" class="password-input" placeholder="输入密码" required>
+                    <div id="passwordError" class="password-error">密码错误，请重试</div>
+                </div>
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-unlock-alt mr-2"></i>解锁内容
+                </button>
+                <div class="text-center mt-4 text-xs text-gray-500 dark:text-gray-400">
+                    <p>如需获取访问密码，请联系管理员</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- 右侧固定导航 -->
     <div class="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-3">
         <a href="#ai-dialogue" class="group w-10 h-10 bg-primary-700/80 hover:bg-primary-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300" data-tooltip="AI对话">
@@ -333,45 +463,138 @@
 
         <!-- 场景导航 -->
         <div class="mb-10">
-            <!-- 第一行：知识点 -->
-            <div class="flex flex-wrap justify-center gap-3 mb-4">
-                <h3 class="w-full text-center text-lg font-semibold text-primary-600 dark:text-primary-400 mb-3">知识点</h3>
-                <a href="#ai-dialogue" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
-                    <i class="fas fa-comments mr-1"></i>AI对话
-                </a>
-                <a href="#critical-thinking" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
-                    <i class="fas fa-brain mr-1"></i>批判性思维
-                </a>
-                <a href="#multi-tool" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
-                    <i class="fas fa-tools mr-1"></i>多工具对比
-                </a>
-                <a href="#task-breakdown" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
-                    <i class="fas fa-project-diagram mr-1"></i>任务拆解
-                </a>
-                <a href="#ppt-creation" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
-                    <i class="fas fa-file-powerpoint mr-1"></i>PPT制作
-                </a>
-                <a href="#ai-reading" class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-full text-sm font-medium transition-colors">
-                    <i class="fas fa-book-reader mr-1"></i>AI辅助阅读
-                </a>
+            <h2 class="text-2xl font-bold text-center text-primary-600 dark:text-primary-400 mb-6">第1周学习路线</h2>
+            
+            <!-- 四个任务日卡片 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 第一天任务卡片 -->
+                <div class="bg-gradient-to-br from-purple-50 to-indigo-100 dark:from-purple-900/30 dark:to-indigo-900/30 p-5 rounded-xl border border-purple-200 dark:border-purple-800 shadow-md hover:shadow-lg transition-all">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center text-lg font-bold">1</div>
+                        <h3 class="ml-3 text-lg font-bold text-purple-700 dark:text-purple-400">第一天</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <a href="#ai-dialogue" class="flex items-center p-2 rounded-lg hover:bg-white/60 dark:hover:bg-gray-800/40 transition-colors">
+                            <div class="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center text-sm font-bold mr-2">1</div>
+                            <span class="text-purple-800 dark:text-purple-300">
+                                <i class="fas fa-comments mr-2"></i>AI对话
+                                <span class="text-xs ml-2 bg-purple-200 dark:bg-purple-800/60 text-purple-800 dark:text-purple-300 px-2 py-0.5 rounded-full">知识点</span>
+                            </span>
+                        </a>
+                        <a href="#critical-thinking" class="flex items-center p-2 rounded-lg hover:bg-white/60 dark:hover:bg-gray-800/40 transition-colors">
+                            <div class="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center text-sm font-bold mr-2">2</div>
+                            <span class="text-purple-800 dark:text-purple-300">
+                                <i class="fas fa-brain mr-2"></i>批判性思维
+                                <span class="text-xs ml-2 bg-purple-200 dark:bg-purple-800/60 text-purple-800 dark:text-purple-300 px-2 py-0.5 rounded-full">知识点</span>
+                            </span>
+                        </a>
+                        <a href="#monday-task" class="flex items-center p-2 rounded-lg hover:bg-white/60 dark:hover:bg-gray-800/40 transition-colors">
+                            <div class="w-8 h-8 rounded-full bg-purple-500 text-white flex items-center justify-center text-sm font-bold mr-2">3</div>
+                            <span class="text-purple-800 dark:text-purple-300">
+                                <i class="fas fa-calendar-day mr-2"></i>周一任务
+                                <span class="text-xs ml-2 bg-purple-700 dark:bg-purple-600 text-white px-2 py-0.5 rounded-full">任务</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 第二天任务卡片 -->
+                <div class="bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-blue-900/30 dark:to-cyan-900/30 p-5 rounded-xl border border-blue-200 dark:border-blue-800 shadow-md hover:shadow-lg transition-all">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-lg font-bold">2</div>
+                        <h3 class="ml-3 text-lg font-bold text-blue-700 dark:text-blue-400">第二天</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <a href="#multi-tool" class="flex items-center p-2 rounded-lg hover:bg-white/60 dark:hover:bg-gray-800/40 transition-colors">
+                            <div class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center text-sm font-bold mr-2">4</div>
+                            <span class="text-blue-800 dark:text-blue-300">
+                                <i class="fas fa-tools mr-2"></i>多工具对比
+                                <span class="text-xs ml-2 bg-blue-200 dark:bg-blue-800/60 text-blue-800 dark:text-blue-300 px-2 py-0.5 rounded-full">知识点</span>
+                            </span>
+                        </a>
+                        <a href="#task-breakdown" class="flex items-center p-2 rounded-lg hover:bg-white/60 dark:hover:bg-gray-800/40 transition-colors">
+                            <div class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center text-sm font-bold mr-2">5</div>
+                            <span class="text-blue-800 dark:text-blue-300">
+                                <i class="fas fa-project-diagram mr-2"></i>任务拆解
+                                <span class="text-xs ml-2 bg-blue-200 dark:bg-blue-800/60 text-blue-800 dark:text-blue-300 px-2 py-0.5 rounded-full">知识点</span>
+                            </span>
+                        </a>
+                        <a href="#ppt-creation" class="flex items-center p-2 rounded-lg hover:bg-white/60 dark:hover:bg-gray-800/40 transition-colors">
+                            <div class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center text-sm font-bold mr-2">6</div>
+                            <span class="text-blue-800 dark:text-blue-300">
+                                <i class="fas fa-file-powerpoint mr-2"></i>PPT制作
+                                <span class="text-xs ml-2 bg-blue-200 dark:bg-blue-800/60 text-blue-800 dark:text-blue-300 px-2 py-0.5 rounded-full">知识点</span>
+                            </span>
+                        </a>
+                        <a href="#tuesday-task" class="flex items-center p-2 rounded-lg hover:bg-white/60 dark:hover:bg-gray-800/40 transition-colors">
+                            <div class="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center text-sm font-bold mr-2">7</div>
+                            <span class="text-blue-800 dark:text-blue-300">
+                                <i class="fas fa-calendar-day mr-2"></i>周二任务
+                                <span class="text-xs ml-2 bg-blue-700 dark:bg-blue-600 text-white px-2 py-0.5 rounded-full">任务</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 第三天任务卡片 -->
+                <div class="bg-gradient-to-br from-green-50 to-teal-100 dark:from-green-900/30 dark:to-teal-900/30 p-5 rounded-xl border border-green-200 dark:border-green-800 shadow-md hover:shadow-lg transition-all">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-green-600 text-white flex items-center justify-center text-lg font-bold">3</div>
+                        <h3 class="ml-3 text-lg font-bold text-green-700 dark:text-green-400">第三天</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <a href="#ai-reading" class="flex items-center p-2 rounded-lg hover:bg-white/60 dark:hover:bg-gray-800/40 transition-colors">
+                            <div class="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center text-sm font-bold mr-2">8</div>
+                            <span class="text-green-800 dark:text-green-300">
+                                <i class="fas fa-book-reader mr-2"></i>AI辅助阅读
+                                <span class="text-xs ml-2 bg-green-200 dark:bg-green-800/60 text-green-800 dark:text-green-300 px-2 py-0.5 rounded-full">知识点</span>
+                            </span>
+                        </a>
+                        <a href="#wednesday-task" class="flex items-center p-2 rounded-lg hover:bg-white/60 dark:hover:bg-gray-800/40 transition-colors">
+                            <div class="w-8 h-8 rounded-full bg-green-500 text-white flex items-center justify-center text-sm font-bold mr-2">9</div>
+                            <span class="text-green-800 dark:text-green-300">
+                                <i class="fas fa-calendar-day mr-2"></i>周三任务
+                                <span class="text-xs ml-2 bg-green-700 dark:bg-green-600 text-white px-2 py-0.5 rounded-full">任务</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 周末挑战任务卡片 -->
+                <div class="bg-gradient-to-br from-amber-50 to-yellow-100 dark:from-amber-900/30 dark:to-yellow-900/30 p-5 rounded-xl border border-amber-200 dark:border-amber-800 shadow-md hover:shadow-lg transition-all relative overflow-hidden">
+                    <div class="absolute -right-5 -top-5 w-20 h-20 bg-yellow-500 rotate-12 flex items-end justify-center pb-1 text-white text-xs font-bold">
+                        挑战
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-amber-600 text-white flex items-center justify-center text-lg font-bold">4</div>
+                        <h3 class="ml-3 text-lg font-bold text-amber-700 dark:text-amber-400">周末任务</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <a href="#scene-practice" class="flex items-center p-2 rounded-lg bg-gradient-to-r from-amber-100 to-yellow-200 dark:from-amber-800/50 dark:to-yellow-800/50 hover:from-amber-200 hover:to-yellow-300 dark:hover:from-amber-700/70 dark:hover:to-yellow-700/70 transition-all shadow-sm">
+                            <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold mr-2 animate-pulse">10</div>
+                            <span class="text-amber-800 dark:text-amber-300 font-medium">
+                                <i class="fas fa-tasks mr-2"></i>场景挑战任务
+                                <span class="text-xs ml-2 bg-amber-700 dark:bg-amber-600 text-white px-2 py-0.5 rounded-full">挑战</span>
+                            </span>
+                        </a>
+                        <div class="p-2 text-amber-700 dark:text-amber-300 text-sm">
+                            <p><i class="fas fa-star mr-1"></i> 整合本周所学知识</p>
+                            <p><i class="fas fa-star mr-1"></i> 完成实战练习</p>
+                            <p><i class="fas fa-star mr-1"></i> 提升AI应用能力</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <!-- 第二行：每日任务 -->
-            <div class="flex flex-wrap justify-center gap-3">
-                <h3 class="w-full text-center text-lg font-semibold text-amber-500 mb-3">每日任务</h3>
-                <a href="#monday-task" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full text-sm font-medium transition-colors">
-                    <i class="fas fa-calendar-day mr-1"></i>周一任务
-                </a>
-                <a href="#tuesday-task" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full text-sm font-medium transition-colors">
-                    <i class="fas fa-calendar-day mr-1"></i>周二任务
-                </a>
-                <a href="#wednesday-task" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-full text-sm font-medium transition-colors">
-                    <i class="fas fa-calendar-day mr-1"></i>周三任务
-                </a>
-               
-                <a href="#scene-practice" class="px-4 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white rounded-full text-sm font-medium transition-colors animate-pulse">
-                    <i class="fas fa-tasks mr-1"></i>周末场景挑战任务
-                </a>
+            <!-- 进度指示器 -->
+            <div class="mt-8 mb-4">
+                <div class="flex justify-between mb-2">
+                    <span class="text-sm font-medium text-gray-600 dark:text-gray-400">学习进度</span>
+                    <span class="text-sm font-medium text-primary-600 dark:text-primary-400" id="week1-progress-text">已完成 0/10 任务</span>
+                </div>
+                <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div id="week1-progress-bar" class="h-full bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full" style="width: 0%;"></div>
+                </div>
             </div>
         </div>
         
@@ -454,8 +677,8 @@
             right: 0;
             background: rgba(0,0,0,0.6);
             color: white;
-            padding: 5px;
-            font-size: 12px;
+            font-size: 0.75rem;
+            padding: 0.25rem;
             text-align: center;
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -464,6 +687,63 @@
         .image-gallery .swiper-slide:hover::after {
             opacity: 1;
         }
+        
+        /* 自定义复选框样式 */
+        .task-checkbox {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border: 2px solid currentColor;
+            border-radius: 4px;
+            margin-right: 8px;
+            cursor: pointer;
+            position: relative;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+        
+        .task-checkbox .check-icon {
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.2s ease;
+            color: white;
+            font-size: 12px;
+        }
+        
+        .task-completed .task-checkbox {
+            background-color: var(--completed-color, #4CAF50);
+            border-color: var(--completed-color, #4CAF50);
+        }
+        
+        .task-completed .task-checkbox .check-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        /* 任务完成时文本样式 */
+        .task-completed .task-text {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        
+        /* 给不同类型的任务设置不同颜色 */
+        .day-1 .task-completed .task-checkbox {
+            --completed-color: rgb(168, 85, 247); /* 紫色 */
+        }
+        
+        .day-2 .task-completed .task-checkbox {
+            --completed-color: rgb(59, 130, 246); /* 蓝色 */
+        }
+        
+        .day-3 .task-completed .task-checkbox {
+            --completed-color: rgb(16, 185, 129); /* 绿色 */
+        }
+        
+        .day-4 .task-completed .task-checkbox {
+            --completed-color: rgb(245, 158, 11); /* 琥珀色 */
+        }
     </style>
     
     <!-- 添加任务清单相关的CSS和JS -->
@@ -471,36 +751,40 @@
         /* 任务清单样式 */
         .checkbox-custom {
             position: relative;
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            border: 2px solid currentColor;
+            border-radius: 3px;
+            cursor: pointer;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            overflow: hidden;
         }
         
         .checkbox-custom i {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 0.75rem;
+            font-size: 10px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.2s ease;
         }
         
-        /* 任务完成动画效果 */
-        .peer:checked + .checkbox-custom {
+        .task-completed .checkbox-custom {
+            background-color: var(--tw-bg-opacity);
             border-color: transparent;
-            animation: checkmark 0.3s ease-in-out;
         }
         
-        @keyframes checkmark {
-            0% { transform: scale(0.8); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+        .task-completed .checkbox-custom i {
+            opacity: 1;
+            transform: scale(1);
         }
         
-        /* 任务项悬停效果 */
-        .task-item {
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        .task-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(67, 56, 202, 0.15);
+        .task-completed .task-text {
+            text-decoration: line-through;
+            opacity: 0.7;
         }
     </style>
 
@@ -510,6 +794,41 @@
 
     <!-- iframe高度调整脚本 -->
     <script>
+        // 初始化暗黑模式切换
+        function initDarkMode() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+            
+            // 检查用户偏好
+            if (localStorage.getItem('darkMode') === 'true' || 
+                (window.matchMedia('(prefers-color-scheme: dark)').matches && 
+                 !localStorage.getItem('darkMode'))) {
+                html.classList.add('dark');
+                
+                // 同步密码保护层
+                const passwordOverlay = document.getElementById('passwordOverlay');
+                if (passwordOverlay) {
+                    passwordOverlay.classList.add('dark');
+                }
+            }
+            
+            // 切换按钮点击事件
+            themeToggle.addEventListener('click', function() {
+                html.classList.toggle('dark');
+                localStorage.setItem('darkMode', html.classList.contains('dark'));
+                
+                // 同步密码保护层
+                const passwordOverlay = document.getElementById('passwordOverlay');
+                if (passwordOverlay && passwordOverlay.style.display !== 'none') {
+                    if (html.classList.contains('dark')) {
+                        passwordOverlay.classList.add('dark');
+                    } else {
+                        passwordOverlay.classList.remove('dark');
+                    }
+                }
+            });
+        }
+        
         // 监听来自iframe的消息
         window.addEventListener('message', function(event) {
             if (event.data.frameHeight && event.data.frameId) {
@@ -542,6 +861,15 @@
         
         // 页面加载完成后执行
         window.addEventListener('DOMContentLoaded', function() {
+            // 初始化暗黑模式
+            initDarkMode();
+            
+            // 初始化密码保护功能
+            initPasswordProtection();
+            
+            // 初始化任务进度跟踪
+            initTaskProgress();
+            
             // 图片查看器功能
             const lightbox = document.getElementById('image-lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
@@ -628,6 +956,214 @@
                 });
             });
         });
+        
+        // 密码保护功能初始化
+        function initPasswordProtection() {
+            // 密码配置 - 管理员可以修改这两项来更新密码
+            const CURRENT_PASSWORD = "ai202444"; // 当前密码
+            const PASSWORD_VERSION = "3"; // 密码版本号，更改此值将使所有已保存的密码失效
+            
+            const passwordOverlay = document.getElementById('passwordOverlay');
+            const passwordForm = document.getElementById('passwordForm');
+            const passwordInput = document.getElementById('passwordInput');
+            const passwordError = document.getElementById('passwordError');
+            
+            // 检查是否已经通过密码验证
+            function checkAuthentication() {
+                const savedAuth = localStorage.getItem('ai_auth');
+                const savedVersion = localStorage.getItem('ai_auth_version');
+                
+                // 如果有保存的认证，且版本号匹配当前密码版本
+                if (savedAuth === 'true' && savedVersion === PASSWORD_VERSION) {
+                    hidePasswordOverlay();
+                }
+            }
+            
+            // 隐藏密码保护层
+            function hidePasswordOverlay() {
+                passwordOverlay.classList.add('hide');
+                setTimeout(() => {
+                    passwordOverlay.style.display = 'none';
+                }, 500);
+            }
+            
+            // 显示密码保护层
+            function showPasswordOverlay() {
+                passwordOverlay.style.display = 'flex';
+                setTimeout(() => {
+                    passwordOverlay.classList.remove('hide');
+                }, 10);
+            }
+            
+            // 校验密码
+            window.checkPassword = function(event) {
+                event.preventDefault();
+                
+                const password = passwordInput.value.trim();
+                
+                if (password === CURRENT_PASSWORD) {
+                    // 密码正确，保存认证状态和当前密码版本
+                    localStorage.setItem('ai_auth', 'true');
+                    localStorage.setItem('ai_auth_version', PASSWORD_VERSION);
+                    hidePasswordOverlay();
+                } else {
+                    // 密码错误，显示错误信息
+                    passwordError.style.display = 'block';
+                    passwordInput.classList.add('shake');
+                    
+                    // 移除抖动动画
+                    setTimeout(() => {
+                        passwordInput.classList.remove('shake');
+                    }, 500);
+                    
+                    // 清空输入框
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+                
+                return false;
+            };
+            
+            // 添加管理员重置功能
+            window.resetAuthentication = function() {
+                localStorage.removeItem('ai_auth');
+                localStorage.removeItem('ai_auth_version');
+                showPasswordOverlay();
+            };
+            
+            // 初始化密码检查
+            checkAuthentication();
+            
+            // 支持按下回车键提交
+            passwordInput.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    passwordForm.dispatchEvent(new Event('submit'));
+                }
+            });
+        }
+
+        // 初始化任务进度跟踪功能
+        function initTaskProgress() {
+            // 任务链接列表
+            const taskLinks = [
+                { id: 'task-1', selector: 'a[href="#ai-dialogue"]', day: 1 },
+                { id: 'task-2', selector: 'a[href="#critical-thinking"]', day: 1 },
+                { id: 'task-3', selector: 'a[href="#monday-task"]', day: 1 },
+                { id: 'task-4', selector: 'a[href="#multi-tool"]', day: 2 },
+                { id: 'task-5', selector: 'a[href="#task-breakdown"]', day: 2 },
+                { id: 'task-6', selector: 'a[href="#ppt-creation"]', day: 2 },
+                { id: 'task-7', selector: 'a[href="#tuesday-task"]', day: 2 },
+                { id: 'task-8', selector: 'a[href="#ai-reading"]', day: 3 },
+                { id: 'task-9', selector: 'a[href="#wednesday-task"]', day: 3 },
+                { id: 'task-10', selector: 'a[href="#scene-practice"]', day: 4 }
+            ];
+            
+            // 为每个任务添加复选框和初始状态
+            taskLinks.forEach(task => {
+                const linkElement = document.querySelector(task.selector);
+                if (linkElement) {
+                    // 为链接添加日期类，用于样式控制
+                    linkElement.classList.add(`day-${task.day}`);
+                    
+                    // 检查localStorage中的任务状态
+                    const isCompleted = localStorage.getItem(`week1_${task.id}`) === 'completed';
+                    
+                    // 移除现有的数字标记元素（如果需要保留可以注释掉这行）
+                    const existingNumberCircle = linkElement.querySelector('.w-8.h-8.rounded-full');
+                    if (existingNumberCircle) {
+                        linkElement.removeChild(existingNumberCircle);
+                    }
+                    
+                    // 创建复选框元素
+                    const checkbox = document.createElement('div');
+                    checkbox.className = 'task-checkbox';
+                    checkbox.innerHTML = '<i class="fas fa-check check-icon"></i>';
+                    
+                    // 将复选框添加到链接的开头
+                    linkElement.insertBefore(checkbox, linkElement.firstChild);
+                    
+                    // 给任务文本添加class，便于样式控制
+                    const textSpan = linkElement.querySelector('span');
+                    if (textSpan) {
+                        textSpan.classList.add('task-text');
+                    }
+                    
+                    // 如果任务已完成，添加完成样式
+                    if (isCompleted) {
+                        linkElement.classList.add('task-completed');
+                    }
+                    
+                    // 添加点击事件到复选框，用于标记任务完成或未完成
+                    checkbox.addEventListener('click', function(event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        
+                        // 任务状态切换
+                        const currentState = localStorage.getItem(`week1_${task.id}`);
+                        
+                        if (currentState === 'completed') {
+                            // 将任务标记为未完成
+                            localStorage.removeItem(`week1_${task.id}`);
+                            linkElement.classList.remove('task-completed');
+                        } else {
+                            // 将任务标记为已完成
+                            localStorage.setItem(`week1_${task.id}`, 'completed');
+                            linkElement.classList.add('task-completed');
+                            
+                            // 添加完成动画效果
+                            checkbox.classList.add('pulse');
+                            setTimeout(() => {
+                                checkbox.classList.remove('pulse');
+                            }, 500);
+                        }
+                        
+                        // 更新进度条
+                        updateProgressBar();
+                    });
+                    
+                    // 防止点击链接时的默认行为，改为切换复选框状态
+                    linkElement.addEventListener('click', function(event) {
+                        if (!event.target.closest('.task-checkbox')) {
+                            // 如果不是点击复选框，则触发复选框点击
+                            checkbox.click();
+                            event.preventDefault();
+                        }
+                    });
+                }
+            });
+            
+            // 更新进度条
+            updateProgressBar();
+            
+            // 函数：更新进度条
+            function updateProgressBar() {
+                let completedCount = 0;
+                const totalTasks = taskLinks.length;
+                
+                // 计算已完成任务数
+                taskLinks.forEach(task => {
+                    if (localStorage.getItem(`week1_${task.id}`) === 'completed') {
+                        completedCount++;
+                    }
+                });
+                
+                // 计算完成百分比
+                const percentage = Math.floor((completedCount / totalTasks) * 100);
+                
+                // 更新进度条宽度
+                const progressBar = document.getElementById('week1-progress-bar');
+                if (progressBar) {
+                    progressBar.style.width = `${percentage}%`;
+                }
+                
+                // 更新进度文本
+                const progressText = document.getElementById('week1-progress-text');
+                if (progressText) {
+                    progressText.textContent = `已完成 ${completedCount}/${totalTasks} 任务`;
+                }
+            }
+        }
     </script>
 </body>
 </html> 
