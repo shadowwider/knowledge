@@ -465,8 +465,8 @@
         <div class="mb-10">
             <h2 class="text-2xl font-bold text-center text-primary-600 dark:text-primary-400 mb-6">第1周学习路线</h2>
             
-            <!-- 四个任务日卡片 -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- 五个任务日卡片 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
                 <!-- 第一天任务卡片 -->
                 <div class="bg-gradient-to-br from-purple-50 to-indigo-100 dark:from-purple-900/30 dark:to-indigo-900/30 p-5 rounded-xl border border-purple-200 dark:border-purple-800 shadow-md hover:shadow-lg transition-all">
                     <div class="flex items-center mb-4">
@@ -577,10 +577,42 @@
                                 <span class="text-xs ml-2 bg-amber-700 dark:bg-amber-600 text-white px-2 py-0.5 rounded-full">挑战</span>
                             </span>
                         </a>
+                        <a href="#live-course" class="flex items-center p-2 rounded-lg hover:bg-white/60 dark:hover:bg-gray-800/40 transition-colors">
+                            <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold mr-2">11</div>
+                            <span class="text-amber-800 dark:text-amber-300">
+                                <i class="fas fa-video mr-2"></i>参与周末直播
+                                <span class="text-xs ml-2 bg-amber-700 dark:bg-amber-600 text-white px-2 py-0.5 rounded-full">互动</span>
+                            </span>
+                        </a>
                         <div class="p-2 text-amber-700 dark:text-amber-300 text-sm">
                             <p><i class="fas fa-star mr-1"></i> 整合本周所学知识</p>
                             <p><i class="fas fa-star mr-1"></i> 完成实战练习</p>
                             <p><i class="fas fa-star mr-1"></i> 提升AI应用能力</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 周日直播课程卡片 -->
+                <div class="bg-gradient-to-br from-rose-50 to-pink-100 dark:from-rose-900/30 dark:to-pink-900/30 p-5 rounded-xl border border-rose-200 dark:border-rose-800 shadow-md hover:shadow-lg transition-all relative overflow-hidden">
+                    <div class="absolute -right-5 -top-5 w-20 h-20 bg-rose-500 rotate-12 flex items-end justify-center pb-1 text-white text-xs font-bold">
+                        直播
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-rose-600 text-white flex items-center justify-center text-lg font-bold">5</div>
+                        <h3 class="ml-3 text-lg font-bold text-rose-700 dark:text-rose-400">周日直播</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <a href="#live-course" class="flex items-center p-2 rounded-lg bg-gradient-to-r from-rose-100 to-pink-200 dark:from-rose-800/50 dark:to-pink-800/50 hover:from-rose-200 hover:to-pink-300 dark:hover:from-rose-700/70 dark:hover:to-pink-700/70 transition-all shadow-sm">
+                            <div class="w-8 h-8 rounded-full bg-rose-500 text-white flex items-center justify-center text-sm font-bold mr-2 animate-pulse">11</div>
+                            <span class="text-rose-800 dark:text-rose-300 font-medium">
+                                <i class="fas fa-video mr-2"></i>每周直播课
+                                <span class="text-xs ml-2 bg-rose-700 dark:bg-rose-600 text-white px-2 py-0.5 rounded-full">直播</span>
+                            </span>
+                        </a>
+                        <div class="p-2 text-rose-700 dark:text-rose-300 text-sm">
+                            <p><i class="fas fa-check-circle mr-1"></i> 上周作业点评</p>
+                            <p><i class="fas fa-lightbulb mr-1"></i> AI前沿知识分享</p>
+                            <p><i class="fas fa-forward mr-1"></i> 新一周任务预告</p>
                         </div>
                     </div>
                 </div>
@@ -590,7 +622,7 @@
             <div class="mt-8 mb-4">
                 <div class="flex justify-between mb-2">
                     <span class="text-sm font-medium text-gray-600 dark:text-gray-400">学习进度</span>
-                    <span class="text-sm font-medium text-primary-600 dark:text-primary-400" id="week1-progress-text">已完成 0/10 任务</span>
+                    <span class="text-sm font-medium text-primary-600 dark:text-primary-400" id="week1-progress-text">已完成 0/11 任务</span>
                 </div>
                 <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
                     <div id="week1-progress-bar" class="h-full bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full" style="width: 0%;"></div>
@@ -1056,7 +1088,8 @@
                 { id: 'task-7', selector: 'a[href="#tuesday-task"]', day: 2 },
                 { id: 'task-8', selector: 'a[href="#ai-reading"]', day: 3 },
                 { id: 'task-9', selector: 'a[href="#wednesday-task"]', day: 3 },
-                { id: 'task-10', selector: 'a[href="#scene-practice"]', day: 4 }
+                { id: 'task-10', selector: 'a[href="#scene-practice"]', day: 4 },
+                { id: 'task-11', selector: 'a[href="#live-course"]', day: 4 }
             ];
             
             // 为每个任务添加复选框和初始状态

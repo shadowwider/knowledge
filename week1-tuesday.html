@@ -518,13 +518,13 @@
                         <div class="space-y-4 text-indigo-100">
                             <h4 class="font-medium text-white">表格比较法</h4>
                             <div class="prompt-card p-4 mb-3">
-                                <button class="copy-button" data-prompt="我将向多个AI工具提出同一问题，需要你帮我准备一个问题评估表格。问题是关于量子计算的基本原理。请创建一个表格，包含以下评估维度：1) 回答的深度，2) 准确性，3) 示例质量，4) 通俗易懂程度，5) 独特见解。表格要有足够的空间让我填写针对每个AI的评分和笔记。">
+                                <button class="copy-button" data-prompt="我将向多个AI工具提出同一问题，需要你帮我准备一个各个AI针对这个问题回答的评估维度设计。问题是【问题主题】。告诉我针对这个问题应该从哪5个方面来评估AI的回答质量">
                                     <i class="fas fa-copy"></i> 复制
                                 </button>
-                                <p class="text-sm leading-relaxed whitespace-pre-wrap">我将向多个AI工具提出同一问题，需要你帮我准备一个问题评估表格。问题是关于量子计算的基本原理。请创建一个表格，包含以下评估维度：1) 回答的深度，2) 准确性，3) 示例质量，4) 通俗易懂程度，5) 独特见解。表格要有足够的空间让我填写针对每个AI的评分和笔记。</p>
+                                <p class="text-sm leading-relaxed whitespace-pre-wrap">我将向多个AI工具提出同一问题，需要你帮我准备一个各个AI针对这个问题回答的评估维度设计。问题是【问题主题】。告诉我针对这个问题应该从哪5个方面来评估AI的回答质量</p>
                             </div>
                             <p class="text-sm">
-                                这个提示词可以帮助你创建一个标准化的评估表格，在比较多个AI工具的结果时更加系统化
+                                这个提示词可以启发你从哪些维度来评估不同AI回答的好坏。当然你也可以加入自己的评判标准。
                             </p>
                             
                             <h4 class="font-medium text-white mt-4">知识提取提示</h4>
@@ -566,19 +566,24 @@
                         <!-- 图片1 -->
                         <div class="swiper-slide">
                             <div class="image-container">
-                                <img src="static/images/scenes/multi-tool-setup.jpg" alt="多工具并行设置" class="contained-image" />
+                                <img src="static/images/scenes/sence-1-3-1.png" alt="多工具并行设置" class="contained-image" />
                             </div>
                         </div>
                         <!-- 图片2 -->
                         <div class="swiper-slide">
                             <div class="image-container">
-                                <img src="static/images/scenes/tool-comparison.jpg" alt="工具结果对比" class="contained-image" />
+                                <img src="static/images/scenes/sence-1-3-2.png" alt="工具结果对比" class="contained-image" />
                             </div>
                         </div>
                         <!-- 图片3 -->
                         <div class="swiper-slide">
                             <div class="image-container">
-                                <img src="static/images/scenes/knowledge-integration.jpg" alt="知识整合过程" class="contained-image" />
+                                <img src="static/images/scenes/sence-1-3-3.png" alt="知识整合过程" class="contained-image" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="image-container">
+                                <img src="static/images/scenes/sence-1-3-4.png" alt="知识整合过程" class="contained-image" />
                             </div>
                         </div>
                     </div>
@@ -960,21 +965,16 @@
                         <!-- 图片1 -->
                         <div class="swiper-slide">
                             <div class="image-container">
-                                <img src="static/images/scenes/task-breakdown-chart.jpg" alt="任务拆解图表" class="contained-image" />
+                                <img src="static/images/scenes/sence-1-4-1.png" alt="任务拆解图表" class="contained-image" />
                             </div>
                         </div>
                         <!-- 图片2 -->
                         <div class="swiper-slide">
                             <div class="image-container">
-                                <img src="static/images/scenes/task-management-tool.jpg" alt="任务管理工具" class="contained-image" />
+                                <img src="static/images/scenes/sence-1-4-2.png" alt="任务管理工具" class="contained-image" />
                             </div>
                         </div>
-                        <!-- 图片3 -->
-                        <div class="swiper-slide">
-                            <div class="image-container">
-                                <img src="static/images/scenes/gantt-chart.jpg" alt="甘特图示例" class="contained-image" />
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="swiper-pagination"></div>
                     <div class="swiper-button-next"></div>
@@ -1102,6 +1102,89 @@
                                 <li>自动整合参考资料和数据</li>
                             </ul>
                         </div>
+                        
+                        <!-- 推荐AI工具 -->
+                        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-gradient-to-br from-blue-800/60 to-blue-900/60 p-5 rounded-xl backdrop-blur-sm">
+                                <div class="flex items-center mb-3">
+                                    <div class="bg-blue-600/70 p-2 rounded-lg mr-3">
+                                        <i class="fas fa-robot text-white text-xl"></i>
+                                    </div>
+                                    <h4 class="text-lg font-medium text-white">通义PPT</h4>
+                                </div>
+                                <p class="text-blue-200 text-sm mb-3">
+                                    支持长文生成PPT，支持大纲设计和编辑，支持AI自动生成PPT插图。
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-blue-700/50 text-xs px-2 py-1 rounded-full text-blue-100">长文转PPT</span>
+                                    <span class="bg-blue-700/50 text-xs px-2 py-1 rounded-full text-blue-100">大纲设计</span>
+                                    <span class="bg-blue-700/50 text-xs px-2 py-1 rounded-full text-blue-100">AI插图</span>
+                                </div>
+                                <a href="https://tongyi.aliyun.com/aippt" target="_blank" class="block mt-3 text-blue-300 text-xs hover:text-blue-200 transition-colors">
+                                    <i class="fas fa-external-link-alt mr-1"></i> 访问网站
+                                </a>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-indigo-800/60 to-indigo-900/60 p-5 rounded-xl backdrop-blur-sm">
+                                <div class="flex items-center mb-3">
+                                    <div class="bg-indigo-600/70 p-2 rounded-lg mr-3">
+                                        <i class="fas fa-magic text-white text-xl"></i>
+                                    </div>
+                                    <h4 class="text-lg font-medium text-white">Kimi的PPT助手</h4>
+                                </div>
+                                <p class="text-indigo-200 text-sm mb-3">
+                                    主题自动生成PPT，提供丰富多样的模板选择。
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-indigo-700/50 text-xs px-2 py-1 rounded-full text-indigo-100">主题生成</span>
+                                    <span class="bg-indigo-700/50 text-xs px-2 py-1 rounded-full text-indigo-100">丰富模板</span>
+                                    <span class="bg-indigo-700/50 text-xs px-2 py-1 rounded-full text-indigo-100">易用性高</span>
+                                </div>
+                                <a href="https://kimi.moonshot.cn/kimiplus/conpg18t7lagbbsfqksg" target="_blank" class="block mt-3 text-indigo-300 text-xs hover:text-indigo-200 transition-colors">
+                                    <i class="fas fa-external-link-alt mr-1"></i> 访问网站
+                                </a>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-teal-800/60 to-teal-900/60 p-5 rounded-xl backdrop-blur-sm">
+                                <div class="flex items-center mb-3">
+                                    <div class="bg-teal-600/70 p-2 rounded-lg mr-3">
+                                        <i class="fas fa-chart-bar text-white text-xl"></i>
+                                    </div>
+                                    <h4 class="text-lg font-medium text-white">Gamma PPT</h4>
+                                </div>
+                                <p class="text-teal-200 text-sm mb-3">
+                                    各种文字一键生成PPT，可通过上传PPT文件学习你的logo和模板字体布局等，一键生成好看的网页。
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-teal-700/50 text-xs px-2 py-1 rounded-full text-teal-100">文字转PPT</span>
+                                    <span class="bg-teal-700/50 text-xs px-2 py-1 rounded-full text-teal-100">学习模板</span>
+                                    <span class="bg-teal-700/50 text-xs px-2 py-1 rounded-full text-teal-100">网页生成</span>
+                                </div>
+                                <a href="https://gamma.app" target="_blank" class="block mt-3 text-teal-300 text-xs hover:text-teal-200 transition-colors">
+                                    <i class="fas fa-external-link-alt mr-1"></i> 访问网站
+                                </a>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-emerald-800/60 to-emerald-900/60 p-5 rounded-xl backdrop-blur-sm">
+                                <div class="flex items-center mb-3">
+                                    <div class="bg-emerald-600/70 p-2 rounded-lg mr-3">
+                                        <i class="fas fa-image text-white text-xl"></i>
+                                    </div>
+                                    <h4 class="text-lg font-medium text-white">Napkin</h4>
+                                </div>
+                                <p class="text-emerald-200 text-sm mb-3">
+                                    主要可以把文字变成好看的可视化图形，让PPT的视觉效果非常好。
+                                </p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-emerald-700/50 text-xs px-2 py-1 rounded-full text-emerald-100">文字可视化</span>
+                                    <span class="bg-emerald-700/50 text-xs px-2 py-1 rounded-full text-emerald-100">图形设计</span>
+                                    <span class="bg-emerald-700/50 text-xs px-2 py-1 rounded-full text-emerald-100">视觉增强</span>
+                                </div>
+                                <a href="https://app.napkin.ai/" target="_blank" class="block mt-3 text-emerald-300 text-xs hover:text-emerald-200 transition-colors">
+                                    <i class="fas fa-external-link-alt mr-1"></i> 访问网站
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -1170,14 +1253,7 @@
                                         </ul>
                                     </div>
                                     
-                                    <div class="bg-gradient-to-r from-pink-800/60 to-purple-800/60 p-3 rounded-lg">
-                                        <div class="text-center text-white text-xs mb-1">更多章节...</div>
-                                        <div class="flex justify-center">
-                                            <button class="text-xs bg-pink-700/70 hover:bg-pink-600/70 py-1 px-3 rounded-full text-white transition-colors focus:outline-none">
-                                                展开完整大纲
-                                            </button>
-                                        </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -1357,22 +1433,41 @@
                 <!-- 第一个轮播框 -->
                 <div class="image-gallery swiper rounded-xl overflow-hidden">
                     <div class="swiper-wrapper">
-                        <!-- 图片1 -->
-                        <div class="swiper-slide">
-                            <div class="image-container">
-                                <img src="static/images/scenes/ppt-creation-process.jpg" alt="AI辅助PPT创作流程" class="contained-image" />
-                            </div>
-                        </div>
+                        
                         <!-- 图片2 -->
                         <div class="swiper-slide">
                             <div class="image-container">
-                                <img src="static/images/scenes/ppt-design-example.jpg" alt="PPT设计示例" class="contained-image" />
+                                <img src="static/images/scenes/sence-1-5-1.png" alt="PPT设计示例" class="contained-image" />
                             </div>
                         </div>
                         <!-- 图片3 -->
                         <div class="swiper-slide">
                             <div class="image-container">
-                                <img src="static/images/scenes/ppt-ai-tools.jpg" alt="PPT AI辅助工具" class="contained-image" />
+                                <img src="static/images/scenes/sence-1-5-2.png" alt="PPT AI辅助工具" class="contained-image" />
+                            </div>
+                        </div>
+                         <!-- 图片3 -->
+                         <div class="swiper-slide">
+                            <div class="image-container">
+                                <img src="static/images/scenes/sence-1-5-3.png" alt="PPT AI辅助工具" class="contained-image" />
+                            </div>
+                        </div>
+                         <!-- 图片3 -->
+                         <div class="swiper-slide">
+                            <div class="image-container">
+                                <img src="static/images/scenes/sence-1-5-4.png" alt="PPT AI辅助工具" class="contained-image" />
+                            </div>
+                        </div>
+                         <!-- 图片3 -->
+                         <div class="swiper-slide">
+                            <div class="image-container">
+                                <img src="static/images/scenes/sence-1-5-5.png" alt="PPT AI辅助工具" class="contained-image" />
+                            </div>
+                        </div>
+                         <!-- 图片3 -->
+                         <div class="swiper-slide">
+                            <div class="image-container">
+                                <img src="static/images/scenes/sence-1-5-6.png" alt="PPT AI辅助工具" class="contained-image" />
                             </div>
                         </div>
                     </div>
@@ -1382,59 +1477,7 @@
                 </div>
             </div>
             
-            <!-- AI工具推荐 -->
-            <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-gradient-to-br from-purple-800/60 to-purple-900/60 p-5 rounded-xl backdrop-blur-sm">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-purple-600/70 p-2 rounded-lg mr-3">
-                            <i class="fas fa-robot text-white text-xl"></i>
-                        </div>
-                        <h4 class="text-lg font-medium text-white">ChatGPT</h4>
-                    </div>
-                    <p class="text-purple-200 text-sm mb-3">
-                        擅长生成结构化的PPT大纲和详细内容，可以根据提示创建适合不同领域的专业演示文稿内容。
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-purple-700/50 text-xs px-2 py-1 rounded-full text-purple-100">内容生成</span>
-                        <span class="bg-purple-700/50 text-xs px-2 py-1 rounded-full text-purple-100">结构规划</span>
-                        <span class="bg-purple-700/50 text-xs px-2 py-1 rounded-full text-purple-100">多轮优化</span>
-                    </div>
-                </div>
-                
-                <div class="bg-gradient-to-br from-pink-800/60 to-pink-900/60 p-5 rounded-xl backdrop-blur-sm">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-pink-600/70 p-2 rounded-lg mr-3">
-                            <i class="fas fa-paint-brush text-white text-xl"></i>
-                        </div>
-                        <h4 class="text-lg font-medium text-white">Beautiful.ai</h4>
-                    </div>
-                    <p class="text-pink-200 text-sm mb-3">
-                        AI驱动的演示文稿工具，自动调整设计布局，让用户专注于内容，系统自动优化幻灯片的视觉呈现。
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-pink-700/50 text-xs px-2 py-1 rounded-full text-pink-100">自动设计</span>
-                        <span class="bg-pink-700/50 text-xs px-2 py-1 rounded-full text-pink-100">智能模板</span>
-                        <span class="bg-pink-700/50 text-xs px-2 py-1 rounded-full text-pink-100">云协作</span>
-                    </div>
-                </div>
-                
-                <div class="bg-gradient-to-br from-fuchsia-800/60 to-fuchsia-900/60 p-5 rounded-xl backdrop-blur-sm">
-                    <div class="flex items-center mb-3">
-                        <div class="bg-fuchsia-600/70 p-2 rounded-lg mr-3">
-                            <i class="fas fa-magic text-white text-xl"></i>
-                        </div>
-                        <h4 class="text-lg font-medium text-white">Slidesgo + ChatGPT</h4>
-                    </div>
-                    <p class="text-fuchsia-200 text-sm mb-3">
-                        结合使用Slidesgo的优质模板和ChatGPT生成的内容，能够快速创建既美观又内容丰富的演示文稿。
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-fuchsia-700/50 text-xs px-2 py-1 rounded-full text-fuchsia-100">模板库</span>
-                        <span class="bg-fuchsia-700/50 text-xs px-2 py-1 rounded-full text-fuchsia-100">内容填充</span>
-                        <span class="bg-fuchsia-700/50 text-xs px-2 py-1 rounded-full text-fuchsia-100">组合使用</span>
-                    </div>
-                </div>
-            </div>
+          
             
             <!-- 小结 -->
             <div class="mt-12 bg-gradient-to-r from-purple-900/70 to-pink-900/70 p-6 rounded-xl backdrop-blur-sm">
@@ -1445,15 +1488,15 @@
                 
                 <div class="text-purple-100 space-y-3">
                     <p>
-                        AI辅助PPT制作已经彻底改变了演示文稿的创建流程，从耗时的手动内容编写和设计调整，转变为高效的AI引导创作过程。掌握这种新方法的关键点包括：
+                        AI辅助PPT制作已经彻底改变了演示文稿的创建流程，能够根据文字文档快速生成高颜值的通用PPT，大幅降低制作门槛并提升作品质量。掌握这种新方法的关键点包括：
                     </p>
                     
                     <ul class="list-disc list-inside space-y-2 ml-4">
-                        <li>将AI视为协作伙伴，而非完全替代者，人类的创意和判断仍然至关重要</li>
-                        <li>使用分步骤的方法：先确定结构，再生成内容，最后进行设计美化</li>
-                        <li>明确目标受众和演示目的，这些信息能帮助AI生成更有针对性的内容</li>
-                        <li>不要一次生成整个演示文稿，而是逐页或逐章节深入处理</li>
-                        <li>结合多种工具：使用ChatGPT生成内容，专业PPT工具进行设计和排版</li>
+                        <li>AI能自动提炼总结长文档中的内容，智能拆分知识点，生成结构清晰的PPT</li>
+                        <li>AI可创造合适的插图和视觉元素，让PPT美观专业，提升视觉表现力</li>
+                        <li>推荐工作流：先让AI生成基础PPT，下载后再进行自定义优化</li>
+                        <li>重要页面可进行人工修改和定制，确保关键信息准确有效</li>
+                        <li>AI降低了PPT制作的技术门槛，但演讲的整体质量和表达效果仍由人来把控</li>
                     </ul>
                     
                     <div class="mt-6 p-4 bg-pink-800/40 rounded-lg">
@@ -1530,6 +1573,12 @@
                             </span>
                             <span>初步探索AI在PPT生成上的能力</span>
                         </li>
+                        <li class="flex items-start">
+                            <span class="flex-shrink-0 h-6 w-6 flex items-center justify-center rounded-full bg-amber-500/20 text-amber-400 mr-3 mt-0.5">
+                                <i class="fas fa-check text-xs"></i>
+                            </span>
+                            <span>学习识别AI生成内容中可能存在的错误、偏见和"幻觉"</span>
+                        </li>
                     </ul>
                 </div>
                 
@@ -1537,9 +1586,48 @@
                 <div class="mb-6">
                     <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
                         <i class="fas fa-tasks text-amber-500 mr-3"></i>
-                        任务内容
+                        思维训练任务（10min）
                     </h3>
-                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- 任务项1 -->
+                        <div class="task-item bg-zinc-700/40 p-5 rounded-xl hover:bg-zinc-700/60">
+                            <div class="flex items-center mb-3">
+                                <span class="flex-shrink-0 h-7 w-7 flex items-center justify-center rounded-full bg-amber-500 text-white mr-3">
+                                    <span class="font-semibold">1</span>
+                                </span>
+                                <h4 class="text-lg font-medium text-white">AI推理漏洞识别</h4>
+                            </div>
+                            <p class="text-gray-300 mb-3">
+                                向AI提出一个复杂问题（如伦理困境或社会政策），分析其推理过程中的逻辑漏洞，并要求AI修正这些问题点。
+                            </p>
+                            <div class="text-sm text-gray-400">
+                                <p><i class="fas fa-lightbulb mr-1 text-amber-400"></i> 重点关注过度简化、缺少证据或假设前提不明的部分</p>
+                            </div>
+                        </div>
+                        
+                        <!-- 任务项2 -->
+                        <div class="task-item bg-zinc-700/40 p-5 rounded-xl hover:bg-zinc-700/60">
+                            <div class="flex items-center mb-3">
+                                <span class="flex-shrink-0 h-7 w-7 flex items-center justify-center rounded-full bg-amber-500 text-white mr-3">
+                                    <span class="font-semibold">2</span>
+                                </span>
+                                <h4 class="text-lg font-medium text-white">AI事实核查练习</h4>
+                            </div>
+                            <p class="text-gray-300 mb-3">
+                                要求AI生成一篇含有数据的短报告，针对3-5个关键"事实"进行网络搜索验证，找出可能存在的不准确信息。
+                            </p>
+                            <div class="text-sm text-gray-400">
+                                <p><i class="fas fa-lightbulb mr-1 text-amber-400"></i> 选择不太熟悉的专业领域，重点验证具体数字和引用</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                     <!-- 日常任务内容 -->
+                <div class="mb-6 ">
+                    <h3 class="text-xl font-semibold text-amber-400 mb-4 flex items-center">
+                        <i class="fas fa-tasks text-amber-500 mr-3"></i>
+                        日常任务内容（20min）
+                    </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <!-- 任务项1 -->
                         <div class="task-item bg-zinc-700/40 p-5 rounded-xl hover:bg-zinc-700/60">
